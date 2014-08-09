@@ -1,0 +1,471 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B1760AD51996E27B00DD6D1E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD41996E27B00DD6D1E /* Foundation.framework */; };
+		B1760AD71996E27B00DD6D1E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD61996E27B00DD6D1E /* CoreGraphics.framework */; };
+		B1760AD91996E27B00DD6D1E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD81996E27B00DD6D1E /* UIKit.framework */; };
+		B1760ADF1996E27B00DD6D1E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1760ADD1996E27B00DD6D1E /* InfoPlist.strings */; };
+		B1760AE11996E27B00DD6D1E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1760AE01996E27B00DD6D1E /* main.m */; };
+		B1760AE51996E27B00DD6D1E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1760AE41996E27B00DD6D1E /* AppDelegate.m */; };
+		B1760AE81996E27B00DD6D1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1760AE61996E27B00DD6D1E /* Main.storyboard */; };
+		B1760AEB1996E27B00DD6D1E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1760AEA1996E27B00DD6D1E /* ViewController.m */; };
+		B1760AED1996E27B00DD6D1E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1760AEC1996E27B00DD6D1E /* Images.xcassets */; };
+		B1760AF41996E27B00DD6D1E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AF31996E27B00DD6D1E /* XCTest.framework */; };
+		B1760AF51996E27B00DD6D1E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD41996E27B00DD6D1E /* Foundation.framework */; };
+		B1760AF61996E27B00DD6D1E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD81996E27B00DD6D1E /* UIKit.framework */; };
+		B1760AFE1996E27B00DD6D1E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1760AFC1996E27B00DD6D1E /* InfoPlist.strings */; };
+		B1760B001996E27B00DD6D1E /* ShylfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1760AFF1996E27B00DD6D1E /* ShylfTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B1760AF71996E27B00DD6D1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1760AC91996E27B00DD6D1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B1760AD01996E27B00DD6D1E;
+			remoteInfo = Shylf;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B1760AD11996E27B00DD6D1E /* Shylf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shylf.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1760AD41996E27B00DD6D1E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B1760AD61996E27B00DD6D1E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B1760AD81996E27B00DD6D1E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B1760ADC1996E27B00DD6D1E /* Shylf-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Shylf-Info.plist"; sourceTree = "<group>"; };
+		B1760ADE1996E27B00DD6D1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B1760AE01996E27B00DD6D1E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B1760AE21996E27B00DD6D1E /* Shylf-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Shylf-Prefix.pch"; sourceTree = "<group>"; };
+		B1760AE31996E27B00DD6D1E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B1760AE41996E27B00DD6D1E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B1760AE71996E27B00DD6D1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B1760AE91996E27B00DD6D1E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B1760AEA1996E27B00DD6D1E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B1760AEC1996E27B00DD6D1E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B1760AF21996E27B00DD6D1E /* ShylfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShylfTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1760AF31996E27B00DD6D1E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		B1760AFB1996E27B00DD6D1E /* ShylfTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShylfTests-Info.plist"; sourceTree = "<group>"; };
+		B1760AFD1996E27B00DD6D1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B1760AFF1996E27B00DD6D1E /* ShylfTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShylfTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B1760ACE1996E27B00DD6D1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1760AD71996E27B00DD6D1E /* CoreGraphics.framework in Frameworks */,
+				B1760AD91996E27B00DD6D1E /* UIKit.framework in Frameworks */,
+				B1760AD51996E27B00DD6D1E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1760AEF1996E27B00DD6D1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1760AF41996E27B00DD6D1E /* XCTest.framework in Frameworks */,
+				B1760AF61996E27B00DD6D1E /* UIKit.framework in Frameworks */,
+				B1760AF51996E27B00DD6D1E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B1760AC81996E27B00DD6D1E = {
+			isa = PBXGroup;
+			children = (
+				B1760ADA1996E27B00DD6D1E /* Shylf */,
+				B1760AF91996E27B00DD6D1E /* ShylfTests */,
+				B1760AD31996E27B00DD6D1E /* Frameworks */,
+				B1760AD21996E27B00DD6D1E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B1760AD21996E27B00DD6D1E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B1760AD11996E27B00DD6D1E /* Shylf.app */,
+				B1760AF21996E27B00DD6D1E /* ShylfTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B1760AD31996E27B00DD6D1E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B1760AD41996E27B00DD6D1E /* Foundation.framework */,
+				B1760AD61996E27B00DD6D1E /* CoreGraphics.framework */,
+				B1760AD81996E27B00DD6D1E /* UIKit.framework */,
+				B1760AF31996E27B00DD6D1E /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B1760ADA1996E27B00DD6D1E /* Shylf */ = {
+			isa = PBXGroup;
+			children = (
+				B1760AE31996E27B00DD6D1E /* AppDelegate.h */,
+				B1760AE41996E27B00DD6D1E /* AppDelegate.m */,
+				B1760AE61996E27B00DD6D1E /* Main.storyboard */,
+				B1760AE91996E27B00DD6D1E /* ViewController.h */,
+				B1760AEA1996E27B00DD6D1E /* ViewController.m */,
+				B1760AEC1996E27B00DD6D1E /* Images.xcassets */,
+				B1760ADB1996E27B00DD6D1E /* Supporting Files */,
+			);
+			path = Shylf;
+			sourceTree = "<group>";
+		};
+		B1760ADB1996E27B00DD6D1E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B1760ADC1996E27B00DD6D1E /* Shylf-Info.plist */,
+				B1760ADD1996E27B00DD6D1E /* InfoPlist.strings */,
+				B1760AE01996E27B00DD6D1E /* main.m */,
+				B1760AE21996E27B00DD6D1E /* Shylf-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B1760AF91996E27B00DD6D1E /* ShylfTests */ = {
+			isa = PBXGroup;
+			children = (
+				B1760AFF1996E27B00DD6D1E /* ShylfTests.m */,
+				B1760AFA1996E27B00DD6D1E /* Supporting Files */,
+			);
+			path = ShylfTests;
+			sourceTree = "<group>";
+		};
+		B1760AFA1996E27B00DD6D1E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B1760AFB1996E27B00DD6D1E /* ShylfTests-Info.plist */,
+				B1760AFC1996E27B00DD6D1E /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B1760AD01996E27B00DD6D1E /* Shylf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1760B031996E27B00DD6D1E /* Build configuration list for PBXNativeTarget "Shylf" */;
+			buildPhases = (
+				B1760ACD1996E27B00DD6D1E /* Sources */,
+				B1760ACE1996E27B00DD6D1E /* Frameworks */,
+				B1760ACF1996E27B00DD6D1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Shylf;
+			productName = Shylf;
+			productReference = B1760AD11996E27B00DD6D1E /* Shylf.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B1760AF11996E27B00DD6D1E /* ShylfTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1760B061996E27B00DD6D1E /* Build configuration list for PBXNativeTarget "ShylfTests" */;
+			buildPhases = (
+				B1760AEE1996E27B00DD6D1E /* Sources */,
+				B1760AEF1996E27B00DD6D1E /* Frameworks */,
+				B1760AF01996E27B00DD6D1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B1760AF81996E27B00DD6D1E /* PBXTargetDependency */,
+			);
+			name = ShylfTests;
+			productName = ShylfTests;
+			productReference = B1760AF21996E27B00DD6D1E /* ShylfTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B1760AC91996E27B00DD6D1E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Phil Nichols";
+				TargetAttributes = {
+					B1760AF11996E27B00DD6D1E = {
+						TestTargetID = B1760AD01996E27B00DD6D1E;
+					};
+				};
+			};
+			buildConfigurationList = B1760ACC1996E27B00DD6D1E /* Build configuration list for PBXProject "Shylf" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B1760AC81996E27B00DD6D1E;
+			productRefGroup = B1760AD21996E27B00DD6D1E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B1760AD01996E27B00DD6D1E /* Shylf */,
+				B1760AF11996E27B00DD6D1E /* ShylfTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B1760ACF1996E27B00DD6D1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1760AED1996E27B00DD6D1E /* Images.xcassets in Resources */,
+				B1760ADF1996E27B00DD6D1E /* InfoPlist.strings in Resources */,
+				B1760AE81996E27B00DD6D1E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1760AF01996E27B00DD6D1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1760AFE1996E27B00DD6D1E /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B1760ACD1996E27B00DD6D1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1760AEB1996E27B00DD6D1E /* ViewController.m in Sources */,
+				B1760AE51996E27B00DD6D1E /* AppDelegate.m in Sources */,
+				B1760AE11996E27B00DD6D1E /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1760AEE1996E27B00DD6D1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1760B001996E27B00DD6D1E /* ShylfTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B1760AF81996E27B00DD6D1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B1760AD01996E27B00DD6D1E /* Shylf */;
+			targetProxy = B1760AF71996E27B00DD6D1E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B1760ADD1996E27B00DD6D1E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1760ADE1996E27B00DD6D1E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B1760AE61996E27B00DD6D1E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1760AE71996E27B00DD6D1E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B1760AFC1996E27B00DD6D1E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1760AFD1996E27B00DD6D1E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B1760B011996E27B00DD6D1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B1760B021996E27B00DD6D1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B1760B041996E27B00DD6D1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shylf/Shylf-Prefix.pch";
+				INFOPLIST_FILE = "Shylf/Shylf-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B1760B051996E27B00DD6D1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shylf/Shylf-Prefix.pch";
+				INFOPLIST_FILE = "Shylf/Shylf-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		B1760B071996E27B00DD6D1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Shylf.app/Shylf";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shylf/Shylf-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ShylfTests/ShylfTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		B1760B081996E27B00DD6D1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Shylf.app/Shylf";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shylf/Shylf-Prefix.pch";
+				INFOPLIST_FILE = "ShylfTests/ShylfTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B1760ACC1996E27B00DD6D1E /* Build configuration list for PBXProject "Shylf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1760B011996E27B00DD6D1E /* Debug */,
+				B1760B021996E27B00DD6D1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1760B031996E27B00DD6D1E /* Build configuration list for PBXNativeTarget "Shylf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1760B041996E27B00DD6D1E /* Debug */,
+				B1760B051996E27B00DD6D1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B1760B061996E27B00DD6D1E /* Build configuration list for PBXNativeTarget "ShylfTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1760B071996E27B00DD6D1E /* Debug */,
+				B1760B081996E27B00DD6D1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B1760AC91996E27B00DD6D1E /* Project object */;
+}
