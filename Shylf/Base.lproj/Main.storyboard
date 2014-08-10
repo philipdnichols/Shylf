@@ -217,7 +217,7 @@
         <scene sceneID="KIe-gI-XtF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AS5-V0-iIC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Movies" id="ebN-kn-s06"/>
+                    <tabBarItem key="tabBarItem" title="Movies" image="movies" id="ebN-kn-s06"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4vw-7a-HwW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -236,7 +236,7 @@
         <scene sceneID="Idu-Oc-KZf">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="V7A-zc-EjF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Video Games" id="78T-d5-hl1"/>
+                    <tabBarItem key="tabBarItem" title="Video Games" image="video games" id="78T-d5-hl1"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="F5c-0o-O8n">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -255,7 +255,7 @@
         <scene sceneID="chd-68-e9F">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ddH-YM-reU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Books" id="3tt-5t-0Ce"/>
+                    <tabBarItem key="tabBarItem" title="Books" image="books" id="3tt-5t-0Ce"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="q1y-UV-FtW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -274,7 +274,7 @@
         <scene sceneID="1F8-Zz-QgD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Lfq-2h-9qd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="TV Shows" id="5lu-FK-WGb"/>
+                    <tabBarItem key="tabBarItem" title="TV Shows" image="tv" id="5lu-FK-WGb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cgP-Hr-XuZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -290,6 +290,12 @@
             <point key="canvasLocation" x="446" y="529"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="books" width="32" height="32"/>
+        <image name="movies" width="32" height="32"/>
+        <image name="tv" width="32" height="32"/>
+        <image name="video games" width="32" height="32"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
