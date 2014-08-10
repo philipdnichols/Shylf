@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Phil Nichols. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "ShylfAppDelegate.h"
 
-@implementation AppDelegate
+@implementation ShylfAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

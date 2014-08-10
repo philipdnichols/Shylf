@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  BookTableViewController.h
 //  Shylf
 //
 //  Created by Philip Nichols on 8/9/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface BookTableViewController : UITableViewController
 
 @end

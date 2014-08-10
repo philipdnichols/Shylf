@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B13DC6931996E4CB00510540 /* MoviesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6921996E4CB00510540 /* MoviesTableViewController.m */; };
+		B13DC6971996F74A00510540 /* VideoGameTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6961996F74A00510540 /* VideoGameTableViewController.m */; };
+		B13DC69A1996F7A100510540 /* BookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6991996F7A100510540 /* BookTableViewController.m */; };
+		B13DC69D1996F87D00510540 /* Shylf.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B13DC69B1996F87D00510540 /* Shylf.xcdatamodeld */; };
+		B13DC6A11997121000510540 /* TVShowTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6A01997121000510540 /* TVShowTableViewController.m */; };
 		B1760AD51996E27B00DD6D1E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD41996E27B00DD6D1E /* Foundation.framework */; };
 		B1760AD71996E27B00DD6D1E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD61996E27B00DD6D1E /* CoreGraphics.framework */; };
 		B1760AD91996E27B00DD6D1E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD81996E27B00DD6D1E /* UIKit.framework */; };
 		B1760ADF1996E27B00DD6D1E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1760ADD1996E27B00DD6D1E /* InfoPlist.strings */; };
 		B1760AE11996E27B00DD6D1E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1760AE01996E27B00DD6D1E /* main.m */; };
-		B1760AE51996E27B00DD6D1E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1760AE41996E27B00DD6D1E /* AppDelegate.m */; };
+		B1760AE51996E27B00DD6D1E /* ShylfAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1760AE41996E27B00DD6D1E /* ShylfAppDelegate.m */; };
 		B1760AE81996E27B00DD6D1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1760AE61996E27B00DD6D1E /* Main.storyboard */; };
-		B1760AEB1996E27B00DD6D1E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1760AEA1996E27B00DD6D1E /* ViewController.m */; };
 		B1760AED1996E27B00DD6D1E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1760AEC1996E27B00DD6D1E /* Images.xcassets */; };
 		B1760AF41996E27B00DD6D1E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AF31996E27B00DD6D1E /* XCTest.framework */; };
 		B1760AF51996E27B00DD6D1E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD41996E27B00DD6D1E /* Foundation.framework */; };
@@ -34,6 +38,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B13DC6911996E4CB00510540 /* MoviesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesTableViewController.h; sourceTree = "<group>"; };
+		B13DC6921996E4CB00510540 /* MoviesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesTableViewController.m; sourceTree = "<group>"; };
+		B13DC6951996F74A00510540 /* VideoGameTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoGameTableViewController.h; sourceTree = "<group>"; };
+		B13DC6961996F74A00510540 /* VideoGameTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoGameTableViewController.m; sourceTree = "<group>"; };
+		B13DC6981996F7A100510540 /* BookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookTableViewController.h; sourceTree = "<group>"; };
+		B13DC6991996F7A100510540 /* BookTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookTableViewController.m; sourceTree = "<group>"; };
+		B13DC69C1996F87D00510540 /* Shylf.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shylf.xcdatamodel; sourceTree = "<group>"; };
+		B13DC69F1997121000510540 /* TVShowTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVShowTableViewController.h; sourceTree = "<group>"; };
+		B13DC6A01997121000510540 /* TVShowTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVShowTableViewController.m; sourceTree = "<group>"; };
 		B1760AD11996E27B00DD6D1E /* Shylf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shylf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1760AD41996E27B00DD6D1E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B1760AD61996E27B00DD6D1E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -42,11 +55,9 @@
 		B1760ADE1996E27B00DD6D1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B1760AE01996E27B00DD6D1E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B1760AE21996E27B00DD6D1E /* Shylf-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Shylf-Prefix.pch"; sourceTree = "<group>"; };
-		B1760AE31996E27B00DD6D1E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		B1760AE41996E27B00DD6D1E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B1760AE31996E27B00DD6D1E /* ShylfAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShylfAppDelegate.h; sourceTree = "<group>"; };
+		B1760AE41996E27B00DD6D1E /* ShylfAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShylfAppDelegate.m; sourceTree = "<group>"; };
 		B1760AE71996E27B00DD6D1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B1760AE91996E27B00DD6D1E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B1760AEA1996E27B00DD6D1E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B1760AEC1996E27B00DD6D1E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B1760AF21996E27B00DD6D1E /* ShylfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShylfTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1760AF31996E27B00DD6D1E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -79,6 +90,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B13DC6901996E36900510540 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B1760AE61996E27B00DD6D1E /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		B13DC6941996E6B900510540 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B13DC6951996F74A00510540 /* VideoGameTableViewController.h */,
+				B13DC6961996F74A00510540 /* VideoGameTableViewController.m */,
+				B13DC6911996E4CB00510540 /* MoviesTableViewController.h */,
+				B13DC6921996E4CB00510540 /* MoviesTableViewController.m */,
+				B13DC6981996F7A100510540 /* BookTableViewController.h */,
+				B13DC6991996F7A100510540 /* BookTableViewController.m */,
+				B13DC69F1997121000510540 /* TVShowTableViewController.h */,
+				B13DC6A01997121000510540 /* TVShowTableViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		B13DC69E1996F88100510540 /* Core Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				B13DC69B1996F87D00510540 /* Shylf.xcdatamodeld */,
+			);
+			name = "Core Data Model";
+			sourceTree = "<group>";
+		};
 		B1760AC81996E27B00DD6D1E = {
 			isa = PBXGroup;
 			children = (
@@ -112,11 +154,11 @@
 		B1760ADA1996E27B00DD6D1E /* Shylf */ = {
 			isa = PBXGroup;
 			children = (
-				B1760AE31996E27B00DD6D1E /* AppDelegate.h */,
-				B1760AE41996E27B00DD6D1E /* AppDelegate.m */,
-				B1760AE61996E27B00DD6D1E /* Main.storyboard */,
-				B1760AE91996E27B00DD6D1E /* ViewController.h */,
-				B1760AEA1996E27B00DD6D1E /* ViewController.m */,
+				B1760AE31996E27B00DD6D1E /* ShylfAppDelegate.h */,
+				B1760AE41996E27B00DD6D1E /* ShylfAppDelegate.m */,
+				B13DC69E1996F88100510540 /* Core Data Model */,
+				B13DC6901996E36900510540 /* View */,
+				B13DC6941996E6B900510540 /* Controller */,
 				B1760AEC1996E27B00DD6D1E /* Images.xcassets */,
 				B1760ADB1996E27B00DD6D1E /* Supporting Files */,
 			);
@@ -249,8 +291,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1760AEB1996E27B00DD6D1E /* ViewController.m in Sources */,
-				B1760AE51996E27B00DD6D1E /* AppDelegate.m in Sources */,
+				B13DC69A1996F7A100510540 /* BookTableViewController.m in Sources */,
+				B1760AE51996E27B00DD6D1E /* ShylfAppDelegate.m in Sources */,
+				B13DC6971996F74A00510540 /* VideoGameTableViewController.m in Sources */,
+				B13DC6A11997121000510540 /* TVShowTableViewController.m in Sources */,
+				B13DC6931996E4CB00510540 /* MoviesTableViewController.m in Sources */,
+				B13DC69D1996F87D00510540 /* Shylf.xcdatamodeld in Sources */,
 				B1760AE11996E27B00DD6D1E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,6 +502,7 @@
 				B1760B051996E27B00DD6D1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B1760B061996E27B00DD6D1E /* Build configuration list for PBXNativeTarget "ShylfTests" */ = {
 			isa = XCConfigurationList;
@@ -464,8 +511,22 @@
 				B1760B081996E27B00DD6D1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B13DC69B1996F87D00510540 /* Shylf.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B13DC69C1996F87D00510540 /* Shylf.xcdatamodel */,
+			);
+			currentVersion = B13DC69C1996F87D00510540 /* Shylf.xcdatamodel */;
+			path = Shylf.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B1760AC91996E27B00DD6D1E /* Project object */;
 }

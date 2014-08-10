@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  TVShowTableViewController.h
 //  Shylf
 //
 //  Created by Philip Nichols on 8/9/14.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+@interface TVShowTableViewController : UITableViewController
 
 @end
