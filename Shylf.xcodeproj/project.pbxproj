@@ -12,6 +12,12 @@
 		B13DC69A1996F7A100510540 /* BookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6991996F7A100510540 /* BookTableViewController.m */; };
 		B13DC69D1996F87D00510540 /* Shylf.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B13DC69B1996F87D00510540 /* Shylf.xcdatamodeld */; };
 		B13DC6A11997121000510540 /* TVShowTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6A01997121000510540 /* TVShowTableViewController.m */; };
+		B13DC6A41997176700510540 /* BarcodeScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6A31997176700510540 /* BarcodeScanViewController.m */; };
+		B13DC6A719971C4100510540 /* MovieSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6A619971C4100510540 /* MovieSearchTableViewController.m */; };
+		B13DC6AA199721F100510540 /* UPCDatabaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6A9199721F100510540 /* UPCDatabaseAPI.m */; };
+		B13DC6AF1997289600510540 /* TheMovieDBAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6AE1997289600510540 /* TheMovieDBAPI.m */; };
+		B13DC6B319972B1900510540 /* TMDBSearchMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6B219972B1900510540 /* TMDBSearchMovie.m */; };
+		B160566C1998053D00A972C5 /* UPCDBItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B160566B1998053D00A972C5 /* UPCDBItem.m */; };
 		B1760AD51996E27B00DD6D1E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD41996E27B00DD6D1E /* Foundation.framework */; };
 		B1760AD71996E27B00DD6D1E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD61996E27B00DD6D1E /* CoreGraphics.framework */; };
 		B1760AD91996E27B00DD6D1E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD81996E27B00DD6D1E /* UIKit.framework */; };
@@ -25,6 +31,7 @@
 		B1760AF61996E27B00DD6D1E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD81996E27B00DD6D1E /* UIKit.framework */; };
 		B1760AFE1996E27B00DD6D1E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1760AFC1996E27B00DD6D1E /* InfoPlist.strings */; };
 		B1760B001996E27B00DD6D1E /* ShylfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1760AFF1996E27B00DD6D1E /* ShylfTests.m */; };
+		F48D6DD8B3604A1E9AF391BA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B208A79FBBA4F4FBACB8F68 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E699E97B7724CC79D9EC5F8 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		8B208A79FBBA4F4FBACB8F68 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B13DC6911996E4CB00510540 /* MoviesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesTableViewController.h; sourceTree = "<group>"; };
 		B13DC6921996E4CB00510540 /* MoviesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesTableViewController.m; sourceTree = "<group>"; };
 		B13DC6951996F74A00510540 /* VideoGameTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoGameTableViewController.h; sourceTree = "<group>"; };
@@ -47,6 +56,20 @@
 		B13DC69C1996F87D00510540 /* Shylf.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shylf.xcdatamodel; sourceTree = "<group>"; };
 		B13DC69F1997121000510540 /* TVShowTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVShowTableViewController.h; sourceTree = "<group>"; };
 		B13DC6A01997121000510540 /* TVShowTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVShowTableViewController.m; sourceTree = "<group>"; };
+		B13DC6A21997176700510540 /* BarcodeScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarcodeScanViewController.h; sourceTree = "<group>"; };
+		B13DC6A31997176700510540 /* BarcodeScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarcodeScanViewController.m; sourceTree = "<group>"; };
+		B13DC6A519971C4100510540 /* MovieSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieSearchTableViewController.h; sourceTree = "<group>"; };
+		B13DC6A619971C4100510540 /* MovieSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieSearchTableViewController.m; sourceTree = "<group>"; };
+		B13DC6A8199721F100510540 /* UPCDatabaseAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPCDatabaseAPI.h; sourceTree = "<group>"; };
+		B13DC6A9199721F100510540 /* UPCDatabaseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPCDatabaseAPI.m; sourceTree = "<group>"; };
+		B13DC6AC199722DD00510540 /* UPCDatabaseAPIKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UPCDatabaseAPIKey.h; sourceTree = "<group>"; };
+		B13DC6AD1997289600510540 /* TheMovieDBAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheMovieDBAPI.h; sourceTree = "<group>"; };
+		B13DC6AE1997289600510540 /* TheMovieDBAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheMovieDBAPI.m; sourceTree = "<group>"; };
+		B13DC6B0199728A400510540 /* TheMovieDBAPIKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TheMovieDBAPIKey.h; sourceTree = "<group>"; };
+		B13DC6B119972B1900510540 /* TMDBSearchMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBSearchMovie.h; sourceTree = "<group>"; };
+		B13DC6B219972B1900510540 /* TMDBSearchMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBSearchMovie.m; sourceTree = "<group>"; };
+		B160566A1998053D00A972C5 /* UPCDBItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPCDBItem.h; sourceTree = "<group>"; };
+		B160566B1998053D00A972C5 /* UPCDBItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPCDBItem.m; sourceTree = "<group>"; };
 		B1760AD11996E27B00DD6D1E /* Shylf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shylf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1760AD41996E27B00DD6D1E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B1760AD61996E27B00DD6D1E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -74,6 +97,7 @@
 				B1760AD71996E27B00DD6D1E /* CoreGraphics.framework in Frameworks */,
 				B1760AD91996E27B00DD6D1E /* UIKit.framework in Frameworks */,
 				B1760AD51996E27B00DD6D1E /* Foundation.framework in Frameworks */,
+				F48D6DD8B3604A1E9AF391BA /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,14 +125,18 @@
 		B13DC6941996E6B900510540 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B13DC6951996F74A00510540 /* VideoGameTableViewController.h */,
-				B13DC6961996F74A00510540 /* VideoGameTableViewController.m */,
+				B13DC6A519971C4100510540 /* MovieSearchTableViewController.h */,
+				B13DC6A619971C4100510540 /* MovieSearchTableViewController.m */,
 				B13DC6911996E4CB00510540 /* MoviesTableViewController.h */,
 				B13DC6921996E4CB00510540 /* MoviesTableViewController.m */,
+				B13DC6A21997176700510540 /* BarcodeScanViewController.h */,
+				B13DC6A31997176700510540 /* BarcodeScanViewController.m */,
 				B13DC6981996F7A100510540 /* BookTableViewController.h */,
 				B13DC6991996F7A100510540 /* BookTableViewController.m */,
 				B13DC69F1997121000510540 /* TVShowTableViewController.h */,
 				B13DC6A01997121000510540 /* TVShowTableViewController.m */,
+				B13DC6951996F74A00510540 /* VideoGameTableViewController.h */,
+				B13DC6961996F74A00510540 /* VideoGameTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -121,6 +149,31 @@
 			name = "Core Data Model";
 			sourceTree = "<group>";
 		};
+		B13DC6AB1997229600510540 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				B13DC6A8199721F100510540 /* UPCDatabaseAPI.h */,
+				B13DC6A9199721F100510540 /* UPCDatabaseAPI.m */,
+				B13DC6AC199722DD00510540 /* UPCDatabaseAPIKey.h */,
+				B13DC6AD1997289600510540 /* TheMovieDBAPI.h */,
+				B13DC6AE1997289600510540 /* TheMovieDBAPI.m */,
+				B13DC6B0199728A400510540 /* TheMovieDBAPIKey.h */,
+				B13DC6B419972B2000510540 /* Model */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		B13DC6B419972B2000510540 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B13DC6B119972B1900510540 /* TMDBSearchMovie.h */,
+				B13DC6B219972B1900510540 /* TMDBSearchMovie.m */,
+				B160566A1998053D00A972C5 /* UPCDBItem.h */,
+				B160566B1998053D00A972C5 /* UPCDBItem.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		B1760AC81996E27B00DD6D1E = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +181,7 @@
 				B1760AF91996E27B00DD6D1E /* ShylfTests */,
 				B1760AD31996E27B00DD6D1E /* Frameworks */,
 				B1760AD21996E27B00DD6D1E /* Products */,
+				1E699E97B7724CC79D9EC5F8 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +201,7 @@
 				B1760AD61996E27B00DD6D1E /* CoreGraphics.framework */,
 				B1760AD81996E27B00DD6D1E /* UIKit.framework */,
 				B1760AF31996E27B00DD6D1E /* XCTest.framework */,
+				8B208A79FBBA4F4FBACB8F68 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -156,6 +211,7 @@
 			children = (
 				B1760AE31996E27B00DD6D1E /* ShylfAppDelegate.h */,
 				B1760AE41996E27B00DD6D1E /* ShylfAppDelegate.m */,
+				B13DC6AB1997229600510540 /* API */,
 				B13DC69E1996F88100510540 /* Core Data Model */,
 				B13DC6901996E36900510540 /* View */,
 				B13DC6941996E6B900510540 /* Controller */,
@@ -201,9 +257,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B1760B031996E27B00DD6D1E /* Build configuration list for PBXNativeTarget "Shylf" */;
 			buildPhases = (
+				4728A0908BE240ADBEF0339A /* Check Pods Manifest.lock */,
 				B1760ACD1996E27B00DD6D1E /* Sources */,
 				B1760ACE1996E27B00DD6D1E /* Frameworks */,
 				B1760ACF1996E27B00DD6D1E /* Resources */,
+				1DA083C0244E4C7BB2AD80BB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -286,6 +344,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1DA083C0244E4C7BB2AD80BB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4728A0908BE240ADBEF0339A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B1760ACD1996E27B00DD6D1E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -293,9 +384,15 @@
 			files = (
 				B13DC69A1996F7A100510540 /* BookTableViewController.m in Sources */,
 				B1760AE51996E27B00DD6D1E /* ShylfAppDelegate.m in Sources */,
+				B13DC6AA199721F100510540 /* UPCDatabaseAPI.m in Sources */,
+				B13DC6A41997176700510540 /* BarcodeScanViewController.m in Sources */,
+				B13DC6AF1997289600510540 /* TheMovieDBAPI.m in Sources */,
+				B160566C1998053D00A972C5 /* UPCDBItem.m in Sources */,
 				B13DC6971996F74A00510540 /* VideoGameTableViewController.m in Sources */,
+				B13DC6A719971C4100510540 /* MovieSearchTableViewController.m in Sources */,
 				B13DC6A11997121000510540 /* TVShowTableViewController.m in Sources */,
 				B13DC6931996E4CB00510540 /* MoviesTableViewController.m in Sources */,
+				B13DC6B319972B1900510540 /* TMDBSearchMovie.m in Sources */,
 				B13DC69D1996F87D00510540 /* Shylf.xcdatamodeld in Sources */,
 				B1760AE11996E27B00DD6D1E /* main.m in Sources */,
 			);
@@ -419,6 +516,7 @@
 		};
 		B1760B041996E27B00DD6D1E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E699E97B7724CC79D9EC5F8 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -432,6 +530,7 @@
 		};
 		B1760B051996E27B00DD6D1E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E699E97B7724CC79D9EC5F8 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

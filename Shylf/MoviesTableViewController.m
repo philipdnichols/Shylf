@@ -7,12 +7,35 @@
 //
 
 #import "MoviesTableViewController.h"
+#import "MovieSearchTableViewController.h"
+#import "BarcodeScanViewController.h"
+#import "UPCDatabaseAPI.h"
+#import "TheMovieDBAPI.h"
 
-@interface MoviesTableViewController ()
+@interface MoviesTableViewController () <UIActionSheetDelegate>
+
+@property (strong, nonatomic) UIActionSheet *addMovieActionSheet;
 
 @end
 
 @implementation MoviesTableViewController
+
+#pragma mark - Properties
+
+- (UIActionSheet *)addMovieActionSheet
+{
+    if (!_addMovieActionSheet) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Add Movie"
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"Cancel"
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:@"Search", @"Scan Barcode", nil];
+        _addMovieActionSheet = actionSheet;
+    }
+    return _addMovieActionSheet;
+}
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad
 {
@@ -21,18 +44,22 @@
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
+#pragma mark - IBActions
+
+- (IBAction)addMovie {
+    [self.addMovieActionSheet showInView:self.view];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return 0;
 }
@@ -87,15 +114,93 @@ static NSString *MovieCellIdentifier = @"Movie Cell";
 }
 */
 
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+static NSString *ScanMovieBarcodeSegueIdentifier = @"Scan Movie Barcode";
+static NSString *SearchMoviesSegueIdentifier = @"Search Movies";
+
+- (void)prepareViewController:(id)viewController forSegue:(NSString *)segueIdentifier fromSender:(id)sender
+{
+    NSIndexPath *indexPath = nil;
+    if ([sender isKindOfClass:[UITableViewCell class]]) {
+        indexPath = [self.tableView indexPathForCell:sender];
+    }
+    
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *uiNavigationController = (UINavigationController *)viewController;
+        if ([[uiNavigationController.viewControllers firstObject] isKindOfClass:[BarcodeScanViewController class]]) {
+            if (![segueIdentifier length] || [segueIdentifier isEqualToString:ScanMovieBarcodeSegueIdentifier]) {
+//                BarcodeScanViewController *barcodeScanViewController = (BarcodeScanViewController *)[uiNavigationController.viewControllers firstObject];
+                // No setup to do right now, maybe later.
+            }
+        }
+    } else if ([viewController isKindOfClass:[MovieSearchTableViewController class]]) {
+        if (![segueIdentifier length] || [segueIdentifier isEqualToString:SearchMoviesSegueIdentifier]) {
+            MovieSearchTableViewController *mstvc = (MovieSearchTableViewController *)viewController;
+            
+            // Barcode search prep:
+            if ([sender isKindOfClass:[NSString class]]) {
+                mstvc.query = sender;
+            }
+        }
+    }
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [self prepareViewController:segue.destinationViewController
+                       forSegue:segue.identifier
+                     fromSender:sender];
 }
-*/
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    id detailViewController = [self.splitViewController.viewControllers lastObject];
+//    if ([detailViewController isKindOfClass:[UINavigationController class]]) {
+//        detailViewController = [((UINavigationController *)detailViewController).viewControllers firstObject];
+//        [self prepareViewController:detailViewController
+//                           forSegue:nil
+//                      fromIndexPath:indexPath];
+//    }
+//}
+
+#pragma mark - Unwinding
+
+static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
+
+- (IBAction)scannedCode:(UIStoryboardSegue *)segue
+{
+    if ([segue.identifier isEqualToString:BarcodeScannedSegueIdentifier]) {
+        if ([segue.sourceViewController isKindOfClass:[BarcodeScanViewController class]]) {
+            BarcodeScanViewController *barcodeScanViewController = (BarcodeScanViewController *)segue.sourceViewController;
+            AVMetadataMachineReadableCodeObject *code = barcodeScanViewController.code;
+            
+            [UPCDatabaseAPI itemForUPC:code.stringValue
+                     completionHandler:^(UPCDBItem *item, NSError *error) {
+                         if (!error) {
+                             dispatch_async(dispatch_get_main_queue(), ^{
+                                 NSString *query = [item.itemName length] ? item.itemName : item.descriptionOfItem;
+                                 [self performSegueWithIdentifier:SearchMoviesSegueIdentifier sender:query];
+                             });
+                         } else {
+                             NSLog(@"Error retrieving UPC description for UPC %@: %@", code.stringValue, error.localizedDescription);
+                         }
+                     }];
+        }
+    }
+}
+
+#pragma mark - UIActionSheetDelegate
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    
+    if ([buttonTitle isEqualToString:@"Search"]) {
+        [self performSegueWithIdentifier:SearchMoviesSegueIdentifier sender:self];
+    } else if ([buttonTitle isEqualToString:@"Scan Barcode"]) {
+        [self performSegueWithIdentifier:ScanMovieBarcodeSegueIdentifier sender:self];
+    }
+}
 
 @end

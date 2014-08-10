@@ -8,7 +8,7 @@
         <scene sceneID="cPb-Jl-Sgq">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="gYV-Mx-pmY" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="roP-ko-StS">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -112,12 +112,49 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Movies" id="hGo-Xk-1vG">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="MTg-oz-zo1"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="MTg-oz-zo1">
+                            <connections>
+                                <action selector="addMovie" destination="hxH-kX-5XC" id="5DJ-Ze-WMw"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="wge-MT-IAU" kind="push" identifier="Search Movies" id="rAk-Bt-FK0"/>
+                        <segue destination="kMP-iV-tMO" kind="modal" identifier="Scan Movie Barcode" id="O8Y-0d-DcW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1y5-FV-PfS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="894" y="-136"/>
+        </scene>
+        <!--Barcode Scan View Controller - Barcode Scan-->
+        <scene sceneID="IoN-Dt-YxX">
+            <objects>
+                <viewController id="x3l-bz-lPC" customClass="BarcodeScanViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Eoj-A3-cNx"/>
+                        <viewControllerLayoutGuide type="bottom" id="PJc-FU-f1v"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IxA-a5-8RX">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Barcode Scan" id="Wo2-tm-njr">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="kA6-vd-fKf">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="x3l-bz-lPC" id="ibg-w9-Jqb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="SGp-ao-tOl" kind="unwind" identifier="Barcode Scanned" unwindAction="scannedCode:" id="2k5-53-DFU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qxw-Gh-rw5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="SGp-ao-tOl" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1861" y="-815"/>
         </scene>
         <!--Video Game Table View Controller - Video Games-->
         <scene sceneID="DSC-PY-E2O">
@@ -288,6 +325,84 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJH-QA-Rbd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="446" y="529"/>
+        </scene>
+        <!--Movie Search Table View Controller - Movie Search-->
+        <scene sceneID="fRR-0n-Vhj">
+            <objects>
+                <tableViewController id="wge-MT-IAU" customClass="MovieSearchTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="nhR-KY-mbp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search movies..." id="7ZE-Ua-R96">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                            <connections>
+                                <outlet property="delegate" destination="wge-MT-IAU" id="P1a-xe-VX4"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Movie Search Cell" textLabel="poW-7G-fIB" detailTextLabel="dg1-cQ-tbc" style="IBUITableViewCellStyleSubtitle" id="G6H-yH-cjV">
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G6H-yH-cjV" id="gcw-3Q-zKM">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="poW-7G-fIB">
+                                            <rect key="frame" x="15" y="3" width="34" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dg1-cQ-tbc">
+                                            <rect key="frame" x="15" y="25" width="43" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="wge-MT-IAU" id="Hy7-qZ-Lcs"/>
+                            <outlet property="delegate" destination="wge-MT-IAU" id="got-gM-Fds"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Movie Search" id="BwR-j7-Jg6"/>
+                    <connections>
+                        <outlet property="searchBar" destination="7ZE-Ua-R96" id="Lmw-ei-S0j"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TBT-1y-keL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1402" y="-136"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aJ6-v5-YFW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kMP-iV-tMO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="aSC-g3-4Xd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="x3l-bz-lPC" kind="relationship" relationship="rootViewController" id="oL2-CI-hQQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EdX-nf-DpZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1402" y="-815"/>
         </scene>
     </scenes>
     <resources>
