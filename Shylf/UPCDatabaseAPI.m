@@ -20,7 +20,7 @@
 
 + (void)itemForUPC:(NSString *)upc completionHandler:(void (^)(UPCDBItem *, NSError *))completionHandler
 {
-    NSLog(@"Searching for UPC %@", upc);
+    DDLogInfo(@"Searching for UPC %@", upc);
     NSURL *url = [UPCDatabaseAPI URLforUPC:upc];
     dispatch_queue_t q = dispatch_queue_create("UPCDatabase API Description Fetch", NULL);
     dispatch_async(q, ^{

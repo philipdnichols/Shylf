@@ -7,12 +7,31 @@
 //
 
 #import "ShylfAppDelegate.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+#import "DDFileLogger.h"
 
 @implementation ShylfAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // CocoaLumberjack Setup:
+    [DDLog addLogger:[DDASLLogger sharedInstance]];
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    
+    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
+//    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor greenColor]
+//                                     backgroundColor:nil
+//                                              forFlag:LOG_FLAG_INFO];
+    
+    DDFileLogger *fileLogger = [[DDFileLogger alloc] init];
+    [fileLogger setMaximumFileSize:(1024 * 1024)];
+    [fileLogger setRollingFrequency:(3600.0 * 24.0)];
+    [[fileLogger logFileManager] setMaximumNumberOfLogFiles:7];
+    [DDLog addLogger:fileLogger];
+    
     return YES;
 }
 							

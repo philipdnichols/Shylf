@@ -1,10 +1,17 @@
 PODS:
+  - CocoaLumberjack (1.9.2):
+    - CocoaLumberjack/Extensions
+  - CocoaLumberjack/Core (1.9.2)
+  - CocoaLumberjack/Extensions (1.9.2):
+    - CocoaLumberjack/Core
   - MTBBarcodeScanner (0.1.6)
 
 DEPENDENCIES:
+  - CocoaLumberjack
   - MTBBarcodeScanner
 
 SPEC CHECKSUMS:
+  CocoaLumberjack: 205769c032b5fef85b92472046bcc8b7e7c8a817
   MTBBarcodeScanner: 3e706c2516ac6e7ba16e2d255b434ad0c84cc882
 
 COCOAPODS: 0.33.1

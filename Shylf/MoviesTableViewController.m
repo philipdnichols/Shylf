@@ -183,7 +183,7 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
                                  [self performSegueWithIdentifier:SearchMoviesSegueIdentifier sender:query];
                              });
                          } else {
-                             NSLog(@"Error retrieving UPC description for UPC %@: %@", code.stringValue, error.localizedDescription);
+                             DDLogError(@"Error retrieving UPC description for UPC %@: %@", code.stringValue, error.localizedDescription);
                          }
                      }];
         }

@@ -58,7 +58,7 @@
                            if (!error) {
                                self.movies = searchMovies;
                            } else {
-                               NSLog(@"Error searching movies with query \"%@\": %@", self.query, error.localizedDescription);
+                               DDLogError(@"Error searching movies with query \"%@\": %@", self.query, error.localizedDescription);
                            }
                        }];
 }

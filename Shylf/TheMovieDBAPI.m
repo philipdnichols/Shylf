@@ -20,7 +20,7 @@
 
 + (void)searchMoviesFromQuery:(NSString *)query completionHandler:(void(^)(NSArray *searchMovies, NSError *error))completionHandler
 {
-    NSLog(@"Searching for Movie: %@", query);
+    DDLogInfo(@"Searching for Movie: %@", query);
     
     NSURL *url = [TheMovieDBAPI URLForMovieQuery:query];
     dispatch_queue_t q = dispatch_queue_create("TheMovieDB API Movie Search", NULL);
@@ -73,7 +73,7 @@
 //                                                                      range:NSMakeRange(0, [modifiedQuery length])
 //                                                               withTemplate:@""];
 //    } else {
-//        NSLog(@"There was an error building the regular expression %@: %@", regex, error.localizedDescription);
+//        DDLogError(@"There was an error building the regular expression %@: %@", regex, error.localizedDescription);
 //    }
 //    
 //    return modifiedQuery;
