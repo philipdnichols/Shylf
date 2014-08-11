@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "UPCDBItem.h"
 
-@interface UPCDatabaseAPI : NSObject
+@interface UPCDatabaseClient : AFHTTPSessionManager
 
-+ (void)itemForUPC:(NSString *)upc completionHandler:(void(^)(UPCDBItem *item, NSError *error))completionHandler;
++ (instancetype)sharedClient;
+
+- (void)itemForUPC:(NSString *)upc success:(void(^)(UPCDBItem *item))success failure:(void(^)(NSError *error))failure;
 
 @end

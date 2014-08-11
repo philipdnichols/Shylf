@@ -28,8 +28,8 @@
 		B13DC6A11997121000510540 /* TVShowTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6A01997121000510540 /* TVShowTableViewController.m */; };
 		B13DC6A41997176700510540 /* BarcodeScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6A31997176700510540 /* BarcodeScanViewController.m */; };
 		B13DC6A719971C4100510540 /* MovieSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6A619971C4100510540 /* MovieSearchTableViewController.m */; };
-		B13DC6AA199721F100510540 /* UPCDatabaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6A9199721F100510540 /* UPCDatabaseAPI.m */; };
-		B13DC6AF1997289600510540 /* TheMovieDBAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6AE1997289600510540 /* TheMovieDBAPI.m */; };
+		B13DC6AA199721F100510540 /* UPCDatabaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6A9199721F100510540 /* UPCDatabaseClient.m */; };
+		B13DC6AF1997289600510540 /* TheMovieDBClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6AE1997289600510540 /* TheMovieDBClient.m */; };
 		B13DC6B319972B1900510540 /* TMDBSearchMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6B219972B1900510540 /* TMDBSearchMovie.m */; };
 		B14169D219986C1B00C642E1 /* _Book.m in Sources */ = {isa = PBXBuildFile; fileRef = B14169C319986C1B00C642E1 /* _Book.m */; };
 		B14169D319986C1B00C642E1 /* _Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = B14169C519986C1B00C642E1 /* _Movie.m */; };
@@ -82,11 +82,11 @@
 		B13DC6A31997176700510540 /* BarcodeScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarcodeScanViewController.m; sourceTree = "<group>"; };
 		B13DC6A519971C4100510540 /* MovieSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieSearchTableViewController.h; sourceTree = "<group>"; };
 		B13DC6A619971C4100510540 /* MovieSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieSearchTableViewController.m; sourceTree = "<group>"; };
-		B13DC6A8199721F100510540 /* UPCDatabaseAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPCDatabaseAPI.h; sourceTree = "<group>"; };
-		B13DC6A9199721F100510540 /* UPCDatabaseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPCDatabaseAPI.m; sourceTree = "<group>"; };
+		B13DC6A8199721F100510540 /* UPCDatabaseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPCDatabaseClient.h; sourceTree = "<group>"; };
+		B13DC6A9199721F100510540 /* UPCDatabaseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPCDatabaseClient.m; sourceTree = "<group>"; };
 		B13DC6AC199722DD00510540 /* UPCDatabaseAPIKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UPCDatabaseAPIKey.h; sourceTree = "<group>"; };
-		B13DC6AD1997289600510540 /* TheMovieDBAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheMovieDBAPI.h; sourceTree = "<group>"; };
-		B13DC6AE1997289600510540 /* TheMovieDBAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheMovieDBAPI.m; sourceTree = "<group>"; };
+		B13DC6AD1997289600510540 /* TheMovieDBClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheMovieDBClient.h; sourceTree = "<group>"; };
+		B13DC6AE1997289600510540 /* TheMovieDBClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheMovieDBClient.m; sourceTree = "<group>"; };
 		B13DC6B0199728A400510540 /* TheMovieDBAPIKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TheMovieDBAPIKey.h; sourceTree = "<group>"; };
 		B13DC6B119972B1900510540 /* TMDBSearchMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBSearchMovie.h; sourceTree = "<group>"; };
 		B13DC6B219972B1900510540 /* TMDBSearchMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBSearchMovie.m; sourceTree = "<group>"; };
@@ -206,11 +206,11 @@
 		B13DC6AB1997229600510540 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				B13DC6A8199721F100510540 /* UPCDatabaseAPI.h */,
-				B13DC6A9199721F100510540 /* UPCDatabaseAPI.m */,
+				B13DC6A8199721F100510540 /* UPCDatabaseClient.h */,
+				B13DC6A9199721F100510540 /* UPCDatabaseClient.m */,
 				B13DC6AC199722DD00510540 /* UPCDatabaseAPIKey.h */,
-				B13DC6AD1997289600510540 /* TheMovieDBAPI.h */,
-				B13DC6AE1997289600510540 /* TheMovieDBAPI.m */,
+				B13DC6AD1997289600510540 /* TheMovieDBClient.h */,
+				B13DC6AE1997289600510540 /* TheMovieDBClient.m */,
 				B13DC6B0199728A400510540 /* TheMovieDBAPIKey.h */,
 				B13DC6B419972B2000510540 /* Model */,
 			);
@@ -452,10 +452,10 @@
 			files = (
 				B13DC69A1996F7A100510540 /* BookTableViewController.m in Sources */,
 				B1760AE51996E27B00DD6D1E /* ShylfAppDelegate.m in Sources */,
-				B13DC6AA199721F100510540 /* UPCDatabaseAPI.m in Sources */,
+				B13DC6AA199721F100510540 /* UPCDatabaseClient.m in Sources */,
 				B14169D719986C1B00C642E1 /* Movie.m in Sources */,
 				B13DC6A41997176700510540 /* BarcodeScanViewController.m in Sources */,
-				B13DC6AF1997289600510540 /* TheMovieDBAPI.m in Sources */,
+				B13DC6AF1997289600510540 /* TheMovieDBClient.m in Sources */,
 				B160566C1998053D00A972C5 /* UPCDBItem.m in Sources */,
 				B14169D219986C1B00C642E1 /* _Book.m in Sources */,
 				B13DC6971996F74A00510540 /* VideoGameTableViewController.m in Sources */,

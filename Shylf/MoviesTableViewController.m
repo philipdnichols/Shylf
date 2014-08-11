@@ -9,8 +9,8 @@
 #import "MoviesTableViewController.h"
 #import "MovieSearchTableViewController.h"
 #import "BarcodeScanViewController.h"
-#import "UPCDatabaseAPI.h"
-#import "TheMovieDBAPI.h"
+#import "UPCDatabaseClient.h"
+#import "TheMovieDBClient.h"
 
 @interface MoviesTableViewController () <UIActionSheetDelegate>
 
@@ -175,17 +175,15 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
             BarcodeScanViewController *barcodeScanViewController = (BarcodeScanViewController *)segue.sourceViewController;
             AVMetadataMachineReadableCodeObject *code = barcodeScanViewController.code;
             
-            [UPCDatabaseAPI itemForUPC:code.stringValue
-                     completionHandler:^(UPCDBItem *item, NSError *error) {
-                         if (!error) {
-                             dispatch_async(dispatch_get_main_queue(), ^{
-                                 NSString *query = [item.itemName length] ? item.itemName : item.descriptionOfItem;
-                                 [self performSegueWithIdentifier:SearchMoviesSegueIdentifier sender:query];
-                             });
-                         } else {
-                             DDLogError(@"Error retrieving UPC description for UPC %@: %@", code.stringValue, error.localizedDescription);
-                         }
-                     }];
+            [[UPCDatabaseClient sharedClient]
+             itemForUPC:code.stringValue
+                success:^(UPCDBItem *item) {
+                    NSString *query = [item.itemName length] ? item.itemName : item.descriptionOfItem;
+                    [self performSegueWithIdentifier:SearchMoviesSegueIdentifier sender:query];
+                }
+                failure:^(NSError *error) {
+                    DDLogError(@"Error retrieving UPC description for UPC %@: %@", code.stringValue, error.localizedDescription);
+                }];
         }
     }
 }

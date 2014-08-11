@@ -7,7 +7,7 @@
 //
 
 #import "MovieSearchTableViewController.h"
-#import "TheMovieDBAPI.h"
+#import "TheMovieDBClient.h"
 
 @interface MovieSearchTableViewController () <UISearchBarDelegate>
 
@@ -53,14 +53,14 @@
 
 - (void)searchMovies
 {
-    [TheMovieDBAPI searchMoviesFromQuery:self.query
-                       completionHandler:^(NSArray *searchMovies, NSError *error) {
-                           if (!error) {
-                               self.movies = searchMovies;
-                           } else {
-                               DDLogError(@"Error searching movies with query \"%@\": %@", self.query, error.localizedDescription);
-                           }
-                       }];
+    [[TheMovieDBClient sharedClient]
+     searchMoviesFromQuery:self.query
+                   success:^(NSArray *results) {
+                       self.movies = results;
+                   }
+                   failure:^(NSError *error) {
+                       DDLogError(@"Error searching movies with query \"%@\": %@", self.query, [error localizedDescription]);
+                   }];
 }
 
 #pragma mark - UITableViewDataSource

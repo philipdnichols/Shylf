@@ -10,6 +10,8 @@
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
 #import "DDFileLogger.h"
+#import "AFNetworkActivityIndicatorManager.h"
+#import "AFNetworkActivityLogger.h"
 
 @implementation ShylfAppDelegate
 
@@ -31,6 +33,11 @@
     [fileLogger setRollingFrequency:(3600.0 * 24.0)];
     [[fileLogger logFileManager] setMaximumNumberOfLogFiles:7];
     [DDLog addLogger:fileLogger];
+    
+    // AFNetworking Setup:
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+    
+    [[AFNetworkActivityLogger sharedLogger] startLogging];
     
     return YES;
 }
