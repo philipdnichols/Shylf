@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		B14169BD19986AE000C642E1 /* Mogenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B14169BE19986AE000C642E1 /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
+			buildPhases = (
+				B14169C119986AE700C642E1 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Mogenerator;
+			productName = Mogenerator;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		B13DC6931996E4CB00510540 /* MoviesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6921996E4CB00510540 /* MoviesTableViewController.m */; };
 		B13DC6971996F74A00510540 /* VideoGameTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6961996F74A00510540 /* VideoGameTableViewController.m */; };
@@ -17,6 +31,14 @@
 		B13DC6AA199721F100510540 /* UPCDatabaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6A9199721F100510540 /* UPCDatabaseAPI.m */; };
 		B13DC6AF1997289600510540 /* TheMovieDBAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6AE1997289600510540 /* TheMovieDBAPI.m */; };
 		B13DC6B319972B1900510540 /* TMDBSearchMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6B219972B1900510540 /* TMDBSearchMovie.m */; };
+		B14169D219986C1B00C642E1 /* _Book.m in Sources */ = {isa = PBXBuildFile; fileRef = B14169C319986C1B00C642E1 /* _Book.m */; };
+		B14169D319986C1B00C642E1 /* _Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = B14169C519986C1B00C642E1 /* _Movie.m */; };
+		B14169D419986C1B00C642E1 /* _TVShow.m in Sources */ = {isa = PBXBuildFile; fileRef = B14169C719986C1B00C642E1 /* _TVShow.m */; };
+		B14169D519986C1B00C642E1 /* _VideoGame.m in Sources */ = {isa = PBXBuildFile; fileRef = B14169C919986C1B00C642E1 /* _VideoGame.m */; };
+		B14169D619986C1B00C642E1 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = B14169CB19986C1B00C642E1 /* Book.m */; };
+		B14169D719986C1B00C642E1 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = B14169CD19986C1B00C642E1 /* Movie.m */; };
+		B14169D819986C1B00C642E1 /* TVShow.m in Sources */ = {isa = PBXBuildFile; fileRef = B14169CF19986C1B00C642E1 /* TVShow.m */; };
+		B14169D919986C1B00C642E1 /* VideoGame.m in Sources */ = {isa = PBXBuildFile; fileRef = B14169D119986C1B00C642E1 /* VideoGame.m */; };
 		B160566C1998053D00A972C5 /* UPCDBItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B160566B1998053D00A972C5 /* UPCDBItem.m */; };
 		B1760AD51996E27B00DD6D1E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD41996E27B00DD6D1E /* Foundation.framework */; };
 		B1760AD71996E27B00DD6D1E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD61996E27B00DD6D1E /* CoreGraphics.framework */; };
@@ -68,6 +90,22 @@
 		B13DC6B0199728A400510540 /* TheMovieDBAPIKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TheMovieDBAPIKey.h; sourceTree = "<group>"; };
 		B13DC6B119972B1900510540 /* TMDBSearchMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBSearchMovie.h; sourceTree = "<group>"; };
 		B13DC6B219972B1900510540 /* TMDBSearchMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBSearchMovie.m; sourceTree = "<group>"; };
+		B14169C219986C1B00C642E1 /* _Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Book.h; sourceTree = "<group>"; };
+		B14169C319986C1B00C642E1 /* _Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Book.m; sourceTree = "<group>"; };
+		B14169C419986C1B00C642E1 /* _Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Movie.h; sourceTree = "<group>"; };
+		B14169C519986C1B00C642E1 /* _Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Movie.m; sourceTree = "<group>"; };
+		B14169C619986C1B00C642E1 /* _TVShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _TVShow.h; sourceTree = "<group>"; };
+		B14169C719986C1B00C642E1 /* _TVShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _TVShow.m; sourceTree = "<group>"; };
+		B14169C819986C1B00C642E1 /* _VideoGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _VideoGame.h; sourceTree = "<group>"; };
+		B14169C919986C1B00C642E1 /* _VideoGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _VideoGame.m; sourceTree = "<group>"; };
+		B14169CA19986C1B00C642E1 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
+		B14169CB19986C1B00C642E1 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		B14169CC19986C1B00C642E1 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		B14169CD19986C1B00C642E1 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		B14169CE19986C1B00C642E1 /* TVShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVShow.h; sourceTree = "<group>"; };
+		B14169CF19986C1B00C642E1 /* TVShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVShow.m; sourceTree = "<group>"; };
+		B14169D019986C1B00C642E1 /* VideoGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoGame.h; sourceTree = "<group>"; };
+		B14169D119986C1B00C642E1 /* VideoGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoGame.m; sourceTree = "<group>"; };
 		B160566A1998053D00A972C5 /* UPCDBItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPCDBItem.h; sourceTree = "<group>"; };
 		B160566B1998053D00A972C5 /* UPCDBItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPCDBItem.m; sourceTree = "<group>"; };
 		B1760AD11996E27B00DD6D1E /* Shylf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shylf.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +182,22 @@
 		B13DC69E1996F88100510540 /* Core Data Model */ = {
 			isa = PBXGroup;
 			children = (
+				B14169C219986C1B00C642E1 /* _Book.h */,
+				B14169C319986C1B00C642E1 /* _Book.m */,
+				B14169C419986C1B00C642E1 /* _Movie.h */,
+				B14169C519986C1B00C642E1 /* _Movie.m */,
+				B14169C619986C1B00C642E1 /* _TVShow.h */,
+				B14169C719986C1B00C642E1 /* _TVShow.m */,
+				B14169C819986C1B00C642E1 /* _VideoGame.h */,
+				B14169C919986C1B00C642E1 /* _VideoGame.m */,
+				B14169CA19986C1B00C642E1 /* Book.h */,
+				B14169CB19986C1B00C642E1 /* Book.m */,
+				B14169CC19986C1B00C642E1 /* Movie.h */,
+				B14169CD19986C1B00C642E1 /* Movie.m */,
+				B14169CE19986C1B00C642E1 /* TVShow.h */,
+				B14169CF19986C1B00C642E1 /* TVShow.m */,
+				B14169D019986C1B00C642E1 /* VideoGame.h */,
+				B14169D119986C1B00C642E1 /* VideoGame.m */,
 				B13DC69B1996F87D00510540 /* Shylf.xcdatamodeld */,
 			);
 			name = "Core Data Model";
@@ -319,6 +373,7 @@
 			targets = (
 				B1760AD01996E27B00DD6D1E /* Shylf */,
 				B1760AF11996E27B00DD6D1E /* ShylfTests */,
+				B14169BD19986AE000C642E1 /* Mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -375,6 +430,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		B14169C119986AE700C642E1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" == \"Debug\" ]; then\necho \"Running Mogenerator\"\nmogenerator -m Shylf/Shylf.xcdatamodeld/Shylf.xcdatamodel -O Shylf --template-var arc=true\necho \"Finished Mogenerator\"\nelse\necho \"Skipping Mogenerator\"\nfi";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -385,15 +453,23 @@
 				B13DC69A1996F7A100510540 /* BookTableViewController.m in Sources */,
 				B1760AE51996E27B00DD6D1E /* ShylfAppDelegate.m in Sources */,
 				B13DC6AA199721F100510540 /* UPCDatabaseAPI.m in Sources */,
+				B14169D719986C1B00C642E1 /* Movie.m in Sources */,
 				B13DC6A41997176700510540 /* BarcodeScanViewController.m in Sources */,
 				B13DC6AF1997289600510540 /* TheMovieDBAPI.m in Sources */,
 				B160566C1998053D00A972C5 /* UPCDBItem.m in Sources */,
+				B14169D219986C1B00C642E1 /* _Book.m in Sources */,
 				B13DC6971996F74A00510540 /* VideoGameTableViewController.m in Sources */,
+				B14169D519986C1B00C642E1 /* _VideoGame.m in Sources */,
+				B14169D319986C1B00C642E1 /* _Movie.m in Sources */,
+				B14169D619986C1B00C642E1 /* Book.m in Sources */,
 				B13DC6A719971C4100510540 /* MovieSearchTableViewController.m in Sources */,
 				B13DC6A11997121000510540 /* TVShowTableViewController.m in Sources */,
+				B14169D819986C1B00C642E1 /* TVShow.m in Sources */,
 				B13DC6931996E4CB00510540 /* MoviesTableViewController.m in Sources */,
+				B14169D919986C1B00C642E1 /* VideoGame.m in Sources */,
 				B13DC6B319972B1900510540 /* TMDBSearchMovie.m in Sources */,
 				B13DC69D1996F87D00510540 /* Shylf.xcdatamodeld in Sources */,
+				B14169D419986C1B00C642E1 /* _TVShow.m in Sources */,
 				B1760AE11996E27B00DD6D1E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +520,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B14169BF19986AE000C642E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B14169C019986AE000C642E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		B1760B011996E27B00DD6D1E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -585,6 +675,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B14169BE19986AE000C642E1 /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B14169BF19986AE000C642E1 /* Debug */,
+				B14169C019986AE000C642E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B1760ACC1996E27B00DD6D1E /* Build configuration list for PBXProject "Shylf" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
