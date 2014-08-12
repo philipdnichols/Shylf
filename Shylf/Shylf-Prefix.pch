@@ -17,6 +17,8 @@
     #import <CocoaLumberjack/DDLog.h>
     #import <AFNetworking/AFNetworking.h>
     #import <Mantle/Mantle.h>
+
+    #import "MagicalRecord/CoreData+MagicalRecord.h"
 #endif
 
 #ifdef DEBUG
