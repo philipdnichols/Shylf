@@ -42,6 +42,12 @@
     // Core Data Stack:
     [MagicalRecord setupCoreDataStackWithStoreNamed:@"Shylf"];
     
+    [[UINavigationBar appearance] setBarTintColor:[UIColor flatSkyBlueColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor flatWhiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName: [UIColor flatWhiteColor] }];
+    
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor flatSkyBlueColor]];
+    
     return YES;
 }
 							
