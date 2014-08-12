@@ -42,6 +42,9 @@
     // Core Data Stack:
     [MagicalRecord setupCoreDataStackWithStoreNamed:@"Shylf"];
     
+    // Global Appearance Setup:
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent; // [ChameleonStatusBar statusBarStyleForColor:[UIColor flatSkyBlueColor]];
+    
     [[UINavigationBar appearance] setBarTintColor:[UIColor flatSkyBlueColor]];
     [[UINavigationBar appearance] setTintColor:[UIColor flatWhiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName: [UIColor flatWhiteColor] }];
