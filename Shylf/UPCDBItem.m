@@ -10,7 +10,7 @@
 
 @implementation UPCDBItem
 
-+ (NSDictionary *)JSONKeyPathsByPropertyKey{
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
              @"valid" : @"valid",
              @"number" : @"number",
