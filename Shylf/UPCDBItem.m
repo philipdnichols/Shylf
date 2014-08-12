@@ -25,17 +25,10 @@
 
 + (NSValueTransformer *)validJSONTransformer
 {
-    return [MTLValueTransformer
-            reversibleTransformerWithForwardBlock:^id(NSString *str) {
-                return @([str boolValue]);
-            }
-            reverseBlock:^id(NSNumber *number) {
-                if ([number boolValue]) {
-                    return @"true";
-                } else {
-                    return @"false";
-                }
-            }];
+    return [MTLValueTransformer mtl_valueMappingTransformerWithDictionary:@{
+                                                                            @"true" : @YES,
+                                                                            @"false" : @NO
+                                                                            }];
 }
 
 @end
