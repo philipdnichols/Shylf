@@ -138,7 +138,7 @@
                     <view key="view" contentMode="scaleToFill" id="IxA-a5-8RX">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                     </view>
                     <navigationItem key="navigationItem" title="Barcode Scan" id="Wo2-tm-njr">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="kA6-vd-fKf">
