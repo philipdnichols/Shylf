@@ -15,7 +15,7 @@
 @property (strong, nonatomic) NSString *itemName;
 @property (strong, nonatomic) NSString *alias;
 @property (strong, nonatomic) NSString *descriptionOfItem;
-@property (strong, nonatomic) NSNumber *averagePrice;
+@property (strong, nonatomic) NSString *averagePrice;
 @property (nonatomic) NSUInteger rateUp;
 @property (nonatomic) NSUInteger rateDown;
 

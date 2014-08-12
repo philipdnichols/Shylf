@@ -8,6 +8,7 @@
 
 #import "MovieSearchTableViewController.h"
 #import "TheMovieDBClient.h"
+#import "TMDBMovie.h"
 
 @interface MovieSearchTableViewController () <UISearchBarDelegate>
 
@@ -15,11 +16,24 @@
 
 @property (strong, nonatomic) NSArray *movies;
 
+@property (strong, nonatomic) NSDateFormatter *dateFormatter;
+
 @end
 
 @implementation MovieSearchTableViewController
 
 #pragma mark - Properties
+
+- (NSDateFormatter *)dateFormatter
+{
+    if (!_dateFormatter) {
+        // TODO: Should I be creating a local variable first?
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateStyle:NSDateFormatterLongStyle];
+        [_dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    }
+    return _dateFormatter;
+}
 
 - (void)setQuery:(NSString *)query
 {
@@ -82,9 +96,9 @@ static NSString *MovieSearchCellIdentifier = @"Movie Search Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MovieSearchCellIdentifier
                                                             forIndexPath:indexPath];
     
-    NSDictionary *movieSearch = self.movies[indexPath.row];
-    cell.textLabel.text = movieSearch[@"original_title"];
-    cell.detailTextLabel.text = movieSearch[@"release_date"];
+    TMDBMovie *movie = self.movies[indexPath.row];
+    cell.textLabel.text = movie.title;
+    cell.detailTextLabel.text = [self.dateFormatter stringFromDate:movie.releaseDate];
     
     return cell;
 }

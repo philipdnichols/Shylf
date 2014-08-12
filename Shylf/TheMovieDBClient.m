@@ -8,6 +8,7 @@
 
 #import "TheMovieDBClient.h"
 #import "TheMovieDBAPIKey.h"
+#import "TMDBMovie.h"
 
 #define TheMovieDBBaseURL @"https://api.themoviedb.org/3/"
 #define TheMovieDBBaseImageURL @"https://image.tmdb.org/t/p/"
@@ -55,10 +56,16 @@
     [self GET:@"search/movie"
    parameters:parameters
       success:^(NSURLSessionDataTask *task, id responseObject) {
-          if ([responseObject isKindOfClass:[NSDictionary class]]) {
-              success(responseObject[@"results"]);
+          // TODO: Handle multiple pages of data
+          NSError *error = nil;
+          NSArray *results = [MTLJSONAdapter modelsOfClass:[TMDBMovie class]
+                                             fromJSONArray:responseObject[@"results"]
+                                                     error:&error];
+          
+          if (!error) {
+              success(results);
           } else {
-              DDLogError(@"Movie search response was expected to be an NSDictionary, but was a %@", [responseObject class]);
+              failure(error);
           }
       }
       failure:^(NSURLSessionDataTask *task, NSError *error) {
