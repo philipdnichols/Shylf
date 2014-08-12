@@ -14,7 +14,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 
-    #import <DDLog.h>
+    #import <CocoaLumberjack/DDLog.h>
     #import <AFNetworking/AFNetworking.h>
     #import <Mantle/Mantle.h>
 #endif

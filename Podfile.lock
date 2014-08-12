@@ -28,9 +28,6 @@ PODS:
   - CocoaLumberjack/Core (1.9.2)
   - CocoaLumberjack/Extensions (1.9.2):
     - CocoaLumberjack/Core
-  - MagicalRecord (2.2):
-    - MagicalRecord/Core
-  - MagicalRecord/Core (2.2)
   - Mantle (1.5):
     - Mantle/extobjc
   - Mantle/extobjc (1.5)
@@ -40,7 +37,6 @@ DEPENDENCIES:
   - AFNetworkActivityLogger
   - AFNetworking
   - CocoaLumberjack
-  - MagicalRecord
   - Mantle
   - MTBBarcodeScanner
 
@@ -48,7 +44,6 @@ SPEC CHECKSUMS:
   AFNetworkActivityLogger: d6a2d2755fada3a1fbf1f490ec0dd92224e092a4
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   CocoaLumberjack: 205769c032b5fef85b92472046bcc8b7e7c8a817
-  MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
   Mantle: c67a7e45e14196ed42b2a7cbb98ff6a9920e6b92
   MTBBarcodeScanner: 3e706c2516ac6e7ba16e2d255b434ad0c84cc882
 

@@ -3,5 +3,6 @@
 #endif
 
 #import "Pods-environment.h"
+#import "DDLog.h"
 #import <CoreData/CoreData.h>
 #import "CoreData+MagicalRecord.h"
