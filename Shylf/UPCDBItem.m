@@ -8,25 +8,34 @@
 
 #import "UPCDBItem.h"
 
-@interface UPCDBItem ()
-
-@property (strong, nonatomic, readwrite) NSString *descriptionOfItem;
-@property (strong, nonatomic, readwrite) NSString *itemName;
-
-@end
-
 @implementation UPCDBItem
 
-#pragma mark - Initialization
++ (NSDictionary *)JSONKeyPathsByPropertyKey{
+    return @{
+             @"valid" : @"valid",
+             @"number" : @"number",
+             @"itemName" : @"itemname",
+             @"alias" : @"alias",
+             @"descriptionOfItem" : @"description",
+             @"averagePrice" : @"avg_price",
+             @"rateUp" : @"rate_up",
+             @"rateDown" : @"rate_down"
+             };
+}
 
-- (instancetype)initWithDescriptionOfItem:(NSString *)descriptionOfItem itemName:(NSString *)itemName
++ (NSValueTransformer *)validJSONTransformer
 {
-    self = [super init];
-    if (self) {
-        self.descriptionOfItem = descriptionOfItem;
-        self.itemName = itemName;
-    }
-    return self;
+    return [MTLValueTransformer
+            reversibleTransformerWithForwardBlock:^id(NSString *str) {
+                return @([str boolValue]);
+            }
+            reverseBlock:^id(NSNumber *number) {
+                if ([number boolValue]) {
+                    return @"true";
+                } else {
+                    return @"false";
+                }
+            }];
 }
 
 @end

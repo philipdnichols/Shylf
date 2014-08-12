@@ -16,6 +16,7 @@
 
     #import <DDLog.h>
     #import <AFNetworking/AFNetworking.h>
+    #import <Mantle/Mantle.h>
 #endif
 
 #ifdef DEBUG

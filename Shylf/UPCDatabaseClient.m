@@ -45,11 +45,15 @@
     [self GET:[NSString stringWithFormat:@"%@/%@", UPCDatabaseAPIKey, upc]
    parameters:nil
       success:^(NSURLSessionDataTask *task, id responseObject) {
-          NSString *descriptionOfItem = responseObject[@"description"];
-          NSString *itemName = responseObject[@"itemname"];
-          UPCDBItem *item = [[UPCDBItem alloc] initWithDescriptionOfItem:descriptionOfItem
-                                                                itemName:itemName];
-          success(item);
+          NSError *error = nil;
+          UPCDBItem *item = [MTLJSONAdapter modelOfClass:[UPCDBItem class]
+                                      fromJSONDictionary:responseObject
+                                                   error:&error];
+          if (!error) {
+              success(item);
+          } else {
+              failure(error);
+          }
       }
       failure:^(NSURLSessionDataTask *task, NSError *error) {
           failure(error);

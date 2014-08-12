@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UPCDBItem : NSObject
+@interface UPCDBItem : MTLModel <MTLJSONSerializing>
 
-@property (strong, nonatomic, readonly) NSString *descriptionOfItem;
-@property (strong, nonatomic, readonly) NSString *itemName;
-
-- (instancetype)initWithDescriptionOfItem:(NSString *)descriptionOfItem itemName:(NSString *)itemName;
+@property (nonatomic) BOOL valid;
+@property (strong, nonatomic) NSString *number;
+@property (strong, nonatomic) NSString *itemName;
+@property (strong, nonatomic) NSString *alias;
+@property (strong, nonatomic) NSString *descriptionOfItem;
+@property (strong, nonatomic) NSNumber *averagePrice;
+@property (nonatomic) NSUInteger rateUp;
+@property (nonatomic) NSUInteger rateDown;
 
 @end
