@@ -43,13 +43,15 @@
     [MagicalRecord setupCoreDataStackWithStoreNamed:@"Shylf"];
     
     // Global Appearance Setup:
+    UIColor *barColor = [UIColor flatMaroonColorDark];
+    UIColor *barFontColor = [UIColor flatWhiteColor];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent; // [ChameleonStatusBar statusBarStyleForColor:[UIColor flatSkyBlueColor]];
     
-    [[UINavigationBar appearance] setBarTintColor:[UIColor flatSkyBlueColor]];
-    [[UINavigationBar appearance] setTintColor:[UIColor flatWhiteColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName: [UIColor flatWhiteColor] }];
+    [[UINavigationBar appearance] setBarTintColor:barColor];
+    [[UINavigationBar appearance] setTintColor:barFontColor];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName: barFontColor }];
     
-    [[UITabBar appearance] setSelectedImageTintColor:[UIColor flatSkyBlueColor]];
+    [[UITabBar appearance] setSelectedImageTintColor:barColor];
     
     return YES;
 }
