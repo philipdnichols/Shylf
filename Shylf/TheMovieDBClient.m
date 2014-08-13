@@ -8,12 +8,13 @@
 
 #import "TheMovieDBClient.h"
 #import "TheMovieDBAPIKey.h"
-#import "TMDBMovie.h"
+#import "TMDBConfiguration.h"
 
 #define TheMovieDBBaseURL @"https://api.themoviedb.org/3/"
-#define TheMovieDBBaseImageURL @"https://image.tmdb.org/t/p/"
 
 @interface TheMovieDBClient ()
+
+@property (strong, nonatomic) TMDBConfiguration *configuration;
 
 @end
 
@@ -40,6 +41,39 @@
         self.responseSerializer = [AFJSONResponseSerializer serializer];
     }
     return self;
+}
+
+#pragma mark - Properties
+
+- (TMDBConfiguration *)configuration
+{
+    if (!_configuration) {
+        DDLogInfo(@"Retrieving configuration. This should only happen once per app launch. That's a safe and simple caching mechanism.");
+        
+        // This blocks but is neccessary because we NEED this configuration on demand:
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"configuration?api_key=%@", TheMovieDBAPIKey] relativeToURL:[self baseURL]];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        
+        NSError *error = nil;
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                       options:0
+                                                                         error:&error];
+        
+        if (!error) {
+            TMDBConfiguration *configuration = [MTLJSONAdapter modelOfClass:[TMDBConfiguration class]
+                                                         fromJSONDictionary:jsonDictionary
+                                                                      error:&error];
+            
+            if (!error) {
+                _configuration = configuration;
+            } else {
+                DDLogError(@"Error mapping configuration to entity: %@", [error localizedDescription]);
+            }
+        } else {
+            DDLogError(@"Error parsing JSON from URL %@: %@", [url absoluteString], [error localizedDescription]);
+        }
+    }
+    return _configuration;
 }
 
 #pragma mark - Public
@@ -71,6 +105,14 @@
       failure:^(NSURLSessionDataTask *task, NSError *error) {
           failure(error);
       }];
+}
+
+- (NSURL *)posterThumbnailURLForMovie:(TMDBMovie *)movie
+{
+    NSString *posterSize = [self.configuration.images.posterSizes firstObject];
+    NSString *posterPath = [posterSize stringByAppendingPathComponent:movie.posterPath];
+    NSURL *posterThumbnailURL = [NSURL URLWithString:posterPath relativeToURL:self.configuration.images.secureBaseURL];
+    return posterThumbnailURL;
 }
 
 @end

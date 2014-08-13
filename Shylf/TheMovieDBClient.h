@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TMDBMovie.h"
 
 @interface TheMovieDBClient : AFHTTPSessionManager
 
 + (instancetype)sharedClient;
 
 - (void)searchMoviesFromQuery:(NSString *)query success:(void(^)(NSArray *results))success failure:(void(^)(NSError *error))failure;
+
+- (NSURL *)posterThumbnailURLForMovie:(TMDBMovie *)movie;
 
 @end

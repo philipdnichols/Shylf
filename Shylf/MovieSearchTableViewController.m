@@ -9,6 +9,8 @@
 #import "MovieSearchTableViewController.h"
 #import "TheMovieDBClient.h"
 #import "TMDBMovie.h"
+#import "UIImageView+AFNetworking.h"
+#import "MovieSearchCell.h"
 
 @interface MovieSearchTableViewController () <UISearchBarDelegate>
 
@@ -89,30 +91,28 @@
     return [self.movies count];
 }
 
-static NSString *MovieSearchCellIdentifier = @"Movie Search Cell";
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MovieSearchCellIdentifier
+    MovieSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:MovieSearchCellIdentifier
                                                             forIndexPath:indexPath];
     
     TMDBMovie *movie = self.movies[indexPath.row];
-    cell.textLabel.text = movie.title;
-    cell.detailTextLabel.text = [self.dateFormatter stringFromDate:movie.releaseDate];
+    cell.titleLabel.text = movie.title;
+    cell.releaseDateLabel.text = [self.dateFormatter stringFromDate:movie.releaseDate];
+    
+    __weak MovieSearchCell *weakCell = cell;
+    [cell.posterImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[[TheMovieDBClient sharedClient] posterThumbnailURLForMovie:movie]]
+        placeholderImage:[UIImage imageNamed:@"movies"]
+                 success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                     weakCell.posterImageView.image = image;
+                     [weakCell setNeedsLayout];
+                 }
+                 failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                     DDLogError(@"Error downloading image from %@: %@", [[request URL] absoluteString], [error localizedDescription]);
+                 }];
     
     return cell;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - UISearchBarDelegate
 
