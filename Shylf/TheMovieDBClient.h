@@ -13,7 +13,7 @@
 
 + (instancetype)sharedClient;
 
-- (void)searchMoviesFromQuery:(NSString *)query success:(void(^)(NSArray *results))success failure:(void(^)(NSError *error))failure;
+- (void)searchMoviesFromQuery:(NSString *)query fullResults:(BOOL)fullResults success:(void(^)(NSArray *results))success failure:(void(^)(NSError *error))failure;
 - (void)fetchMovieWithIdentifier:(NSUInteger)identifier success:(void(^)(TMDBMovie *movie))success failure:(void(^)(NSError *error))failure;
 
 - (NSURL *)posterThumbnailURLForMovie:(TMDBMovie *)movie;

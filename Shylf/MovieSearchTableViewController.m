@@ -16,7 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
-@property (strong, nonatomic) NSArray *movies;
+@property (strong, nonatomic) NSMutableArray *movies;
 
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
@@ -25,6 +25,8 @@
 @implementation MovieSearchTableViewController
 
 #pragma mark - Properties
+
+@synthesize movies = _movies;
 
 - (NSDateFormatter *)dateFormatter
 {
@@ -48,13 +50,22 @@
     [self searchMovies];
 }
 
-- (void)setMovies:(NSArray *)movies
+- (NSMutableArray *)movies
+{
+    if (!_movies) {
+        _movies = [NSMutableArray array];
+    }
+    return _movies;
+}
+
+- (void)setMovies:(NSMutableArray *)movies
 {
     _movies = movies;
     [self.tableView reloadData];
 }
 
 #pragma mark - Lifecycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -69,14 +80,14 @@
 
 - (void)searchMovies
 {
-    [[TheMovieDBClient sharedClient]
-     searchMoviesFromQuery:self.query
-                   success:^(NSArray *results) {
-                       self.movies = results;
-                   }
-                   failure:^(NSError *error) {
-                       DDLogError(@"Error searching movies with query \"%@\": %@", self.query, [error localizedDescription]);
-                   }];
+    [[TheMovieDBClient sharedClient] searchMoviesFromQuery:self.query
+           fullResults:YES
+               success:^(NSArray *results) {
+                   self.movies = [results mutableCopy];
+               }
+               failure:^(NSError *error) {
+                   DDLogError(@"Error searching movies with query \"%@\": %@", self.query, [error localizedDescription]);
+               }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -97,28 +108,22 @@
                                                             forIndexPath:indexPath];
     
     TMDBMovie *movie = self.movies[indexPath.row];
-    [[TheMovieDBClient sharedClient] fetchMovieWithIdentifier:movie.identifier
-          success:^(TMDBMovie *movie) {
-              cell.textLabel.text = movie.title;
-              cell.detailTextLabel.text = [self.dateFormatter stringFromDate:movie.releaseDate];
-              cell.imageView.image = nil;
-              
-              NSURL *posterThumbnailURL = [[TheMovieDBClient sharedClient] posterThumbnailURLForMovie:movie];
-              if (posterThumbnailURL) {
-                  __weak UITableViewCell *weakCell = cell;
-                  [cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:posterThumbnailURL]
-                        placeholderImage:[UIImage imageNamed:@"movies"]
-                                 success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                     weakCell.imageView.image = image;
-                                     [weakCell setNeedsLayout];
-                                 }
-                                 failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                     DDLogError(@"Error downloading image from %@: %@", [[request URL] absoluteString], [error localizedDescription]);
-                                 }];
-              }
-          } failure:^(NSError *error) {
-              DDLogError(@"Error retrieving movie with identifier %d: %@", movie.identifier, [error localizedDescription]);
-          }];
+    cell.textLabel.text = movie.title;
+    cell.detailTextLabel.text = [self.dateFormatter stringFromDate:movie.releaseDate];
+    
+    NSURL *posterThumbnailURL = [[TheMovieDBClient sharedClient] posterThumbnailURLForMovie:movie];
+    if (posterThumbnailURL) {
+        __weak UITableViewCell *weakCell = cell;
+        [cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:posterThumbnailURL]
+              placeholderImage:[UIImage imageNamed:@"movies"]
+                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                           weakCell.imageView.image = image;
+                           [weakCell setNeedsLayout];
+                       }
+                       failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                           DDLogError(@"Error downloading image from %@: %@", [[request URL] absoluteString], [error localizedDescription]);
+                       }];
+    }
     
     return cell;
 }
@@ -127,6 +132,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    self.movies = nil;
     self.query = searchBar.text;
     [searchBar resignFirstResponder];
 }

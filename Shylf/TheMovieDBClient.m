@@ -78,7 +78,7 @@
 
 #pragma mark - Public
 
-- (void)searchMoviesFromQuery:(NSString *)query success:(void(^)(NSArray *results))success failure:(void(^)(NSError *error))failure
+- (void)searchMoviesFromQuery:(NSString *)query fullResults:(BOOL)fullResults success:(void(^)(NSArray *results))success failure:(void(^)(NSError *error))failure
 {
     DDLogInfo(@"Searching for Movie: %@", query);
     
@@ -97,7 +97,25 @@
                                                      error:&error];
           
           if (!error) {
-              success(results);
+              if (fullResults) {
+                  NSMutableArray *fullResults = [NSMutableArray array];
+                  __block int counter = [results count];
+                  for (TMDBMovie *movie in results) {
+                      [self fetchMovieWithIdentifier:movie.identifier
+                             success:^(TMDBMovie *movie) {
+                                 [fullResults addObject:movie];
+                                 counter--;
+                                 if (counter == 0) {
+                                     success(fullResults);
+                                 }
+                             }
+                             failure:^(NSError *error) {
+                                 failure(error);
+                             }];
+                  }
+              } else {
+                  success(results);
+              }
           } else {
               failure(error);
           }
