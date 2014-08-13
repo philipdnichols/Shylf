@@ -70,6 +70,9 @@
 {
     [super viewDidLoad];
     
+    // TODO: Better place to put this?
+    [self.tableView registerNib:[MovieSearchCell nib] forCellReuseIdentifier:[MovieSearchCell identifier]];
+    
     [self updateUI];
 }
 
@@ -104,25 +107,27 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MovieSearchCellIdentifier
+    MovieSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:[MovieSearchCell identifier]
                                                             forIndexPath:indexPath];
     
     TMDBMovie *movie = self.movies[indexPath.row];
-    cell.textLabel.text = movie.title;
-    cell.detailTextLabel.text = [self.dateFormatter stringFromDate:movie.releaseDate];
+    cell.titleLabel.text = movie.title;
+    cell.releaseDateLabel.text = [self.dateFormatter stringFromDate:movie.releaseDate];
     
     NSURL *posterThumbnailURL = [[TheMovieDBClient sharedClient] posterThumbnailURLForMovie:movie];
     if (posterThumbnailURL) {
-        __weak UITableViewCell *weakCell = cell;
-        [cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:posterThumbnailURL]
+        __weak MovieSearchCell *weakCell = cell;
+        [cell.posterImageView setImageWithURLRequest:[NSURLRequest requestWithURL:posterThumbnailURL]
               placeholderImage:[UIImage imageNamed:@"movies"]
                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                           weakCell.imageView.image = image;
+                           weakCell.posterImageView.image = image;
                            [weakCell setNeedsLayout];
                        }
                        failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                            DDLogError(@"Error downloading image from %@: %@", [[request URL] absoluteString], [error localizedDescription]);
                        }];
+    } else {
+        cell.posterImageView.image = nil;
     }
     
     return cell;

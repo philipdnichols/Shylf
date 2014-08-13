@@ -88,7 +88,6 @@
 		B1FAB66D199AE33800CB4D4F /* TMDBImagesConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FAB66C199AE33800CB4D4F /* TMDBImagesConfiguration.m */; };
 		B1FAB675199B0DFE00CB4D4F /* MovieSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1FAB674199B0DFE00CB4D4F /* MovieSearchCell.xib */; };
 		B1FAB678199B0E3200CB4D4F /* MovieSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FAB677199B0E3200CB4D4F /* MovieSearchCell.m */; };
-		B1FAB67A199B125800CB4D4F /* TEst.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1FAB679199B125800CB4D4F /* TEst.xib */; };
 		F48D6DD8B3604A1E9AF391BA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B208A79FBBA4F4FBACB8F68 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -234,7 +233,6 @@
 		B1FAB674199B0DFE00CB4D4F /* MovieSearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieSearchCell.xib; sourceTree = "<group>"; };
 		B1FAB676199B0E3200CB4D4F /* MovieSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieSearchCell.h; sourceTree = "<group>"; };
 		B1FAB677199B0E3200CB4D4F /* MovieSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieSearchCell.m; sourceTree = "<group>"; };
-		B1FAB679199B125800CB4D4F /* TEst.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TEst.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,12 +314,42 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		B134CA0A199C25C5004C392E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B134CA0B199C25D0004C392E /* Generated */,
+				B14169CA19986C1B00C642E1 /* Book.h */,
+				B14169CB19986C1B00C642E1 /* Book.m */,
+				B14169CC19986C1B00C642E1 /* Movie.h */,
+				B14169CD19986C1B00C642E1 /* Movie.m */,
+				B14169CE19986C1B00C642E1 /* TVShow.h */,
+				B14169CF19986C1B00C642E1 /* TVShow.m */,
+				B14169D019986C1B00C642E1 /* VideoGame.h */,
+				B14169D119986C1B00C642E1 /* VideoGame.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		B134CA0B199C25D0004C392E /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				B14169C219986C1B00C642E1 /* _Book.h */,
+				B14169C319986C1B00C642E1 /* _Book.m */,
+				B14169C419986C1B00C642E1 /* _Movie.h */,
+				B14169C519986C1B00C642E1 /* _Movie.m */,
+				B14169C619986C1B00C642E1 /* _TVShow.h */,
+				B14169C719986C1B00C642E1 /* _TVShow.m */,
+				B14169C819986C1B00C642E1 /* _VideoGame.h */,
+				B14169C919986C1B00C642E1 /* _VideoGame.m */,
+			);
+			name = Generated;
+			sourceTree = "<group>";
+		};
 		B13DC6901996E36900510540 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				B1760AE61996E27B00DD6D1E /* Main.storyboard */,
 				B1FAB674199B0DFE00CB4D4F /* MovieSearchCell.xib */,
-				B1FAB679199B125800CB4D4F /* TEst.xib */,
 				B1FAB676199B0E3200CB4D4F /* MovieSearchCell.h */,
 				B1FAB677199B0E3200CB4D4F /* MovieSearchCell.m */,
 			);
@@ -347,28 +375,13 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		B13DC69E1996F88100510540 /* Core Data Model */ = {
+		B13DC69E1996F88100510540 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				B14169C219986C1B00C642E1 /* _Book.h */,
-				B14169C319986C1B00C642E1 /* _Book.m */,
-				B14169C419986C1B00C642E1 /* _Movie.h */,
-				B14169C519986C1B00C642E1 /* _Movie.m */,
-				B14169C619986C1B00C642E1 /* _TVShow.h */,
-				B14169C719986C1B00C642E1 /* _TVShow.m */,
-				B14169C819986C1B00C642E1 /* _VideoGame.h */,
-				B14169C919986C1B00C642E1 /* _VideoGame.m */,
-				B14169CA19986C1B00C642E1 /* Book.h */,
-				B14169CB19986C1B00C642E1 /* Book.m */,
-				B14169CC19986C1B00C642E1 /* Movie.h */,
-				B14169CD19986C1B00C642E1 /* Movie.m */,
-				B14169CE19986C1B00C642E1 /* TVShow.h */,
-				B14169CF19986C1B00C642E1 /* TVShow.m */,
-				B14169D019986C1B00C642E1 /* VideoGame.h */,
-				B14169D119986C1B00C642E1 /* VideoGame.m */,
+				B134CA0A199C25C5004C392E /* Model */,
 				B13DC69B1996F87D00510540 /* Shylf.xcdatamodeld */,
 			);
-			name = "Core Data Model";
+			name = "Core Data";
 			sourceTree = "<group>";
 		};
 		B13DC6AB1997229600510540 /* API */ = {
@@ -521,7 +534,7 @@
 				B1760AE31996E27B00DD6D1E /* ShylfAppDelegate.h */,
 				B1760AE41996E27B00DD6D1E /* ShylfAppDelegate.m */,
 				B13DC6AB1997229600510540 /* API */,
-				B13DC69E1996F88100510540 /* Core Data Model */,
+				B13DC69E1996F88100510540 /* Core Data */,
 				B13DC6901996E36900510540 /* View */,
 				B13DC6941996E6B900510540 /* Controller */,
 				B1603332199AB5B700BFEC3A /* MagicalRecord */,
@@ -640,7 +653,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1760AED1996E27B00DD6D1E /* Images.xcassets in Resources */,
-				B1FAB67A199B125800CB4D4F /* TEst.xib in Resources */,
 				B1760ADF1996E27B00DD6D1E /* InfoPlist.strings in Resources */,
 				B1FAB675199B0DFE00CB4D4F /* MovieSearchCell.xib in Resources */,
 				B1760AE81996E27B00DD6D1E /* Main.storyboard in Resources */,

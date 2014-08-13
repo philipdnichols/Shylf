@@ -10,25 +10,14 @@
 
 @implementation MovieSearchCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
++ (NSString *)identifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    return @"Movie Search Cell";
 }
 
-- (void)awakeFromNib
++ (UINib *)nib
 {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    return [UINib nibWithNibName:@"MovieSearchCell" bundle:nil];
 }
 
 @end
