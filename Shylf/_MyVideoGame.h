@@ -1,32 +1,32 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to VideoGame.h instead.
+// Make changes to MyVideoGame.h instead.
 
 #import <CoreData/CoreData.h>
 
 
-extern const struct VideoGameAttributes {
+extern const struct MyVideoGameAttributes {
 	__unsafe_unretained NSString *platform;
 	__unsafe_unretained NSString *title;
-} VideoGameAttributes;
+} MyVideoGameAttributes;
 
-extern const struct VideoGameRelationships {
-} VideoGameRelationships;
+extern const struct MyVideoGameRelationships {
+} MyVideoGameRelationships;
 
-extern const struct VideoGameFetchedProperties {
-} VideoGameFetchedProperties;
-
-
+extern const struct MyVideoGameFetchedProperties {
+} MyVideoGameFetchedProperties;
 
 
 
-@interface VideoGameID : NSManagedObjectID {}
+
+
+@interface MyVideoGameID : NSManagedObjectID {}
 @end
 
-@interface _VideoGame : NSManagedObject {}
+@interface _MyVideoGame : NSManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-- (VideoGameID*)objectID;
+- (MyVideoGameID*)objectID;
 
 
 
@@ -55,11 +55,11 @@ extern const struct VideoGameFetchedProperties {
 
 @end
 
-@interface _VideoGame (CoreDataGeneratedAccessors)
+@interface _MyVideoGame (CoreDataGeneratedAccessors)
 
 @end
 
-@interface _VideoGame (CoreDataGeneratedPrimitiveAccessors)
+@interface _MyVideoGame (CoreDataGeneratedPrimitiveAccessors)
 
 
 - (NSString*)primitivePlatform;

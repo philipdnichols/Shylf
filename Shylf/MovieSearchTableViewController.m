@@ -11,8 +11,9 @@
 #import "TMDBMovie.h"
 #import "UIImageView+AFNetworking.h"
 #import "MovieSearchCell.h"
+#import "MyMovie.h"
 
-@interface MovieSearchTableViewController () <UISearchBarDelegate>
+@interface MovieSearchTableViewController () <UISearchBarDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
@@ -133,6 +134,19 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TMDBMovie *movie = self.movies[indexPath.row];
+    
+    [[[UIAlertView alloc] initWithTitle:@"Add Movie"
+                                message:[NSString stringWithFormat:@"Add %@ to Movie Collection?", movie.title]
+                               delegate:self
+                      cancelButtonTitle:@"Cancel"
+                      otherButtonTitles:@"Yes", nil] show];
+}
+
 #pragma mark - UISearchBarDelegate
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -140,6 +154,37 @@
     self.movies = nil;
     self.query = searchBar.text;
     [searchBar resignFirstResponder];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if ([buttonTitle isEqualToString:@"Yes"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        TMDBMovie *movie = self.movies[indexPath.row];
+        
+        MyMovie *myMovie = [MyMovie MR_createEntity];
+        myMovie.title = movie.title;
+        myMovie.overview = movie.overview;
+        myMovie.releaseDate = movie.releaseDate;
+        myMovie.rating = movie.voteAverage;
+        myMovie.tagline = movie.tagline;
+        myMovie.thumbnailURL = [[[TheMovieDBClient sharedClient] posterThumbnailURLForMovie:movie] absoluteString];
+        myMovie.runtime = movie.runtime;
+        
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+            if (!error) {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            } else {
+                // TODO:
+            }
+        }];
+        
+        
+    }
 }
 
 @end

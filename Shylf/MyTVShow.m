@@ -1,14 +1,14 @@
-#import "Movie.h"
+#import "MyTVShow.h"
 
 
-@interface Movie ()
+@interface MyTVShow ()
 
 // Private interface goes here.
 
 @end
 
 
-@implementation Movie
+@implementation MyTVShow
 
 // Custom logic goes here.
 

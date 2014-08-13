@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Book" representedClassName="Book" syncable="YES">
+    <entity name="MyBook" representedClassName="MyBook" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Movie" representedClassName="Movie" syncable="YES">
-        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="MyMovie" representedClassName="MyMovie" syncable="YES">
         <attribute name="overview" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="releaseDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="runtime" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="tagline" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="TVShow" representedClassName="TVShow" syncable="YES">
+    <entity name="MyTVShow" representedClassName="MyTVShow" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="VideoGame" representedClassName="VideoGame" syncable="YES">
+    <entity name="MyVideoGame" representedClassName="MyVideoGame" syncable="YES">
         <attribute name="platform" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Book" positionX="-63" positionY="-18" width="128" height="73"/>
-        <element name="Movie" positionX="-36" positionY="9" width="128" height="150"/>
-        <element name="TVShow" positionX="-45" positionY="18" width="128" height="58"/>
-        <element name="VideoGame" positionX="-54" positionY="-9" width="128" height="73"/>
+        <element name="MyBook" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="MyMovie" positionX="-36" positionY="9" width="128" height="148"/>
+        <element name="MyTVShow" positionX="-45" positionY="18" width="128" height="60"/>
+        <element name="MyVideoGame" positionX="-54" positionY="-9" width="128" height="75"/>
     </elements>
 </model>

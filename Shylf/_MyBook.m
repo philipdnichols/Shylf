@@ -1,40 +1,40 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to Book.m instead.
+// Make changes to MyBook.m instead.
 
-#import "_Book.h"
+#import "_MyBook.h"
 
-const struct BookAttributes BookAttributes = {
+const struct MyBookAttributes MyBookAttributes = {
 	.author = @"author",
 	.title = @"title",
 };
 
-const struct BookRelationships BookRelationships = {
+const struct MyBookRelationships MyBookRelationships = {
 };
 
-const struct BookFetchedProperties BookFetchedProperties = {
+const struct MyBookFetchedProperties MyBookFetchedProperties = {
 };
 
-@implementation BookID
+@implementation MyBookID
 @end
 
-@implementation _Book
+@implementation _MyBook
 
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription insertNewObjectForEntityForName:@"Book" inManagedObjectContext:moc_];
+	return [NSEntityDescription insertNewObjectForEntityForName:@"MyBook" inManagedObjectContext:moc_];
 }
 
 + (NSString*)entityName {
-	return @"Book";
+	return @"MyBook";
 }
 
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription entityForName:@"Book" inManagedObjectContext:moc_];
+	return [NSEntityDescription entityForName:@"MyBook" inManagedObjectContext:moc_];
 }
 
-- (BookID*)objectID {
-	return (BookID*)[super objectID];
+- (MyBookID*)objectID {
+	return (MyBookID*)[super objectID];
 }
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {

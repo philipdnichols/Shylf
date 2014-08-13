@@ -1,32 +1,32 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to Book.h instead.
+// Make changes to MyBook.h instead.
 
 #import <CoreData/CoreData.h>
 
 
-extern const struct BookAttributes {
+extern const struct MyBookAttributes {
 	__unsafe_unretained NSString *author;
 	__unsafe_unretained NSString *title;
-} BookAttributes;
+} MyBookAttributes;
 
-extern const struct BookRelationships {
-} BookRelationships;
+extern const struct MyBookRelationships {
+} MyBookRelationships;
 
-extern const struct BookFetchedProperties {
-} BookFetchedProperties;
-
-
+extern const struct MyBookFetchedProperties {
+} MyBookFetchedProperties;
 
 
 
-@interface BookID : NSManagedObjectID {}
+
+
+@interface MyBookID : NSManagedObjectID {}
 @end
 
-@interface _Book : NSManagedObject {}
+@interface _MyBook : NSManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-- (BookID*)objectID;
+- (MyBookID*)objectID;
 
 
 
@@ -55,11 +55,11 @@ extern const struct BookFetchedProperties {
 
 @end
 
-@interface _Book (CoreDataGeneratedAccessors)
+@interface _MyBook (CoreDataGeneratedAccessors)
 
 @end
 
-@interface _Book (CoreDataGeneratedPrimitiveAccessors)
+@interface _MyBook (CoreDataGeneratedPrimitiveAccessors)
 
 
 - (NSString*)primitiveAuthor;

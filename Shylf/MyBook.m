@@ -1,14 +1,14 @@
-#import "VideoGame.h"
+#import "MyBook.h"
 
 
-@interface VideoGame ()
+@interface MyBook ()
 
 // Private interface goes here.
 
 @end
 
 
-@implementation VideoGame
+@implementation MyBook
 
 // Custom logic goes here.
 

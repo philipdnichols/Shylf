@@ -1,30 +1,30 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to TVShow.h instead.
+// Make changes to MyTVShow.h instead.
 
 #import <CoreData/CoreData.h>
 
 
-extern const struct TVShowAttributes {
+extern const struct MyTVShowAttributes {
 	__unsafe_unretained NSString *title;
-} TVShowAttributes;
+} MyTVShowAttributes;
 
-extern const struct TVShowRelationships {
-} TVShowRelationships;
+extern const struct MyTVShowRelationships {
+} MyTVShowRelationships;
 
-extern const struct TVShowFetchedProperties {
-} TVShowFetchedProperties;
-
-
+extern const struct MyTVShowFetchedProperties {
+} MyTVShowFetchedProperties;
 
 
-@interface TVShowID : NSManagedObjectID {}
+
+
+@interface MyTVShowID : NSManagedObjectID {}
 @end
 
-@interface _TVShow : NSManagedObject {}
+@interface _MyTVShow : NSManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-- (TVShowID*)objectID;
+- (MyTVShowID*)objectID;
 
 
 
@@ -43,11 +43,11 @@ extern const struct TVShowFetchedProperties {
 
 @end
 
-@interface _TVShow (CoreDataGeneratedAccessors)
+@interface _MyTVShow (CoreDataGeneratedAccessors)
 
 @end
 
-@interface _TVShow (CoreDataGeneratedPrimitiveAccessors)
+@interface _MyTVShow (CoreDataGeneratedPrimitiveAccessors)
 
 
 - (NSString*)primitiveTitle;
