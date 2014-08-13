@@ -10,7 +10,7 @@
 
 @interface TMDBCompany : MTLModel <MTLJSONSerializing>
 
-@property (nonatomic) NSUInteger *identifier;
+@property (nonatomic) NSUInteger identifier;
 @property (strong, nonatomic) NSString *name;
 
 @end

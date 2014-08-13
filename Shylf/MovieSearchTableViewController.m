@@ -93,23 +93,32 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MovieSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:MovieSearchCellIdentifier
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MovieSearchCellIdentifier
                                                             forIndexPath:indexPath];
     
     TMDBMovie *movie = self.movies[indexPath.row];
-    cell.titleLabel.text = movie.title;
-    cell.releaseDateLabel.text = [self.dateFormatter stringFromDate:movie.releaseDate];
-    
-    __weak MovieSearchCell *weakCell = cell;
-    [cell.posterImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[[TheMovieDBClient sharedClient] posterThumbnailURLForMovie:movie]]
-        placeholderImage:[UIImage imageNamed:@"movies"]
-                 success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                     weakCell.posterImageView.image = image;
-                     [weakCell setNeedsLayout];
-                 }
-                 failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                     DDLogError(@"Error downloading image from %@: %@", [[request URL] absoluteString], [error localizedDescription]);
-                 }];
+    [[TheMovieDBClient sharedClient] fetchMovieWithIdentifier:movie.identifier
+          success:^(TMDBMovie *movie) {
+              cell.textLabel.text = movie.title;
+              cell.detailTextLabel.text = [self.dateFormatter stringFromDate:movie.releaseDate];
+              cell.imageView.image = nil;
+              
+              NSURL *posterThumbnailURL = [[TheMovieDBClient sharedClient] posterThumbnailURLForMovie:movie];
+              if (posterThumbnailURL) {
+                  __weak UITableViewCell *weakCell = cell;
+                  [cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:posterThumbnailURL]
+                        placeholderImage:[UIImage imageNamed:@"movies"]
+                                 success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                     weakCell.imageView.image = image;
+                                     [weakCell setNeedsLayout];
+                                 }
+                                 failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                     DDLogError(@"Error downloading image from %@: %@", [[request URL] absoluteString], [error localizedDescription]);
+                                 }];
+              }
+          } failure:^(NSError *error) {
+              DDLogError(@"Error retrieving movie with identifier %d: %@", movie.identifier, [error localizedDescription]);
+          }];
     
     return cell;
 }

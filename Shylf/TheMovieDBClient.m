@@ -109,10 +109,42 @@
 
 - (NSURL *)posterThumbnailURLForMovie:(TMDBMovie *)movie
 {
-    NSString *posterSize = [self.configuration.images.posterSizes firstObject];
-    NSString *posterPath = [posterSize stringByAppendingPathComponent:movie.posterPath];
-    NSURL *posterThumbnailURL = [NSURL URLWithString:posterPath relativeToURL:self.configuration.images.secureBaseURL];
+    NSURL *posterThumbnailURL = nil;
+    
+    if (movie.posterPath) {
+        NSString *posterSize = [self.configuration.images.posterSizes firstObject];
+        NSString *posterPath = [posterSize stringByAppendingPathComponent:movie.posterPath];
+        posterThumbnailURL = [NSURL URLWithString:posterPath relativeToURL:self.configuration.images.secureBaseURL];
+    }
+    
     return posterThumbnailURL;
+}
+
+- (void)fetchMovieWithIdentifier:(NSUInteger)identifier success:(void(^)(TMDBMovie *movie))success failure:(void(^)(NSError *error))failure
+{
+    DDLogInfo(@"Fetching Movie with ID: %d", identifier);
+    
+    NSDictionary *parameters = @{
+                                 @"api_key" : TheMovieDBAPIKey
+                                 };
+    
+    [self GET:[NSString stringWithFormat:@"movie/%d", identifier]
+   parameters:parameters
+      success:^(NSURLSessionDataTask *task, id responseObject) {
+          NSError *error = nil;
+          TMDBMovie *movie = [MTLJSONAdapter modelOfClass:[TMDBMovie class]
+                                       fromJSONDictionary:responseObject
+                                                    error:&error];
+          
+          if (!error) {
+              success(movie);
+          } else {
+              failure(error);
+          }
+      }
+      failure:^(NSURLSessionDataTask *task, NSError *error) {
+          failure(error);
+      }];
 }
 
 @end
