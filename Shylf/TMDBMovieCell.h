@@ -7,14 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomUITableViewCell.h"
 
-@interface MovieSearchCell : UITableViewCell
+@interface TMDBMovieCell : UITableViewCell <CustomUITableViewCell>
 
 @property (weak, nonatomic) IBOutlet UIImageView *posterImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
-
-+ (NSString *)identifier;
-+ (UINib *)nib;
 
 @end

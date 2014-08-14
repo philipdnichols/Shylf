@@ -5,20 +5,24 @@
 
 
 extern const struct MyMovieAttributes {
+	__unsafe_unretained NSString *identifier;
 	__unsafe_unretained NSString *overview;
+	__unsafe_unretained NSString *posterPath;
 	__unsafe_unretained NSString *rating;
 	__unsafe_unretained NSString *releaseDate;
 	__unsafe_unretained NSString *runtime;
 	__unsafe_unretained NSString *tagline;
-	__unsafe_unretained NSString *thumbnailURL;
 	__unsafe_unretained NSString *title;
 } MyMovieAttributes;
 
 extern const struct MyMovieRelationships {
+	__unsafe_unretained NSString *genres;
 } MyMovieRelationships;
 
 extern const struct MyMovieFetchedProperties {
 } MyMovieFetchedProperties;
+
+@class MyMovieGenre;
 
 
 
@@ -42,11 +46,35 @@ extern const struct MyMovieFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* identifier;
+
+
+
+@property int16_t identifierValue;
+- (int16_t)identifierValue;
+- (void)setIdentifierValue:(int16_t)value_;
+
+//- (BOOL)validateIdentifier:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* overview;
 
 
 
 //- (BOOL)validateOverview:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* posterPath;
+
+
+
+//- (BOOL)validatePosterPath:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -100,16 +128,6 @@ extern const struct MyMovieFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* thumbnailURL;
-
-
-
-//- (BOOL)validateThumbnailURL:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
 @property (nonatomic, strong) NSString* title;
 
 
@@ -120,18 +138,45 @@ extern const struct MyMovieFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet *genres;
+
+- (NSMutableSet*)genresSet;
+
+
+
+
 
 @end
 
 @interface _MyMovie (CoreDataGeneratedAccessors)
+
+- (void)addGenres:(NSSet*)value_;
+- (void)removeGenres:(NSSet*)value_;
+- (void)addGenresObject:(MyMovieGenre*)value_;
+- (void)removeGenresObject:(MyMovieGenre*)value_;
 
 @end
 
 @interface _MyMovie (CoreDataGeneratedPrimitiveAccessors)
 
 
+- (NSNumber*)primitiveIdentifier;
+- (void)setPrimitiveIdentifier:(NSNumber*)value;
+
+- (int16_t)primitiveIdentifierValue;
+- (void)setPrimitiveIdentifierValue:(int16_t)value_;
+
+
+
+
 - (NSString*)primitiveOverview;
 - (void)setPrimitiveOverview:(NSString*)value;
+
+
+
+
+- (NSString*)primitivePosterPath;
+- (void)setPrimitivePosterPath:(NSString*)value;
 
 
 
@@ -166,16 +211,15 @@ extern const struct MyMovieFetchedProperties {
 
 
 
-- (NSString*)primitiveThumbnailURL;
-- (void)setPrimitiveThumbnailURL:(NSString*)value;
-
-
-
-
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;
 
 
+
+
+
+- (NSMutableSet*)primitiveGenres;
+- (void)setPrimitiveGenres:(NSMutableSet*)value;
 
 
 @end

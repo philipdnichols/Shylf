@@ -10,8 +10,9 @@
 #import "TheMovieDBClient.h"
 #import "TMDBMovie.h"
 #import "UIImageView+AFNetworking.h"
-#import "MovieSearchCell.h"
-#import "MyMovie.h"
+#import "TMDBMovieCell.h"
+#import "TMDBMovie+CoreData.h"
+#import "MovieSearchDetailViewController.h"
 
 @interface MovieSearchTableViewController () <UISearchBarDelegate, UIAlertViewDelegate>
 
@@ -72,7 +73,8 @@
     [super viewDidLoad];
     
     // TODO: Better place to put this?
-    [self.tableView registerNib:[MovieSearchCell nib] forCellReuseIdentifier:[MovieSearchCell identifier]];
+    // TODO: Make use of the conformsToProtocol thing
+    [self.tableView registerNib:[TMDBMovieCell nib] forCellReuseIdentifier:[TMDBMovieCell identifier]];
     
     [self updateUI];
 }
@@ -108,16 +110,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MovieSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:[MovieSearchCell identifier]
+    TMDBMovieCell *cell = [tableView dequeueReusableCellWithIdentifier:[TMDBMovieCell identifier]
                                                             forIndexPath:indexPath];
     
     TMDBMovie *movie = self.movies[indexPath.row];
     cell.titleLabel.text = movie.title;
     cell.releaseDateLabel.text = [self.dateFormatter stringFromDate:movie.releaseDate];
     
-    NSURL *posterThumbnailURL = [[TheMovieDBClient sharedClient] posterThumbnailURLForMovie:movie];
+    NSURL *posterThumbnailURL = [[TheMovieDBClient sharedClient] posterThumbnailURLForPosterPath:movie.posterPath];
     if (posterThumbnailURL) {
-        __weak MovieSearchCell *weakCell = cell;
+        __weak TMDBMovieCell *weakCell = cell;
         [cell.posterImageView setImageWithURLRequest:[NSURLRequest requestWithURL:posterThumbnailURL]
               placeholderImage:[UIImage imageNamed:@"movies"]
                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
@@ -141,10 +143,16 @@
     TMDBMovie *movie = self.movies[indexPath.row];
     
     [[[UIAlertView alloc] initWithTitle:@"Add Movie"
-                                message:[NSString stringWithFormat:@"Add %@ to Movie Collection?", movie.title]
+                                message:[NSString stringWithFormat:@"Add \"%@\" to Movie Collection?", movie.title]
                                delegate:self
                       cancelButtonTitle:@"Cancel"
                       otherButtonTitles:@"Yes", nil] show];
+}
+
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:SearchMovieDetailsSegueIdentifier sender:cell];
 }
 
 #pragma mark - UISearchBarDelegate
@@ -166,25 +174,67 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         TMDBMovie *movie = self.movies[indexPath.row];
         
-        MyMovie *myMovie = [MyMovie MR_createEntity];
-        myMovie.title = movie.title;
-        myMovie.overview = movie.overview;
-        myMovie.releaseDate = movie.releaseDate;
-        myMovie.rating = movie.voteAverage;
-        myMovie.tagline = movie.tagline;
-        myMovie.thumbnailURL = [[[TheMovieDBClient sharedClient] posterThumbnailURLForMovie:movie] absoluteString];
-        myMovie.runtime = movie.runtime;
+        NSError *error = nil;
+        [MTLManagedObjectAdapter managedObjectFromModel:movie
+                                   insertingIntoContext:[NSManagedObjectContext MR_defaultContext]
+                                                  error:&error];
         
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-            if (!error) {
-                [self.navigationController popToRootViewControllerAnimated:YES];
-            } else {
-                // TODO:
-            }
-        }];
+        // TODO: I think this creates unique genre objects...maybe? This could be improved but isn't a huge deal.
         
-        
+        if (!error) {
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+                if (!error) {
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                } else {
+                    // TODO:
+                }
+            }];
+        } else {
+            // TODO:
+        }
+    } else if ([buttonTitle isEqualToString:@"Cancel"]) {
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     }
 }
+
+#pragma mark - Navigation
+
+static NSString * const SearchMovieDetailsSegueIdentifier = @"Search Movie Details";
+
+- (void)prepareViewController:(id)viewController forSegue:(NSString *)segueIdentifier fromSender:(id)sender
+{
+    NSIndexPath *indexPath = nil;
+    if ([sender isKindOfClass:[UITableViewCell class]]) {
+        indexPath = [self.tableView indexPathForCell:sender];
+    }
+    
+    if ([viewController isKindOfClass:[MovieSearchDetailViewController class]]) {
+        if (![segueIdentifier length] || [segueIdentifier isEqualToString:SearchMovieDetailsSegueIdentifier]) {
+            if (indexPath) {
+                MovieSearchDetailViewController *movieSearchDetailViewController = (MovieSearchDetailViewController *)viewController;
+                movieSearchDetailViewController.movie = self.movies[indexPath.row];
+            }
+        }
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    [self prepareViewController:segue.destinationViewController
+                       forSegue:segue.identifier
+                     fromSender:sender];
+}
+
+// TODO: Split View Controller
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    id detailViewController = [self.splitViewController.viewControllers lastObject];
+//    if ([detailViewController isKindOfClass:[UINavigationController class]]) {
+//        detailViewController = [((UINavigationController *)detailViewController).viewControllers firstObject];
+//        [self prepareViewController:detailViewController
+//                           forSegue:nil
+//                      fromIndexPath:indexPath];
+//    }
+//}
 
 @end

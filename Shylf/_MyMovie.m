@@ -4,16 +4,18 @@
 #import "_MyMovie.h"
 
 const struct MyMovieAttributes MyMovieAttributes = {
+	.identifier = @"identifier",
 	.overview = @"overview",
+	.posterPath = @"posterPath",
 	.rating = @"rating",
 	.releaseDate = @"releaseDate",
 	.runtime = @"runtime",
 	.tagline = @"tagline",
-	.thumbnailURL = @"thumbnailURL",
 	.title = @"title",
 };
 
 const struct MyMovieRelationships MyMovieRelationships = {
+	.genres = @"genres",
 };
 
 const struct MyMovieFetchedProperties MyMovieFetchedProperties = {
@@ -45,6 +47,11 @@ const struct MyMovieFetchedProperties MyMovieFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"identifierValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"identifier"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"ratingValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"rating"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -62,7 +69,40 @@ const struct MyMovieFetchedProperties MyMovieFetchedProperties = {
 
 
 
+@dynamic identifier;
+
+
+
+- (int16_t)identifierValue {
+	NSNumber *result = [self identifier];
+	return [result shortValue];
+}
+
+- (void)setIdentifierValue:(int16_t)value_ {
+	[self setIdentifier:[NSNumber numberWithShort:value_]];
+}
+
+- (int16_t)primitiveIdentifierValue {
+	NSNumber *result = [self primitiveIdentifier];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveIdentifierValue:(int16_t)value_ {
+	[self setPrimitiveIdentifier:[NSNumber numberWithShort:value_]];
+}
+
+
+
+
+
 @dynamic overview;
+
+
+
+
+
+
+@dynamic posterPath;
 
 
 
@@ -135,19 +175,25 @@ const struct MyMovieFetchedProperties MyMovieFetchedProperties = {
 
 
 
-@dynamic thumbnailURL;
-
-
-
-
-
-
 @dynamic title;
 
 
 
 
 
+
+@dynamic genres;
+
+	
+- (NSMutableSet*)genresSet {
+	[self willAccessValueForKey:@"genres"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"genres"];
+  
+	[self didAccessValueForKey:@"genres"];
+	return result;
+}
+	
 
 
 

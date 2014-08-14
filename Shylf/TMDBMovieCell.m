@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 Phil Nichols. All rights reserved.
 //
 
-#import "MovieSearchCell.h"
+#import "TMDBMovieCell.h"
 
-@implementation MovieSearchCell
+@implementation TMDBMovieCell
 
 + (NSString *)identifier
 {
-    return @"Movie Search Cell";
+    return @"TMDBMovie Cell";
 }
 
 + (UINib *)nib
 {
-    return [UINib nibWithNibName:@"MovieSearchCell" bundle:nil];
+    return [UINib nibWithNibName:@"TMDBMovieCell" bundle:nil];
 }
 
 @end

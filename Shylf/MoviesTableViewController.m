@@ -12,30 +12,20 @@
 #import "UPCDatabaseClient.h"
 #import "TheMovieDBClient.h"
 #import "MyMovie.h"
+#import "MyMovieCell.h"
+#import "UIImageView+AFNetworking.h"
 
-@interface MoviesTableViewController () <UIActionSheetDelegate, NSFetchedResultsControllerDelegate>
-
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@interface MoviesTableViewController () <UIActionSheetDelegate>
 
 @property (strong, nonatomic) UIActionSheet *addMovieActionSheet;
+
+@property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
 @end
 
 @implementation MoviesTableViewController
 
 #pragma mark - Properties
-
-- (NSFetchedResultsController *)fetchedResultsController
-{
-    if (!_fetchedResultsController) {
-        _fetchedResultsController = [MyMovie MR_fetchAllSortedBy:@"title"
-                                                       ascending:YES
-                                                   withPredicate:nil
-                                                         groupBy:nil
-                                                        delegate:self];
-    }
-    return _fetchedResultsController;
-}
 
 - (UIActionSheet *)addMovieActionSheet
 {
@@ -50,13 +40,38 @@
     return _addMovieActionSheet;
 }
 
+- (NSDateFormatter *)dateFormatter
+{
+    if (!_dateFormatter) {
+        // TODO: Should I be creating a local variable first?
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateStyle:NSDateFormatterLongStyle];
+        [_dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    }
+    return _dateFormatter;
+}
+
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    // TODO: Better place to put this?
+    [self.tableView registerNib:[MyMovieCell nib] forCellReuseIdentifier:[MyMovieCell identifier]];
+    
+    [self setupFetchedResultsController];
+    
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
+}
+
+- (void)setupFetchedResultsController
+{
+    self.fetchedResultsController = [MyMovie MR_fetchAllSortedBy:@"title"
+                                                       ascending:YES
+                                                   withPredicate:nil
+                                                         groupBy:nil
+                                                        delegate:self];
 }
 
 #pragma mark - IBActions
@@ -65,49 +80,30 @@
     [self.addMovieActionSheet showInView:self.view];
 }
 
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    NSInteger sections = [[self.fetchedResultsController sections] count];
-    return sections;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSInteger rows = 0;
-    if ([[self.fetchedResultsController sections] count] > 0) {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-        rows = [sectionInfo numberOfObjects];
-    }
-    return rows;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-	return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
-{
-	return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
-}
-
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-{
-    return [self.fetchedResultsController sectionIndexTitles];
-}
-
-static NSString *MovieCellIdentifier = @"Movie Cell";
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MovieCellIdentifier
-                                                            forIndexPath:indexPath];
+    MyMovieCell *cell = [tableView dequeueReusableCellWithIdentifier:[MyMovieCell identifier]
+                                                        forIndexPath:indexPath];
     
     MyMovie *myMovie = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = myMovie.title;
-    cell.detailTextLabel.text = myMovie.tagline;
+    cell.titleLabel.text = myMovie.title;
+    cell.taglineLabel.text = myMovie.tagline;
+    
+    NSURL *posterThumbnailURL = [[TheMovieDBClient sharedClient] posterThumbnailURLForPosterPath:myMovie.posterPath];
+    if (posterThumbnailURL) {
+        __weak MyMovieCell *weakCell = cell;
+        [cell.posterImageView setImageWithURLRequest:[NSURLRequest requestWithURL:posterThumbnailURL]
+                                    placeholderImage:[UIImage imageNamed:@"movies"]
+                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                                 weakCell.posterImageView.image = image;
+                                                 [weakCell setNeedsLayout];
+                                             }
+                                             failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                                 DDLogError(@"Error downloading image from %@: %@", [[request URL] absoluteString], [error localizedDescription]);
+                                             }];
+    } else {
+        cell.posterImageView.image = nil;
+    }
     
     return cell;
 }
@@ -149,61 +145,6 @@ static NSString *MovieCellIdentifier = @"Movie Cell";
     return YES;
 }
 */
-
-#pragma mark - NSFetchedResultsControllerDelegate
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView beginUpdates];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller
-  didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-		   atIndex:(NSUInteger)sectionIndex
-	 forChangeType:(NSFetchedResultsChangeType)type
-{
-    switch (type) {
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-
-- (void)controller:(NSFetchedResultsController *)controller
-   didChangeObject:(id)anObject
-	   atIndexPath:(NSIndexPath *)indexPath
-	 forChangeType:(NSFetchedResultsChangeType)type
-	  newIndexPath:(NSIndexPath *)newIndexPath
-{
-    switch (type) {
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView endUpdates];
-}
 
 #pragma mark - Navigation
 

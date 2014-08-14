@@ -34,6 +34,14 @@
 		B134CA21199C288D004C392E /* MyMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = B134CA17199C288D004C392E /* MyMovie.m */; };
 		B134CA22199C288D004C392E /* MyTVShow.m in Sources */ = {isa = PBXBuildFile; fileRef = B134CA19199C288D004C392E /* MyTVShow.m */; };
 		B134CA23199C288D004C392E /* MyVideoGame.m in Sources */ = {isa = PBXBuildFile; fileRef = B134CA1B199C288D004C392E /* MyVideoGame.m */; };
+		B134CA26199C3735004C392E /* NSFetchedResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B134CA25199C3735004C392E /* NSFetchedResultsTableViewController.m */; };
+		B134CA31199C3E11004C392E /* _MyMovieGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = B134CA2E199C3E11004C392E /* _MyMovieGenre.m */; };
+		B134CA32199C3E11004C392E /* MyMovieGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = B134CA30199C3E11004C392E /* MyMovieGenre.m */; };
+		B134CA40199C41A7004C392E /* TMDBMovie+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = B134CA3F199C41A7004C392E /* TMDBMovie+CoreData.m */; };
+		B134CA43199C41E3004C392E /* TMDBGenre+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = B134CA42199C41E3004C392E /* TMDBGenre+CoreData.m */; };
+		B134CA45199C4708004C392E /* MyMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B134CA44199C4708004C392E /* MyMovieCell.xib */; };
+		B134CA48199C4733004C392E /* MyMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B134CA47199C4733004C392E /* MyMovieCell.m */; };
+		B134CA52199C503C004C392E /* MovieSearchDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B134CA51199C503C004C392E /* MovieSearchDetailViewController.m */; };
 		B13DC6931996E4CB00510540 /* MoviesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6921996E4CB00510540 /* MoviesTableViewController.m */; };
 		B13DC6971996F74A00510540 /* VideoGameTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6961996F74A00510540 /* VideoGameTableViewController.m */; };
 		B13DC69A1996F7A100510540 /* BookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6991996F7A100510540 /* BookTableViewController.m */; };
@@ -86,8 +94,8 @@
 		B1760B001996E27B00DD6D1E /* ShylfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1760AFF1996E27B00DD6D1E /* ShylfTests.m */; };
 		B1FAB66A199AE31200CB4D4F /* TMDBConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FAB669199AE31200CB4D4F /* TMDBConfiguration.m */; };
 		B1FAB66D199AE33800CB4D4F /* TMDBImagesConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FAB66C199AE33800CB4D4F /* TMDBImagesConfiguration.m */; };
-		B1FAB675199B0DFE00CB4D4F /* MovieSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1FAB674199B0DFE00CB4D4F /* MovieSearchCell.xib */; };
-		B1FAB678199B0E3200CB4D4F /* MovieSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FAB677199B0E3200CB4D4F /* MovieSearchCell.m */; };
+		B1FAB675199B0DFE00CB4D4F /* TMDBMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1FAB674199B0DFE00CB4D4F /* TMDBMovieCell.xib */; };
+		B1FAB678199B0E3200CB4D4F /* TMDBMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FAB677199B0E3200CB4D4F /* TMDBMovieCell.m */; };
 		F48D6DD8B3604A1E9AF391BA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B208A79FBBA4F4FBACB8F68 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +138,22 @@
 		B134CA19199C288D004C392E /* MyTVShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTVShow.m; sourceTree = "<group>"; };
 		B134CA1A199C288D004C392E /* MyVideoGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyVideoGame.h; sourceTree = "<group>"; };
 		B134CA1B199C288D004C392E /* MyVideoGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyVideoGame.m; sourceTree = "<group>"; };
+		B134CA24199C3735004C392E /* NSFetchedResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFetchedResultsTableViewController.h; sourceTree = "<group>"; };
+		B134CA25199C3735004C392E /* NSFetchedResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFetchedResultsTableViewController.m; sourceTree = "<group>"; };
+		B134CA2D199C3E11004C392E /* _MyMovieGenre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _MyMovieGenre.h; sourceTree = "<group>"; };
+		B134CA2E199C3E11004C392E /* _MyMovieGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MyMovieGenre.m; sourceTree = "<group>"; };
+		B134CA2F199C3E11004C392E /* MyMovieGenre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMovieGenre.h; sourceTree = "<group>"; };
+		B134CA30199C3E11004C392E /* MyMovieGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMovieGenre.m; sourceTree = "<group>"; };
+		B134CA3E199C41A7004C392E /* TMDBMovie+CoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TMDBMovie+CoreData.h"; sourceTree = "<group>"; };
+		B134CA3F199C41A7004C392E /* TMDBMovie+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TMDBMovie+CoreData.m"; sourceTree = "<group>"; };
+		B134CA41199C41E3004C392E /* TMDBGenre+CoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TMDBGenre+CoreData.h"; sourceTree = "<group>"; };
+		B134CA42199C41E3004C392E /* TMDBGenre+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TMDBGenre+CoreData.m"; sourceTree = "<group>"; };
+		B134CA44199C4708004C392E /* MyMovieCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyMovieCell.xib; sourceTree = "<group>"; };
+		B134CA46199C4733004C392E /* MyMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMovieCell.h; sourceTree = "<group>"; };
+		B134CA47199C4733004C392E /* MyMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMovieCell.m; sourceTree = "<group>"; };
+		B134CA4D199C480A004C392E /* CustomUITableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomUITableViewCell.h; sourceTree = "<group>"; };
+		B134CA50199C503C004C392E /* MovieSearchDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieSearchDetailViewController.h; sourceTree = "<group>"; };
+		B134CA51199C503C004C392E /* MovieSearchDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieSearchDetailViewController.m; sourceTree = "<group>"; };
 		B13DC6911996E4CB00510540 /* MoviesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesTableViewController.h; sourceTree = "<group>"; };
 		B13DC6921996E4CB00510540 /* MoviesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesTableViewController.m; sourceTree = "<group>"; };
 		B13DC6951996F74A00510540 /* VideoGameTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoGameTableViewController.h; sourceTree = "<group>"; };
@@ -230,9 +254,9 @@
 		B1FAB669199AE31200CB4D4F /* TMDBConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBConfiguration.m; sourceTree = "<group>"; };
 		B1FAB66B199AE33800CB4D4F /* TMDBImagesConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBImagesConfiguration.h; sourceTree = "<group>"; };
 		B1FAB66C199AE33800CB4D4F /* TMDBImagesConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBImagesConfiguration.m; sourceTree = "<group>"; };
-		B1FAB674199B0DFE00CB4D4F /* MovieSearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieSearchCell.xib; sourceTree = "<group>"; };
-		B1FAB676199B0E3200CB4D4F /* MovieSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieSearchCell.h; sourceTree = "<group>"; };
-		B1FAB677199B0E3200CB4D4F /* MovieSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieSearchCell.m; sourceTree = "<group>"; };
+		B1FAB674199B0DFE00CB4D4F /* TMDBMovieCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TMDBMovieCell.xib; sourceTree = "<group>"; };
+		B1FAB676199B0E3200CB4D4F /* TMDBMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBMovieCell.h; sourceTree = "<group>"; };
+		B1FAB677199B0E3200CB4D4F /* TMDBMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBMovieCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +342,9 @@
 			isa = PBXGroup;
 			children = (
 				B134CA0B199C25D0004C392E /* Generated */,
+				B134CA37199C4001004C392E /* Categories */,
+				B134CA2F199C3E11004C392E /* MyMovieGenre.h */,
+				B134CA30199C3E11004C392E /* MyMovieGenre.m */,
 				B134CA14199C288D004C392E /* MyBook.h */,
 				B134CA15199C288D004C392E /* MyBook.m */,
 				B134CA16199C288D004C392E /* MyMovie.h */,
@@ -333,6 +360,8 @@
 		B134CA0B199C25D0004C392E /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				B134CA2D199C3E11004C392E /* _MyMovieGenre.h */,
+				B134CA2E199C3E11004C392E /* _MyMovieGenre.m */,
 				B134CA0C199C288D004C392E /* _MyBook.h */,
 				B134CA0D199C288D004C392E /* _MyBook.m */,
 				B134CA0E199C288D004C392E /* _MyMovie.h */,
@@ -345,13 +374,95 @@
 			name = Generated;
 			sourceTree = "<group>";
 		};
+		B134CA27199C3777004C392E /* Search Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B134CA53199C506A004C392E /* Tables */,
+				B134CA4F199C501E004C392E /* Details */,
+			);
+			name = "Search Controllers";
+			sourceTree = "<group>";
+		};
+		B134CA28199C378C004C392E /* Main Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B134CA4E199C5014004C392E /* Tables */,
+			);
+			name = "Main Controllers";
+			sourceTree = "<group>";
+		};
+		B134CA29199C37AB004C392E /* Abstract Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B134CA24199C3735004C392E /* NSFetchedResultsTableViewController.h */,
+				B134CA25199C3735004C392E /* NSFetchedResultsTableViewController.m */,
+			);
+			name = "Abstract Controllers";
+			sourceTree = "<group>";
+		};
+		B134CA37199C4001004C392E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				B134CA3E199C41A7004C392E /* TMDBMovie+CoreData.h */,
+				B134CA3F199C41A7004C392E /* TMDBMovie+CoreData.m */,
+				B134CA41199C41E3004C392E /* TMDBGenre+CoreData.h */,
+				B134CA42199C41E3004C392E /* TMDBGenre+CoreData.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		B134CA4C199C47D8004C392E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B134CA4D199C480A004C392E /* CustomUITableViewCell.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		B134CA4E199C5014004C392E /* Tables */ = {
+			isa = PBXGroup;
+			children = (
+				B13DC6911996E4CB00510540 /* MoviesTableViewController.h */,
+				B13DC6921996E4CB00510540 /* MoviesTableViewController.m */,
+				B13DC6981996F7A100510540 /* BookTableViewController.h */,
+				B13DC6991996F7A100510540 /* BookTableViewController.m */,
+				B13DC69F1997121000510540 /* TVShowTableViewController.h */,
+				B13DC6A01997121000510540 /* TVShowTableViewController.m */,
+				B13DC6951996F74A00510540 /* VideoGameTableViewController.h */,
+				B13DC6961996F74A00510540 /* VideoGameTableViewController.m */,
+			);
+			name = Tables;
+			sourceTree = "<group>";
+		};
+		B134CA4F199C501E004C392E /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				B134CA50199C503C004C392E /* MovieSearchDetailViewController.h */,
+				B134CA51199C503C004C392E /* MovieSearchDetailViewController.m */,
+			);
+			name = Details;
+			sourceTree = "<group>";
+		};
+		B134CA53199C506A004C392E /* Tables */ = {
+			isa = PBXGroup;
+			children = (
+				B13DC6A519971C4100510540 /* MovieSearchTableViewController.h */,
+				B13DC6A619971C4100510540 /* MovieSearchTableViewController.m */,
+			);
+			name = Tables;
+			sourceTree = "<group>";
+		};
 		B13DC6901996E36900510540 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B134CA4C199C47D8004C392E /* Protocols */,
+				B1FAB676199B0E3200CB4D4F /* TMDBMovieCell.h */,
+				B1FAB677199B0E3200CB4D4F /* TMDBMovieCell.m */,
+				B134CA46199C4733004C392E /* MyMovieCell.h */,
+				B134CA47199C4733004C392E /* MyMovieCell.m */,
+				B1FAB674199B0DFE00CB4D4F /* TMDBMovieCell.xib */,
+				B134CA44199C4708004C392E /* MyMovieCell.xib */,
 				B1760AE61996E27B00DD6D1E /* Main.storyboard */,
-				B1FAB674199B0DFE00CB4D4F /* MovieSearchCell.xib */,
-				B1FAB676199B0E3200CB4D4F /* MovieSearchCell.h */,
-				B1FAB677199B0E3200CB4D4F /* MovieSearchCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -359,18 +470,11 @@
 		B13DC6941996E6B900510540 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B13DC6A519971C4100510540 /* MovieSearchTableViewController.h */,
-				B13DC6A619971C4100510540 /* MovieSearchTableViewController.m */,
-				B13DC6911996E4CB00510540 /* MoviesTableViewController.h */,
-				B13DC6921996E4CB00510540 /* MoviesTableViewController.m */,
+				B134CA29199C37AB004C392E /* Abstract Controllers */,
+				B134CA28199C378C004C392E /* Main Controllers */,
+				B134CA27199C3777004C392E /* Search Controllers */,
 				B13DC6A21997176700510540 /* BarcodeScanViewController.h */,
 				B13DC6A31997176700510540 /* BarcodeScanViewController.m */,
-				B13DC6981996F7A100510540 /* BookTableViewController.h */,
-				B13DC6991996F7A100510540 /* BookTableViewController.m */,
-				B13DC69F1997121000510540 /* TVShowTableViewController.h */,
-				B13DC6A01997121000510540 /* TVShowTableViewController.m */,
-				B13DC6951996F74A00510540 /* VideoGameTableViewController.h */,
-				B13DC6961996F74A00510540 /* VideoGameTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -654,8 +758,9 @@
 			files = (
 				B1760AED1996E27B00DD6D1E /* Images.xcassets in Resources */,
 				B1760ADF1996E27B00DD6D1E /* InfoPlist.strings in Resources */,
-				B1FAB675199B0DFE00CB4D4F /* MovieSearchCell.xib in Resources */,
+				B1FAB675199B0DFE00CB4D4F /* TMDBMovieCell.xib in Resources */,
 				B1760AE81996E27B00DD6D1E /* Main.storyboard in Resources */,
+				B134CA45199C4708004C392E /* MyMovieCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,7 +836,9 @@
 				B13DC6AA199721F100510540 /* UPCDatabaseClient.m in Sources */,
 				B160337C199AB5B700BFEC3A /* NSManagedObjectContext+MagicalObserving.m in Sources */,
 				B134CA1F199C288D004C392E /* _MyVideoGame.m in Sources */,
+				B134CA43199C41E3004C392E /* TMDBGenre+CoreData.m in Sources */,
 				B13DC6A41997176700510540 /* BarcodeScanViewController.m in Sources */,
+				B134CA48199C4733004C392E /* MyMovieCell.m in Sources */,
 				B1261A7C1999A8AE006B6B19 /* TMDBGenre.m in Sources */,
 				B1603384199AB5B700BFEC3A /* MagicalRecord+ErrorHandling.m in Sources */,
 				B1261A831999AABD006B6B19 /* TMDBCompany.m in Sources */,
@@ -741,6 +848,7 @@
 				B1603370199AB5B700BFEC3A /* MagicalImportFunctions.m in Sources */,
 				B1FAB66D199AE33800CB4D4F /* TMDBImagesConfiguration.m in Sources */,
 				B160566C1998053D00A972C5 /* UPCDBItem.m in Sources */,
+				B134CA32199C3E11004C392E /* MyMovieGenre.m in Sources */,
 				B160337B199AB5B700BFEC3A /* NSManagedObject+MagicalRequests.m in Sources */,
 				B1603377199AB5B700BFEC3A /* NSManagedObject+MagicalAggregation.m in Sources */,
 				B1261A791999A83A006B6B19 /* TMDBCollection.m in Sources */,
@@ -757,15 +865,17 @@
 				B1603386199AB5B700BFEC3A /* MagicalRecord+Options.m in Sources */,
 				B1603387199AB5B700BFEC3A /* MagicalRecord+Setup.m in Sources */,
 				B1603378199AB5B700BFEC3A /* NSManagedObject+MagicalDataImport.m in Sources */,
+				B134CA26199C3735004C392E /* NSFetchedResultsTableViewController.m in Sources */,
 				B160337E199AB5B700BFEC3A /* NSManagedObjectContext+MagicalSaves.m in Sources */,
 				B1603373199AB5B700BFEC3A /* NSNumber+MagicalDataImport.m in Sources */,
 				B134CA1D199C288D004C392E /* _MyMovie.m in Sources */,
 				B13DC6A719971C4100510540 /* MovieSearchTableViewController.m in Sources */,
-				B1FAB678199B0E3200CB4D4F /* MovieSearchCell.m in Sources */,
+				B1FAB678199B0E3200CB4D4F /* TMDBMovieCell.m in Sources */,
 				B13DC6A11997121000510540 /* TVShowTableViewController.m in Sources */,
 				B1603389199AB5B700BFEC3A /* MagicalRecord.m in Sources */,
 				B1261A891999ABCE006B6B19 /* TMDBLanguage.m in Sources */,
 				B1603381199AB5B700BFEC3A /* NSPersistentStore+MagicalRecord.m in Sources */,
+				B134CA40199C41A7004C392E /* TMDBMovie+CoreData.m in Sources */,
 				B1603371199AB5B700BFEC3A /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				B134CA1E199C288D004C392E /* _MyTVShow.m in Sources */,
 				B1261A861999AB37006B6B19 /* TMDBCountry.m in Sources */,
@@ -773,6 +883,8 @@
 				B160337F199AB5B700BFEC3A /* NSManagedObjectContext+MagicalThreading.m in Sources */,
 				B13DC6B319972B1900510540 /* TMDBMovie.m in Sources */,
 				B1603376199AB5B700BFEC3A /* NSString+MagicalDataImport.m in Sources */,
+				B134CA52199C503C004C392E /* MovieSearchDetailViewController.m in Sources */,
+				B134CA31199C3E11004C392E /* _MyMovieGenre.m in Sources */,
 				B13DC69D1996F87D00510540 /* Shylf.xcdatamodeld in Sources */,
 				B1760AE11996E27B00DD6D1E /* main.m in Sources */,
 			);

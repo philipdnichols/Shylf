@@ -125,17 +125,14 @@
       }];
 }
 
-- (NSURL *)posterThumbnailURLForMovie:(TMDBMovie *)movie
+- (NSURL *)posterThumbnailURLForPosterPath:(NSString *)posterPath
 {
-    NSURL *posterThumbnailURL = nil;
-    
-    if (movie.posterPath) {
-        NSString *posterSize = [self.configuration.images.posterSizes firstObject];
-        NSString *posterPath = [posterSize stringByAppendingPathComponent:movie.posterPath];
-        posterThumbnailURL = [NSURL URLWithString:posterPath relativeToURL:self.configuration.images.secureBaseURL];
-    }
-    
-    return posterThumbnailURL;
+    return [self posterURLForPosterPath:posterPath andSizeIndex:0];
+}
+
+- (NSURL *)posterURLForPosterPath:(NSString *)posterPath
+{
+    return [self posterURLForPosterPath:posterPath andSizeIndex:[self.configuration.images.posterSizes count] - 1];
 }
 
 - (void)fetchMovieWithIdentifier:(NSUInteger)identifier success:(void(^)(TMDBMovie *movie))success failure:(void(^)(NSError *error))failure
@@ -163,6 +160,21 @@
       failure:^(NSURLSessionDataTask *task, NSError *error) {
           failure(error);
       }];
+}
+
+#pragma mark - Private
+
+- (NSURL *)posterURLForPosterPath:(NSString *)posterPath andSizeIndex:(NSUInteger)index
+{
+    NSURL *posterThumbnailURL = nil;
+    
+    if (posterPath) {
+        NSString *posterSize = self.configuration.images.posterSizes[index];
+        NSString *path = [posterSize stringByAppendingPathComponent:posterPath];
+        posterThumbnailURL = [NSURL URLWithString:path relativeToURL:self.configuration.images.secureBaseURL];
+    }
+    
+    return posterThumbnailURL;
 }
 
 @end
