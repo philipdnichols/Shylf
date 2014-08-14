@@ -18,6 +18,11 @@
 @interface MoviesTableViewController () <UIActionSheetDelegate>
 
 @property (strong, nonatomic) UIActionSheet *addMovieActionSheet;
+@property (strong, nonatomic) UIActionSheet *filterMovieGenresActionSheet;
+
+// TODO: I don't need these because the IBAction can have the sender to trigger the UIActionSheet
+@property (strong, nonatomic) UIBarButtonItem *addMovieBarButtonItem;
+@property (strong, nonatomic) UIBarButtonItem *filterMovieGenresBarButtonItem;
 
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
@@ -38,6 +43,41 @@
         _addMovieActionSheet = actionSheet;
     }
     return _addMovieActionSheet;
+}
+
+- (UIActionSheet *)filterMovieGenresActionSheet
+{
+    if (!_filterMovieGenresActionSheet) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Filter Genres"
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"Cancel"
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:nil];
+        
+        // TODO: Get all the genres
+        _filterMovieGenresActionSheet = actionSheet;
+    }
+    return _filterMovieGenresActionSheet;
+}
+
+- (UIBarButtonItem *)addMovieBarButtonItem
+{
+    if (!_addMovieBarButtonItem) {
+        _addMovieBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                               target:self
+                                                                               action:@selector(addMovie)];
+    }
+    return _addMovieBarButtonItem;
+}
+
+- (UIBarButtonItem *)filterMovieGenresBarButtonItem
+{
+    if (!_filterMovieGenresBarButtonItem) {
+        _filterMovieGenresBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
+                                                                                        target:self
+                                                                                        action:@selector(filterMovies)];
+    }
+    return _filterMovieGenresBarButtonItem;
 }
 
 - (NSDateFormatter *)dateFormatter
@@ -62,6 +102,8 @@
     
     [self setupFetchedResultsController];
     
+    self.navigationItem.rightBarButtonItems = @[self.addMovieBarButtonItem, self.filterMovieGenresBarButtonItem];
+    
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
@@ -77,8 +119,14 @@
 #pragma mark - IBActions
 
 - (IBAction)addMovie {
-    [self.addMovieActionSheet showInView:self.view];
+    [self.addMovieActionSheet showFromBarButtonItem:self.addMovieBarButtonItem animated:YES];
 }
+
+- (IBAction)filterMovies {
+    [self.filterMovieGenresActionSheet showFromBarButtonItem:self.filterMovieGenresBarButtonItem animated:YES];
+}
+
+#pragma mark - UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -185,6 +233,7 @@ static NSString *SearchMoviesSegueIdentifier = @"Search Movies";
                      fromSender:sender];
 }
 
+// TODO: iPad split view
 //- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //{
 //    id detailViewController = [self.splitViewController.viewControllers lastObject];
@@ -226,10 +275,17 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
 {
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
     
-    if ([buttonTitle isEqualToString:@"Search"]) {
-        [self performSegueWithIdentifier:SearchMoviesSegueIdentifier sender:self];
-    } else if ([buttonTitle isEqualToString:@"Scan Barcode"]) {
-        [self performSegueWithIdentifier:ScanMovieBarcodeSegueIdentifier sender:self];
+    if (actionSheet == self.addMovieActionSheet) {
+        if ([buttonTitle isEqualToString:@"Search"]) {
+            [self performSegueWithIdentifier:SearchMoviesSegueIdentifier sender:self];
+        } else if ([buttonTitle isEqualToString:@"Scan Barcode"]) {
+            [self performSegueWithIdentifier:ScanMovieBarcodeSegueIdentifier sender:self];
+        }
+    } else if (actionSheet == self.filterMovieGenresActionSheet) {
+        // TODO:
+        //    self.fetchedResultsController = [MyMovie MR_fetchAllSortedBy:@"title"
+        //                                                       ascending:YES
+        //                                                   withPredicate:[NSPredicate predicateWithFormat:@"genre"] groupBy:<#(NSString *)#> delegate:<#(id<NSFetchedResultsControllerDelegate>)#>]
     }
 }
 

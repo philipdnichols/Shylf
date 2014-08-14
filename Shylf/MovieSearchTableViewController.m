@@ -142,11 +142,12 @@
 {
     TMDBMovie *movie = self.movies[indexPath.row];
     
+    // TODO: String contants for the alert stuff, even the uiactionsheets
     [[[UIAlertView alloc] initWithTitle:@"Add Movie"
                                 message:[NSString stringWithFormat:@"Add \"%@\" to Movie Collection?", movie.title]
                                delegate:self
                       cancelButtonTitle:@"Cancel"
-                      otherButtonTitles:@"Yes", nil] show];
+                      otherButtonTitles:@"Add", @"Add and Continue", nil] show];
 }
 
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
@@ -170,7 +171,7 @@
 {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     
-    if ([buttonTitle isEqualToString:@"Yes"]) {
+    if ([buttonTitle isEqualToString:@"Add"] || [buttonTitle isEqualToString:@"Add and Continue"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         TMDBMovie *movie = self.movies[indexPath.row];
         
@@ -184,7 +185,9 @@
         if (!error) {
             [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
                 if (!error) {
-                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    if (![buttonTitle isEqualToString:@"Add and Continue"]) {
+                        [self.navigationController popToRootViewControllerAnimated:YES];
+                    }
                 } else {
                     // TODO:
                 }

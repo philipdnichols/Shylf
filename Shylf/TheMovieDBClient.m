@@ -99,11 +99,13 @@
           if (!error) {
               if (fullResults) {
                   NSMutableArray *fullResults = [NSMutableArray array];
-                  __block int counter = [results count];
+                  __block NSUInteger counter = [results count];
                   for (TMDBMovie *movie in results) {
                       [self fetchMovieWithIdentifier:movie.identifier
                              success:^(TMDBMovie *movie) {
                                  [fullResults addObject:movie];
+                                 
+                                 // TODO: better way to do this?
                                  counter--;
                                  if (counter == 0) {
                                      success(fullResults);
