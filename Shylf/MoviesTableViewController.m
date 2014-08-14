@@ -100,20 +100,9 @@
     // TODO: Better place to put this?
     [self.tableView registerNib:[MyMovieCell nib] forCellReuseIdentifier:[MyMovieCell identifier]];
     
-    [self setupFetchedResultsController];
-    
     self.navigationItem.rightBarButtonItems = @[self.addMovieBarButtonItem, self.filterMovieGenresBarButtonItem];
     
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-}
-
-- (void)setupFetchedResultsController
-{
-    self.fetchedResultsController = [MyMovie MR_fetchAllSortedBy:@"title"
-                                                       ascending:YES
-                                                   withPredicate:nil
-                                                         groupBy:nil
-                                                        delegate:self];
 }
 
 #pragma mark - IBActions
@@ -133,24 +122,30 @@
     MyMovieCell *cell = [tableView dequeueReusableCellWithIdentifier:[MyMovieCell identifier]
                                                         forIndexPath:indexPath];
     
-    MyMovie *myMovie = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.titleLabel.text = myMovie.title;
-    cell.taglineLabel.text = myMovie.tagline;
-    
-    NSURL *posterThumbnailURL = [[TheMovieDBClient sharedClient] posterThumbnailURLForPosterPath:myMovie.posterPath];
-    if (posterThumbnailURL) {
-        __weak MyMovieCell *weakCell = cell;
-        [cell.posterImageView setImageWithURLRequest:[NSURLRequest requestWithURL:posterThumbnailURL]
-                                    placeholderImage:[UIImage imageNamed:@"movies"]
-                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                                 weakCell.posterImageView.image = image;
-                                                 [weakCell setNeedsLayout];
-                                             }
-                                             failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                                 DDLogError(@"Error downloading image from %@: %@", [[request URL] absoluteString], [error localizedDescription]);
-                                             }];
+    NSManagedObject *managedObject = [self managedObjectAtIndexPath:indexPath];
+    if ([managedObject isKindOfClass:[MyMovie class]]) {
+        MyMovie *myMovie = (MyMovie *)managedObject;
+        
+        cell.titleLabel.text = myMovie.title;
+        cell.taglineLabel.text = myMovie.tagline;
+        
+        NSURL *posterThumbnailURL = [[TheMovieDBClient sharedClient] posterThumbnailURLForPosterPath:myMovie.posterPath];
+        if (posterThumbnailURL) {
+            __weak MyMovieCell *weakCell = cell;
+            [cell.posterImageView setImageWithURLRequest:[NSURLRequest requestWithURL:posterThumbnailURL]
+                                        placeholderImage:[UIImage imageNamed:@"movies"]
+                                                 success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                                     weakCell.posterImageView.image = image;
+                                                     [weakCell setNeedsLayout];
+                                                 }
+                                                 failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                                     DDLogError(@"Error downloading image from %@: %@", [[request URL] absoluteString], [error localizedDescription]);
+                                                 }];
+        } else {
+            cell.posterImageView.image = nil;
+        }
     } else {
-        cell.posterImageView.image = nil;
+        // TODO: error checking or should we crash here?
     }
     
     return cell;
@@ -164,15 +159,21 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        MyMovie *myMovie = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        [myMovie MR_deleteEntity];
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-            if (!error) {
-                
-            } else {
-                // TODO:
-            }
-        }];
+        NSManagedObject *managedObject = [self managedObjectAtIndexPath:indexPath];
+        if ([managedObject isKindOfClass:[MyMovie class]]) {
+            MyMovie *myMovie = (MyMovie *)managedObject;
+            
+            [myMovie MR_deleteEntity];
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+                if (!error) {
+                    
+                } else {
+                    // TODO:
+                }
+            }];
+        } else {
+            // TODO: error checking or should we crash here?
+        }
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
@@ -271,7 +272,7 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
 
 #pragma mark - UIActionSheetDelegate
 
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
     
@@ -287,6 +288,19 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
         //                                                       ascending:YES
         //                                                   withPredicate:[NSPredicate predicateWithFormat:@"genre"] groupBy:<#(NSString *)#> delegate:<#(id<NSFetchedResultsControllerDelegate>)#>]
     }
+}
+
+#pragma mark - NSFetchedResultsTableViewController
+
+- (NSFetchRequest *)fetchRequestForNSFetchedResultsController
+{
+    return [MyMovie MR_requestAllSortedBy:@"title"
+                                ascending:YES];
+}
+
+- (NSString *)groupedByForNSFetchedResultsController
+{
+    return nil;
 }
 
 @end

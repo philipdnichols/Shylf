@@ -8,7 +8,50 @@
 
 #import "NSFetchedResultsTableViewController.h"
 
+@interface NSFetchedResultsTableViewController ()
+
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+
+@end
+
 @implementation NSFetchedResultsTableViewController
+
+#pragma mark - Properties
+
+- (NSFetchedResultsController *)fetchedResultsController
+{
+    if (!_fetchedResultsController) {
+        NSFetchRequest *request = [self fetchRequestForNSFetchedResultsController];
+        NSString *groupedBy = [self groupedByForNSFetchedResultsController];
+        _fetchedResultsController = [[NSManagedObject class] MR_fetchController:request
+                                                                       delegate:self
+                                                                   useFileCache:NO
+                                                                      groupedBy:groupedBy
+                                                                      inContext:[NSManagedObjectContext MR_defaultContext]];
+        
+        [[NSManagedObject class] MR_performFetch:_fetchedResultsController];
+    }
+    return _fetchedResultsController;
+}
+
+#pragma mark - Public
+
+- (NSManagedObject *)managedObjectAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.fetchedResultsController objectAtIndexPath:indexPath];
+}
+
+- (NSFetchRequest *)fetchRequestForNSFetchedResultsController
+{
+    // TODO: put something here that will crash the app to have the programmer implement
+    return nil;
+}
+
+- (NSString *)groupedByForNSFetchedResultsController
+{
+    // TODO: put something here that will crash the app to have the programmer implement
+    return nil;
+}
 
 #pragma mark - UITableViewDataSource
 

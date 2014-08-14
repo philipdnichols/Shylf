@@ -10,6 +10,9 @@
 
 @interface NSFetchedResultsTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+- (NSFetchRequest *)fetchRequestForNSFetchedResultsController;
+- (NSString *)groupedByForNSFetchedResultsController;
+
+- (NSManagedObject *)managedObjectAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
