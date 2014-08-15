@@ -8,7 +8,7 @@
 
 #import "BarcodeScanViewController.h"
 
-@interface BarcodeScanViewController ()
+@interface BarcodeScanViewController () <UIAlertViewDelegate>
 
 @property (strong, nonatomic) MTBBarcodeScanner *scanner;
 
@@ -48,18 +48,33 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
 
 - (void)startScanning
 {
-    [self.scanner startScanningWithResultBlock:^(NSArray *codes) {
-        [self.scanner stopScanning];
-        AVMetadataMachineReadableCodeObject *code = [codes firstObject];
-        self.code = code;
-        [self performSegueWithIdentifier:BarcodeScannedSegueIdentifier sender:self];
-    }];
+    if ([MTBBarcodeScanner scanningIsAvailable]) {
+        [self.scanner startScanningWithResultBlock:^(NSArray *codes) {
+            [self.scanner stopScanning];
+            AVMetadataMachineReadableCodeObject *code = [codes firstObject];
+            self.code = code;
+            [self performSegueWithIdentifier:BarcodeScannedSegueIdentifier sender:self];
+        }];
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"Barcode Scan Unavailable"
+                                    message:@"It looks like Barcode Scanning isn't available on your device. We're sorry about that."
+                                   delegate:self
+                          cancelButtonTitle:@"Ok"
+                          otherButtonTitles:nil] show];
+    }
 }
 
 #pragma mark - IBActions
 
-- (IBAction)cancelButtonPressed:(UIBarButtonItem *)sender {
+- (IBAction)cancel {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self cancel];
 }
 
 @end

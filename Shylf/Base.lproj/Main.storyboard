@@ -117,7 +117,7 @@
                     <navigationItem key="navigationItem" title="Barcode Scan" id="Wo2-tm-njr">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="kA6-vd-fKf">
                             <connections>
-                                <action selector="cancelButtonPressed:" destination="x3l-bz-lPC" id="ibg-w9-Jqb"/>
+                                <action selector="cancel" destination="x3l-bz-lPC" id="UHp-lk-nkV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
