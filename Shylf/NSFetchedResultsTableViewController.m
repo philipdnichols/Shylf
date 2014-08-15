@@ -11,6 +11,7 @@
 @interface NSFetchedResultsTableViewController ()
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic, readwrite) NSFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
 @end
 
@@ -44,16 +45,25 @@
                                                                       groupedBy:self.fetchedGroupKeyPath
                                                                       inContext:[NSManagedObjectContext MR_defaultContext]];
         
+        self.fetchedResultsControllerDataSource = [[NSFetchedResultsControllerDataSource alloc]
+                                                   initWithFetchedResultsController:_fetchedResultsController
+                                                   cellIdentifier:self.cellIdentifier
+                                                   configureCellBlock:self.fetchedResultsConfigureBlock
+                                                   deleteCellBlock:self.fetchedResultsDeleteBlock];
+        self.tableView.dataSource = self.fetchedResultsControllerDataSource;
+        
         [self reloadFetchedResultsController];
     }
     return _fetchedResultsController;
 }
 
-#pragma mark - Public
+#pragma mark - Lifecycle
 
-- (NSManagedObject *)managedObjectAtIndexPath:(NSIndexPath *)indexPath
+- (void)viewDidLoad
 {
-    return [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [super viewDidLoad];
+    
+    [self reloadFetchedResultsController];
 }
 
 #pragma mark - Private
@@ -62,39 +72,6 @@
 {
     [[NSManagedObject class] MR_performFetch:self.fetchedResultsController];
     [self.tableView reloadData];
-}
-
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    NSInteger sections = [[self.fetchedResultsController sections] count];
-    return sections;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSInteger rows = 0;
-    if ([[self.fetchedResultsController sections] count] > 0) {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-        rows = [sectionInfo numberOfObjects];
-    }
-    return rows;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-	return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
-{
-	return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
-}
-
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-{
-    return [self.fetchedResultsController sectionIndexTitles];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate

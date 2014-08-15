@@ -15,6 +15,8 @@
 #import "MyMovieCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "TMDBGenre.h"
+#import "NSFetchedResultsControllerDataSource.h"
+#import "MyMovieCell+Configure.h"
 
 @interface MoviesTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate>
 
@@ -32,6 +34,9 @@
 @property (strong, nonatomic) NSString *groupKeyPath;
 
 @property (weak, nonatomic) MyMovie *movieToDelete;
+
+@property (nonatomic, copy) FetchedResultsCellConfigureBlock movieCellConfigureBlock;
+@property (nonatomic, copy) FetchedResultsCellDeleteBlock movieCellDeleteBlock;
 
 @end
 
@@ -159,15 +164,61 @@
     return _dateFormatter;
 }
 
+- (NSString *)cellIdentifier
+{
+    return [MyMovieCell identifier];
+}
+
+- (FetchedResultsCellConfigureBlock)fetchedResultsConfigureBlock
+{
+    return self.movieCellConfigureBlock;
+}
+
+- (FetchedResultsCellDeleteBlock)fetchedResultsDeleteBlock
+{
+    return self.movieCellDeleteBlock;
+}
+
+- (FetchedResultsCellConfigureBlock)movieCellConfigureBlock
+{
+    if (!_movieCellConfigureBlock) {
+        _movieCellConfigureBlock = ^(MyMovieCell *movieCell, MyMovie *movie) {
+            [movieCell configureForMyMovie:movie];
+        };
+    }
+    return _movieCellConfigureBlock;
+}
+
+- (FetchedResultsCellDeleteBlock)movieCellDeleteBlock
+{
+    if (!_movieCellDeleteBlock) {
+        // TODO: is there a way to move this out of the controller, into a delegate or something like that?
+        __weak MoviesTableViewController *weakSelf = self;
+        _movieCellDeleteBlock = ^(MyMovie *movie) {
+            weakSelf.movieToDelete = movie;
+            
+            [weakSelf.deleteMovieAlertView setMessage:[NSString stringWithFormat:@"Are you sure you want to remove \"%@\" from your collection?", weakSelf.movieToDelete.title]];
+            
+            [weakSelf.deleteMovieAlertView show];
+        };
+    }
+    return _movieCellDeleteBlock;
+}
+
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self.tableView registerNib:[MyMovieCell nib] forCellReuseIdentifier:[MyMovieCell identifier]];
+    [self setupTableView];
     
     self.navigationItem.rightBarButtonItems = @[self.addMovieBarButtonItem, self.filterMovieGenresBarButtonItem];
+}
+
+- (void)setupTableView
+{
+    [self.tableView registerNib:[MyMovieCell nib] forCellReuseIdentifier:[MyMovieCell identifier]];
 }
 
 #pragma mark - IBActions
@@ -180,63 +231,17 @@
     [self.filterMovieGenresActionSheet showFromBarButtonItem:sender animated:YES];
 }
 
-#pragma mark - UITableViewDataSource
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    MyMovieCell *cell = [tableView dequeueReusableCellWithIdentifier:[MyMovieCell identifier]
-                                                        forIndexPath:indexPath];
-    
-    NSManagedObject *managedObject = [self managedObjectAtIndexPath:indexPath];
-    if ([managedObject isKindOfClass:[MyMovie class]]) {
-        MyMovie *myMovie = (MyMovie *)managedObject;
-        
-        cell.titleLabel.text = myMovie.title;
-        cell.taglineLabel.text = myMovie.tagline;
-        
-        NSURL *posterThumbnailURL = [[TheMovieDBClient sharedClient] posterThumbnailURLForPosterPath:myMovie.posterPath];
-        if (posterThumbnailURL) {
-            __weak MyMovieCell *weakCell = cell;
-            [cell.posterImageView setImageWithURLRequest:[NSURLRequest requestWithURL:posterThumbnailURL]
-                                        placeholderImage:[UIImage imageNamed:@"movies"]
-                                                 success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                                     weakCell.posterImageView.image = image;
-                                                     [weakCell setNeedsLayout];
-                                                 }
-                                                 failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                                     DDLogError(@"Error downloading image from %@: %@", [[request URL] absoluteString], [error localizedDescription]);
-                                                 }];
-        } else {
-            cell.posterImageView.image = nil;
-        }
-    }
-    
-    return cell;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSManagedObject *managedObject = [self managedObjectAtIndexPath:indexPath];
-        if ([managedObject isKindOfClass:[MyMovie class]]) {
-            self.movieToDelete = (MyMovie *)managedObject;
-            
-            [self.deleteMovieAlertView setMessage:[NSString stringWithFormat:@"Are you sure you want to remove \"%@\" from your collection?", self.movieToDelete.title]];
-            
-            [self.deleteMovieAlertView show];
-        }
-    }
-}
-
 #pragma mark - Navigation
 
 static NSString *ScanMovieBarcodeSegueIdentifier = @"Scan Movie Barcode";
 static NSString *SearchMoviesSegueIdentifier = @"Search Movies";
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    [self prepareViewController:segue.destinationViewController
+                       forSegue:segue.identifier
+                     fromSender:sender];
+}
 
 - (void)prepareViewController:(id)viewController forSegue:(NSString *)segueIdentifier fromSender:(id)sender
 {
@@ -262,13 +267,6 @@ static NSString *SearchMoviesSegueIdentifier = @"Search Movies";
             }
         }
     }
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    [self prepareViewController:segue.destinationViewController
-                       forSegue:segue.identifier
-                     fromSender:sender];
 }
 
 #pragma mark - Unwinding

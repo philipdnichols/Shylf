@@ -8,7 +8,7 @@
 
 #import "MovieSearchDetailViewController.h"
 #import "TheMovieDBClient.h"
-#import <AFNetworking/UIImageView+AFNetworking.h>
+#import "UIImageView+AFNetworking.h"
 
 @interface MovieSearchDetailViewController ()
 

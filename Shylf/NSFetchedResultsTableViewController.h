@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NSFetchedResultsControllerDataSource.h"
 
 @interface NSFetchedResultsTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSFetchRequest *fetchedRequest;
 @property (strong, nonatomic) NSString *fetchedGroupKeyPath;
 
-- (NSManagedObject *)managedObjectAtIndexPath:(NSIndexPath *)indexPath;
+@property (strong, nonatomic, readonly) NSFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
+@property (strong, nonatomic) NSString *cellIdentifier;
+@property (nonatomic, copy) FetchedResultsCellConfigureBlock fetchedResultsConfigureBlock;
+@property (nonatomic, copy) FetchedResultsCellDeleteBlock fetchedResultsDeleteBlock;
 
 @end

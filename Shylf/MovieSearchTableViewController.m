@@ -8,20 +8,17 @@
 
 #import "MovieSearchTableViewController.h"
 #import "TheMovieDBClient.h"
-#import "TMDBMovie.h"
-#import "UIImageView+AFNetworking.h"
-#import "TMDBMovieCell.h"
+#import "ArrayDataSource.h"
+#import "TMDBMovieCell+Configure.h"
 #import "TMDBMovie+CoreData.h"
 #import "MovieSearchDetailViewController.h"
-#import "MyMovie.h"
 
 @interface MovieSearchTableViewController () <UISearchBarDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
-@property (strong, nonatomic) NSMutableArray *movies;
-
-@property (strong, nonatomic) NSDateFormatter *dateFormatter;
+@property (strong, nonatomic) ArrayDataSource *moviesArrayDataSource;
+@property (nonatomic, copy) TableViewCellConfigureBlock movieCellConfigureBlock;
 
 @end
 
@@ -29,16 +26,22 @@
 
 #pragma mark - Properties
 
-@synthesize movies = _movies;
-
-- (NSDateFormatter *)dateFormatter
+- (void)setMoviesArrayDataSource:(ArrayDataSource *)moviesArrayDataSource
 {
-    if (!_dateFormatter) {
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        [_dateFormatter setDateStyle:NSDateFormatterLongStyle];
-        [_dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    _moviesArrayDataSource = moviesArrayDataSource;
+    
+    self.tableView.dataSource = _moviesArrayDataSource;
+    [self.tableView reloadData];
+}
+
+- (TableViewCellConfigureBlock)movieCellConfigureBlock
+{
+    if (!_movieCellConfigureBlock) {
+        _movieCellConfigureBlock = ^(TMDBMovieCell *movieCell, TMDBMovie *movie) {
+            [movieCell configureForTMDBMovie:movie];
+        };
     }
-    return _dateFormatter;
+    return _movieCellConfigureBlock;
 }
 
 - (void)setQuery:(NSString *)query
@@ -52,27 +55,13 @@
     [self searchMovies];
 }
 
-- (NSMutableArray *)movies
-{
-    if (!_movies) {
-        _movies = [NSMutableArray array];
-    }
-    return _movies;
-}
-
-- (void)setMovies:(NSMutableArray *)movies
-{
-    _movies = movies;
-    [self.tableView reloadData];
-}
-
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self.tableView registerNib:[TMDBMovieCell nib] forCellReuseIdentifier:[TMDBMovieCell identifier]];
+    [self setupTableView];
     
     [self updateUI];
 }
@@ -82,63 +71,30 @@
     self.searchBar.text = self.query;
 }
 
+- (void)setupTableView
+{
+    [self.tableView registerNib:[TMDBMovieCell nib] forCellReuseIdentifier:[TMDBMovieCell identifier]];
+}
+
 - (void)searchMovies
 {
     [[TheMovieDBClient sharedClient] searchMoviesFromQuery:self.query
            fullResults:YES
                success:^(NSArray *results) {
-                   self.movies = [results mutableCopy];
+                   self.moviesArrayDataSource = [[ArrayDataSource alloc] initWithItems:results
+                                                                        cellIdentifier:[TMDBMovieCell identifier]
+                                                                    configureCellBlock:self.movieCellConfigureBlock];
                }
                failure:^(NSError *error) {
                    DDLogError(@"Error searching movies with query \"%@\": %@", self.query, [error localizedDescription]);
                }];
 }
 
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.movies count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    TMDBMovieCell *cell = [tableView dequeueReusableCellWithIdentifier:[TMDBMovieCell identifier]
-                                                            forIndexPath:indexPath];
-    
-    TMDBMovie *movie = self.movies[indexPath.row];
-    cell.titleLabel.text = movie.title;
-    cell.releaseDateLabel.text = [self.dateFormatter stringFromDate:movie.releaseDate];
-    
-    NSURL *posterThumbnailURL = [[TheMovieDBClient sharedClient] posterThumbnailURLForPosterPath:movie.posterPath];
-    if (posterThumbnailURL) {
-        __weak TMDBMovieCell *weakCell = cell;
-        [cell.posterImageView setImageWithURLRequest:[NSURLRequest requestWithURL:posterThumbnailURL]
-              placeholderImage:[UIImage imageNamed:@"movies"]
-                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                           weakCell.posterImageView.image = image;
-                           [weakCell setNeedsLayout];
-                       }
-                       failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                           DDLogError(@"Error downloading image from %@: %@", [[request URL] absoluteString], [error localizedDescription]);
-                       }];
-    } else {
-        cell.posterImageView.image = nil;
-    }
-    
-    return cell;
-}
-
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TMDBMovie *movie = self.movies[indexPath.row];
+    TMDBMovie *movie = [self.moviesArrayDataSource itemAtIndexPath:indexPath];
     
     // TODO: String contants for the alert stuff, even the uiactionsheets
     [[[UIAlertView alloc] initWithTitle:@"Add Movie"
@@ -158,7 +114,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    self.movies = nil;
+    self.moviesArrayDataSource = nil;
     self.query = searchBar.text;
     [searchBar resignFirstResponder];
 }
@@ -171,7 +127,7 @@
     
     if ([buttonTitle isEqualToString:@"Add"] || [buttonTitle isEqualToString:@"Add and Continue"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        TMDBMovie *movie = self.movies[indexPath.row];
+        TMDBMovie *movie = [self.moviesArrayDataSource itemAtIndexPath:indexPath];
         
         NSError *error = nil;
         [MTLManagedObjectAdapter managedObjectFromModel:movie
@@ -202,6 +158,13 @@
 
 static NSString * const SearchMovieDetailsSegueIdentifier = @"Search Movie Details";
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    [self prepareViewController:segue.destinationViewController
+                       forSegue:segue.identifier
+                     fromSender:sender];
+}
+
 - (void)prepareViewController:(id)viewController forSegue:(NSString *)segueIdentifier fromSender:(id)sender
 {
     NSIndexPath *indexPath = nil;
@@ -213,17 +176,10 @@ static NSString * const SearchMovieDetailsSegueIdentifier = @"Search Movie Detai
         if (![segueIdentifier length] || [segueIdentifier isEqualToString:SearchMovieDetailsSegueIdentifier]) {
             if (indexPath) {
                 MovieSearchDetailViewController *movieSearchDetailViewController = (MovieSearchDetailViewController *)viewController;
-                movieSearchDetailViewController.movie = self.movies[indexPath.row];
+                movieSearchDetailViewController.movie = [self.moviesArrayDataSource itemAtIndexPath:indexPath];
             }
         }
     }
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    [self prepareViewController:segue.destinationViewController
-                       forSegue:segue.identifier
-                     fromSender:sender];
 }
 
 @end
