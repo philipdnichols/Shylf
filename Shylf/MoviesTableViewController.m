@@ -274,16 +274,16 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
 
 - (IBAction)scannedCode:(UIStoryboardSegue *)segue
 {
-    // TODO: Should probably throw up a modal dialog here to show that this is processing.
-    
     if ([segue.identifier isEqualToString:BarcodeScannedSegueIdentifier]) {
         if ([segue.sourceViewController isKindOfClass:[BarcodeScanViewController class]]) {
             BarcodeScanViewController *barcodeScanViewController = (BarcodeScanViewController *)segue.sourceViewController;
             AVMetadataMachineReadableCodeObject *code = barcodeScanViewController.code;
             
+            [SVProgressHUD showWithStatus:@"Processing" maskType:SVProgressHUDMaskTypeBlack];
             [[UPCDatabaseClient sharedClient]
                  itemForUPC:code.stringValue
                     success:^(UPCDBItem *item) {
+                        [SVProgressHUD dismiss];
                         NSString *query = [item.itemName length] ? item.itemName : item.descriptionOfItem;
                         [self performSegueWithIdentifier:SearchMoviesSegueIdentifier sender:query];
                     }

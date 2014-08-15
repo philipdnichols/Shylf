@@ -33,6 +33,7 @@ PODS:
     - Mantle/extobjc
   - Mantle/extobjc (1.5)
   - MTBBarcodeScanner (0.1.6)
+  - SVProgressHUD (1.0)
 
 DEPENDENCIES:
   - AFNetworkActivityLogger
@@ -41,6 +42,7 @@ DEPENDENCIES:
   - CocoaLumberjack
   - Mantle
   - MTBBarcodeScanner
+  - SVProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworkActivityLogger: d6a2d2755fada3a1fbf1f490ec0dd92224e092a4
@@ -49,5 +51,6 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 205769c032b5fef85b92472046bcc8b7e7c8a817
   Mantle: c67a7e45e14196ed42b2a7cbb98ff6a9920e6b92
   MTBBarcodeScanner: 3e706c2516ac6e7ba16e2d255b434ad0c84cc882
+  SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
 
 COCOAPODS: 0.33.1
