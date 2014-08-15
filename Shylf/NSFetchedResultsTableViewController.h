@@ -10,8 +10,8 @@
 
 @interface NSFetchedResultsTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
-- (NSFetchRequest *)fetchRequestForNSFetchedResultsController;
-- (NSString *)groupedByForNSFetchedResultsController;
+@property (strong, nonatomic) NSFetchRequest *fetchedRequest;
+@property (strong, nonatomic) NSString *fetchedGroupKeyPath;
 
 - (NSManagedObject *)managedObjectAtIndexPath:(NSIndexPath *)indexPath;
 

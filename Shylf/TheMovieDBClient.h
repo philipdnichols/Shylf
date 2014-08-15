@@ -11,6 +11,8 @@
 
 @interface TheMovieDBClient : AFHTTPSessionManager
 
+@property (strong, nonatomic, readonly) NSArray *genres;
+
 + (instancetype)sharedClient;
 
 - (void)searchMoviesFromQuery:(NSString *)query fullResults:(BOOL)fullResults success:(void(^)(NSArray *results))success failure:(void(^)(NSError *error))failure;

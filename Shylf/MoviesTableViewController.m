@@ -14,6 +14,7 @@
 #import "MyMovie.h"
 #import "MyMovieCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "TMDBGenre.h"
 
 @interface MoviesTableViewController () <UIActionSheetDelegate>
 
@@ -26,11 +27,56 @@
 
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
+@property (strong, nonatomic) NSFetchRequest *request;
+@property (strong, nonatomic) NSString *groupKeyPath;
+
 @end
 
 @implementation MoviesTableViewController
 
 #pragma mark - Properties
+
+@synthesize request = _request;
+@synthesize groupKeyPath = _groupKeyPath;
+
+- (NSFetchRequest *)fetchedRequest
+{
+    return self.request;
+}
+
+- (NSString *)fetchedGroupKeyPath
+{
+    return self.groupKeyPath;
+}
+
+- (NSFetchRequest *)request
+{
+    if (!_request) {
+        _request = [MyMovie MR_requestAllSortedBy:@"title"
+                                        ascending:YES];
+    }
+    return _request;
+}
+
+- (NSString *)groupKeyPath
+{
+//    if (!_groupKeyPath) {
+//        
+//    }
+    return _groupKeyPath;
+}
+
+- (void)setRequest:(NSFetchRequest *)request
+{
+    _request = request;
+    self.fetchedRequest = _request;
+}
+
+- (void)setGroupKeyPath:(NSString *)groupKeyPath
+{
+    _groupKeyPath = groupKeyPath;
+    self.fetchedGroupKeyPath = _groupKeyPath;
+}
 
 - (UIActionSheet *)addMovieActionSheet
 {
@@ -50,11 +96,17 @@
     if (!_filterMovieGenresActionSheet) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Filter Genres"
                                                                  delegate:self
-                                                        cancelButtonTitle:@"Cancel"
+                                                        cancelButtonTitle:nil
                                                    destructiveButtonTitle:nil
                                                         otherButtonTitles:nil];
         
-        // TODO: Get all the genres
+        NSArray *genres = [TheMovieDBClient sharedClient].genres;
+        for (TMDBGenre *genre in genres) {
+            [actionSheet addButtonWithTitle:genre.name];
+        }
+        [actionSheet addButtonWithTitle:@"Cancel"];
+        actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
+    
         _filterMovieGenresActionSheet = actionSheet;
     }
     return _filterMovieGenresActionSheet;
@@ -73,9 +125,10 @@
 - (UIBarButtonItem *)filterMovieGenresBarButtonItem
 {
     if (!_filterMovieGenresBarButtonItem) {
-        _filterMovieGenresBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
-                                                                                        target:self
-                                                                                        action:@selector(filterMovies)];
+        _filterMovieGenresBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"filter"]
+                                                                           style:UIBarButtonItemStylePlain
+                                                                          target:self
+                                                                          action:@selector(filterMovies)];
     }
     return _filterMovieGenresBarButtonItem;
 }
@@ -101,8 +154,6 @@
     [self.tableView registerNib:[MyMovieCell nib] forCellReuseIdentifier:[MyMovieCell identifier]];
     
     self.navigationItem.rightBarButtonItems = @[self.addMovieBarButtonItem, self.filterMovieGenresBarButtonItem];
-    
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
 #pragma mark - IBActions
@@ -179,22 +230,6 @@
     }   
 }
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Navigation
 
 static NSString *ScanMovieBarcodeSegueIdentifier = @"Scan Movie Barcode";
@@ -211,7 +246,6 @@ static NSString *SearchMoviesSegueIdentifier = @"Search Movies";
         UINavigationController *uiNavigationController = (UINavigationController *)viewController;
         if ([[uiNavigationController.viewControllers firstObject] isKindOfClass:[BarcodeScanViewController class]]) {
             if (![segueIdentifier length] || [segueIdentifier isEqualToString:ScanMovieBarcodeSegueIdentifier]) {
-//                BarcodeScanViewController *barcodeScanViewController = (BarcodeScanViewController *)[uiNavigationController.viewControllers firstObject];
                 // No setup to do right now, maybe later.
             }
         }
@@ -258,14 +292,14 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
             AVMetadataMachineReadableCodeObject *code = barcodeScanViewController.code;
             
             [[UPCDatabaseClient sharedClient]
-             itemForUPC:code.stringValue
-                success:^(UPCDBItem *item) {
-                    NSString *query = [item.itemName length] ? item.itemName : item.descriptionOfItem;
-                    [self performSegueWithIdentifier:SearchMoviesSegueIdentifier sender:query];
-                }
-                failure:^(NSError *error) {
-                    DDLogError(@"Error retrieving UPC description for UPC %@: %@", code.stringValue, error.localizedDescription);
-                }];
+                 itemForUPC:code.stringValue
+                    success:^(UPCDBItem *item) {
+                        NSString *query = [item.itemName length] ? item.itemName : item.descriptionOfItem;
+                        [self performSegueWithIdentifier:SearchMoviesSegueIdentifier sender:query];
+                    }
+                    failure:^(NSError *error) {
+                        DDLogError(@"Error retrieving UPC description for UPC %@: %@", code.stringValue, error.localizedDescription);
+                    }];
         }
     }
 }
@@ -283,24 +317,14 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
             [self performSegueWithIdentifier:ScanMovieBarcodeSegueIdentifier sender:self];
         }
     } else if (actionSheet == self.filterMovieGenresActionSheet) {
-        // TODO:
-        //    self.fetchedResultsController = [MyMovie MR_fetchAllSortedBy:@"title"
-        //                                                       ascending:YES
-        //                                                   withPredicate:[NSPredicate predicateWithFormat:@"genre"] groupBy:<#(NSString *)#> delegate:<#(id<NSFetchedResultsControllerDelegate>)#>]
+        // TODO: Better interface
+        // TODO: Icons for the genres
+        if (![buttonTitle isEqualToString:@"Cancel"]) {
+            self.request = [MyMovie MR_requestAllSortedBy:@"title"
+                                                ascending:YES
+                                            withPredicate:[NSPredicate predicateWithFormat:@"ANY genres.name == %@", buttonTitle]];
+        }
     }
-}
-
-#pragma mark - NSFetchedResultsTableViewController
-
-- (NSFetchRequest *)fetchRequestForNSFetchedResultsController
-{
-    return [MyMovie MR_requestAllSortedBy:@"title"
-                                ascending:YES];
-}
-
-- (NSString *)groupedByForNSFetchedResultsController
-{
-    return nil;
 }
 
 @end

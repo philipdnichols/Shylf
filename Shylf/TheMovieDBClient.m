@@ -9,12 +9,14 @@
 #import "TheMovieDBClient.h"
 #import "TheMovieDBAPIKey.h"
 #import "TMDBConfiguration.h"
+#import "TMDBGenre.h"
 
 #define TheMovieDBBaseURL @"https://api.themoviedb.org/3/"
 
 @interface TheMovieDBClient ()
 
 @property (strong, nonatomic) TMDBConfiguration *configuration;
+@property (strong, nonatomic, readwrite) NSArray *genres;
 
 @end
 
@@ -74,6 +76,37 @@
         }
     }
     return _configuration;
+}
+
+- (NSArray *)genres
+{
+    if (!_genres) {
+        DDLogInfo(@"Retrieving movie genres. This should only happen once per app launch. That's a safe and simple caching mechanism.");
+        
+        // This blocks but is neccessary because we NEED this configuration on demand:
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"genre/movie/list?api_key=%@", TheMovieDBAPIKey] relativeToURL:[self baseURL]];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        
+        NSError *error = nil;
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                       options:0
+                                                                         error:&error];
+        
+        if (!error) {
+            NSArray *genres = [MTLJSONAdapter modelsOfClass:[TMDBGenre class]
+                                              fromJSONArray:jsonDictionary[@"genres"]
+                                                      error:&error];
+            
+            if (!error) {
+                _genres = genres;
+            } else {
+                DDLogError(@"Error mapping genre to entity: %@", [error localizedDescription]);
+            }
+        } else {
+            DDLogError(@"Error parsing JSON from URL %@: %@", [url absoluteString], [error localizedDescription]);
+        }
+    }
+    return _genres;
 }
 
 #pragma mark - Public

@@ -18,18 +18,42 @@
 
 #pragma mark - Properties
 
+- (void)setFetchedRequest:(NSFetchRequest *)fetchedRequest
+{
+    _fetchedRequest = fetchedRequest;
+    self.fetchedResultsController = nil;
+    
+    [self reloadFetchedResultsController];
+}
+
+- (void)setFetchedGroupKeyPath:(NSString *)fetchedGroupKeyPath
+{
+    _fetchedGroupKeyPath = fetchedGroupKeyPath;
+    self.fetchedResultsController = nil;
+    
+    [self reloadFetchedResultsController];
+}
+
 - (NSFetchedResultsController *)fetchedResultsController
 {
     if (!_fetchedResultsController) {
-        NSFetchRequest *request = [self fetchRequestForNSFetchedResultsController];
-        NSString *groupedBy = [self groupedByForNSFetchedResultsController];
-        _fetchedResultsController = [[NSManagedObject class] MR_fetchController:request
+
+        _fetchedResultsController = [[NSManagedObject class] MR_fetchController:self.fetchedRequest
                                                                        delegate:self
                                                                    useFileCache:NO
-                                                                      groupedBy:groupedBy
+                                                                      groupedBy:self.fetchedGroupKeyPath
                                                                       inContext:[NSManagedObjectContext MR_defaultContext]];
         
-        [[NSManagedObject class] MR_performFetch:_fetchedResultsController];
+//        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchedRequest
+//                                                                        managedObjectContext:[NSManagedObjectContext MR_defaultContext]
+//                                                                          sectionNameKeyPath:self.fetchedGroupKeyPath
+//                                                                                   cacheName:nil];
+//        
+//        
+//        
+//        _fetchedResultsController.delegate = self;
+        
+        [self reloadFetchedResultsController];
     }
     return _fetchedResultsController;
 }
@@ -41,16 +65,12 @@
     return [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
-- (NSFetchRequest *)fetchRequestForNSFetchedResultsController
-{
-    // TODO: put something here that will crash the app to have the programmer implement
-    return nil;
-}
+#pragma mark - Private
 
-- (NSString *)groupedByForNSFetchedResultsController
+- (void)reloadFetchedResultsController
 {
-    // TODO: put something here that will crash the app to have the programmer implement
-    return nil;
+    [[NSManagedObject class] MR_performFetch:self.fetchedResultsController];
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource
