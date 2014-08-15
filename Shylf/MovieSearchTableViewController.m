@@ -33,7 +33,6 @@
 - (NSDateFormatter *)dateFormatter
 {
     if (!_dateFormatter) {
-        // TODO: Should I be creating a local variable first?
         _dateFormatter = [[NSDateFormatter alloc] init];
         [_dateFormatter setDateStyle:NSDateFormatterLongStyle];
         [_dateFormatter setTimeStyle:NSDateFormatterNoStyle];

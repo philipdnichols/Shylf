@@ -16,10 +16,12 @@
 #import "UIImageView+AFNetworking.h"
 #import "TMDBGenre.h"
 
-@interface MoviesTableViewController () <UIActionSheetDelegate>
+@interface MoviesTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIActionSheet *addMovieActionSheet;
 @property (strong, nonatomic) UIActionSheet *filterMovieGenresActionSheet;
+
+@property (strong, nonatomic) UIAlertView *deleteMovieAlertView;
 
 // TODO: I don't need these because the IBAction can have the sender to trigger the UIActionSheet
 @property (strong, nonatomic) UIBarButtonItem *addMovieBarButtonItem;
@@ -29,6 +31,8 @@
 
 @property (strong, nonatomic) NSFetchRequest *request;
 @property (strong, nonatomic) NSString *groupKeyPath;
+
+@property (weak, nonatomic) MyMovie *movieToDelete;
 
 @end
 
@@ -76,6 +80,19 @@
 {
     _groupKeyPath = groupKeyPath;
     self.fetchedGroupKeyPath = _groupKeyPath;
+}
+
+- (UIAlertView *)deleteMovieAlertView
+{
+    if (!_deleteMovieAlertView) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Delete Movie"
+                                                            message:nil
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Yes", nil];
+        _deleteMovieAlertView = alertView;
+    }
+    return _deleteMovieAlertView;
 }
 
 - (UIActionSheet *)addMovieActionSheet
@@ -195,8 +212,6 @@
         } else {
             cell.posterImageView.image = nil;
         }
-    } else {
-        // TODO: error checking or should we crash here?
     }
     
     return cell;
@@ -212,22 +227,13 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSManagedObject *managedObject = [self managedObjectAtIndexPath:indexPath];
         if ([managedObject isKindOfClass:[MyMovie class]]) {
-            MyMovie *myMovie = (MyMovie *)managedObject;
+            self.movieToDelete = (MyMovie *)managedObject;
             
-            [myMovie MR_deleteEntity];
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-                if (!error) {
-                    
-                } else {
-                    // TODO:
-                }
-            }];
-        } else {
-            // TODO: error checking or should we crash here?
+            [self.deleteMovieAlertView setMessage:[NSString stringWithFormat:@"Are you sure you want to remove \"%@\" from your collection?", self.movieToDelete.title]];
+            
+            [self.deleteMovieAlertView show];
         }
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
 
 #pragma mark - Navigation
@@ -324,6 +330,32 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
                                                 ascending:YES
                                             withPredicate:[NSPredicate predicateWithFormat:@"ANY genres.name == %@", buttonTitle]];
         }
+    }
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if (alertView == self.deleteMovieAlertView) {
+        if ([buttonTitle isEqualToString:@"Yes"]) {
+            [self.movieToDelete MR_deleteEntity];
+            
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+                if (!error) {
+                    self.movieToDelete = nil;
+                } else {
+                    DDLogError(@"There was a problem saving after deleting a movie: %@", [error localizedDescription]);
+                }
+            }];
+        } else if ([buttonTitle isEqualToString:@"Cancel"]) {
+            self.movieToDelete = nil;
+            [self.tableView setEditing:NO animated:YES];
+        }
+        
+        self.deleteMovieAlertView = nil;
     }
 }
 
