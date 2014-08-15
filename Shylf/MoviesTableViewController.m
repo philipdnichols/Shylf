@@ -106,7 +106,7 @@
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"Search", @"Scan Barcode", nil];
+                                                        otherButtonTitles:@"Add", @"Search", @"Scan Barcode", nil];
         _addMovieActionSheet = actionSheet;
     }
     return _addMovieActionSheet;
@@ -305,6 +305,8 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
             [self performSegueWithIdentifier:SearchMoviesSegueIdentifier sender:self];
         } else if ([buttonTitle isEqualToString:@"Scan Barcode"]) {
             [self performSegueWithIdentifier:ScanMovieBarcodeSegueIdentifier sender:self];
+        } else if ([buttonTitle isEqualToString:@"Add"]) {
+            // TODO: Add Movie Form
         }
     } else if (actionSheet == self.filterMovieGenresActionSheet) {
         // TODO: Better interface
