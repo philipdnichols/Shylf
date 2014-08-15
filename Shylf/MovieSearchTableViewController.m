@@ -129,26 +129,13 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         TMDBMovie *movie = [self.moviesArrayDataSource itemAtIndexPath:indexPath];
         
-        NSError *error = nil;
-        [MTLManagedObjectAdapter managedObjectFromModel:movie
-                                   insertingIntoContext:[NSManagedObjectContext MR_defaultContext]
-                                                  error:&error];
-        
-        // TODO: I think this creates unique genre objects...maybe? This could be improved but isn't a huge deal.
-        
-        if (!error) {
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-                if (!error) {
-                    if (![buttonTitle isEqualToString:@"Add and Continue"]) {
-                        [self.navigationController popToRootViewControllerAnimated:YES];
-                    }
-                } else {
-                    DDLogError(@"There was a problem saving the context after inserting movie: %@", [error localizedDescription]);
-                }
-            }];
-        } else {
-            DDLogError(@"Error mapping movie to managed object: %@", [error localizedDescription]);
-        }
+        [movie saveWithSuccess:^{
+            if (![buttonTitle isEqualToString:@"Add and Continue"]) {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+        } failure:^(NSError *error) {
+            DDLogError(@"There was an error saving the movie: %@", [error localizedDescription]);
+        }];
     } else if ([buttonTitle isEqualToString:@"Cancel"]) {
         [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     }

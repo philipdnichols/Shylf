@@ -10,4 +10,6 @@
 
 @interface TMDBMovie (CoreData) <MTLManagedObjectSerializing>
 
+- (void)saveWithSuccess:(void(^)())success failure:(void(^)(NSError *error))failure;
+
 @end

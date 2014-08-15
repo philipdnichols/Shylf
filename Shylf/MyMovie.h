@@ -1,5 +1,9 @@
 #import "_MyMovie.h"
 
 @interface MyMovie : _MyMovie {}
-// Custom logic goes here.
+
++ (NSFetchRequest *)fetchAllWithGenre:(NSString *)genre;
+
+- (void)deleteWithSuccess:(void(^)())success failure:(void(^)(NSError *error))failure;
+
 @end

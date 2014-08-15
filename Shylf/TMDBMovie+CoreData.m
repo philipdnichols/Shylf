@@ -51,4 +51,26 @@
              };
 }
 
+- (void)saveWithSuccess:(void(^)())success failure:(void(^)(NSError *error))failure
+{
+    NSError *error = nil;
+    [MTLManagedObjectAdapter managedObjectFromModel:self
+                               insertingIntoContext:[NSManagedObjectContext MR_defaultContext]
+                                              error:&error];
+    
+    // TODO: I think this creates unique genre objects...maybe? This could be improved but isn't a huge deal.
+    
+    if (!error) {
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL succ, NSError *error) {
+            if (!error) {
+                success();
+            } else {
+                failure(error);
+            }
+        }];
+    } else {
+        failure(error);
+    }
+}
+
 @end

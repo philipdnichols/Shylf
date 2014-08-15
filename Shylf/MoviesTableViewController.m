@@ -192,7 +192,6 @@
 - (FetchedResultsCellDeleteBlock)movieCellDeleteBlock
 {
     if (!_movieCellDeleteBlock) {
-        // TODO: is there a way to move this out of the controller, into a delegate or something like that?
         __weak MoviesTableViewController *weakSelf = self;
         _movieCellDeleteBlock = ^(MyMovie *movie) {
             weakSelf.movieToDelete = movie;
@@ -311,9 +310,7 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
         // TODO: Better interface
         // TODO: Icons for the genres
         if (![buttonTitle isEqualToString:@"Cancel"]) {
-            self.request = [MyMovie MR_requestAllSortedBy:@"title"
-                                                ascending:YES
-                                            withPredicate:[NSPredicate predicateWithFormat:@"ANY genres.name == %@", buttonTitle]];
+            self.request = [MyMovie fetchAllWithGenre:buttonTitle];
         }
     }
 }
@@ -326,12 +323,10 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
     
     if (alertView == self.deleteMovieAlertView) {
         if ([buttonTitle isEqualToString:@"Yes"]) {
-            [self.movieToDelete MR_deleteEntity];
-            
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-                if (error) {
-                    DDLogError(@"There was a problem saving the context after deleting movie: %@", [error localizedDescription]);
-                }
+            [self.movieToDelete deleteWithSuccess:^{
+                // All good!
+            } failure:^(NSError *error) {
+                DDLogError(@"There was an error deleting the movie: %@", [error localizedDescription]);
             }];
         } else if ([buttonTitle isEqualToString:@"Cancel"]) {
             [self.tableView setEditing:NO animated:YES];

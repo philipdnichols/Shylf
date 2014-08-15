@@ -31,8 +31,6 @@
     
     NSURL *posterThumbnailURL = [[TheMovieDBClient sharedClient] posterThumbnailURLForPosterPath:movie.posterPath];
     if (posterThumbnailURL) {
-        // TODO:
-//        __weak TMDBMovieCell *weakSelf = self;
         [self.posterImageView setImageWithURLRequest:[NSURLRequest requestWithURL:posterThumbnailURL]
                                     placeholderImage:[UIImage imageNamed:@"movies"]
                                              success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {

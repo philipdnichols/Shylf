@@ -421,13 +421,13 @@
 			name = "Main Controllers";
 			sourceTree = "<group>";
 		};
-		B134CA29199C37AB004C392E /* Abstract Controllers */ = {
+		B134CA29199C37AB004C392E /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
 				B134CA24199C3735004C392E /* NSFetchedResultsTableViewController.h */,
 				B134CA25199C3735004C392E /* NSFetchedResultsTableViewController.m */,
 			);
-			name = "Abstract Controllers";
+			name = Abstract;
 			sourceTree = "<group>";
 		};
 		B134CA37199C4001004C392E /* Categories */ = {
@@ -504,7 +504,7 @@
 			isa = PBXGroup;
 			children = (
 				B181FC46199DB55200982AC3 /* Data Sources */,
-				B134CA29199C37AB004C392E /* Abstract Controllers */,
+				B134CA29199C37AB004C392E /* Abstract */,
 				B134CA28199C378C004C392E /* Main Controllers */,
 				B134CA27199C3777004C392E /* Search Controllers */,
 				B13DC6A21997176700510540 /* BarcodeScanViewController.h */,

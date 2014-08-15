@@ -10,6 +10,7 @@
 #import "TheMovieDBAPIKey.h"
 #import "TMDBConfiguration.h"
 #import "TMDBGenre.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 #define TheMovieDBBaseURL @"https://api.themoviedb.org/3/"
 
@@ -52,6 +53,8 @@
     if (!_configuration) {
         DDLogInfo(@"Retrieving configuration. This should only happen once per app launch. That's a safe and simple caching mechanism.");
         
+        [[AFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
+        
         // This blocks but is neccessary because we NEED this configuration on demand:
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"configuration?api_key=%@", TheMovieDBAPIKey] relativeToURL:[self baseURL]];
         NSData *data = [NSData dataWithContentsOfURL:url];
@@ -74,7 +77,10 @@
         } else {
             DDLogError(@"Error parsing JSON from URL %@: %@", [url absoluteString], [error localizedDescription]);
         }
+        
+        [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
     }
+
     return _configuration;
 }
 
@@ -82,6 +88,8 @@
 {
     if (!_genres) {
         DDLogInfo(@"Retrieving movie genres. This should only happen once per app launch. That's a safe and simple caching mechanism.");
+        
+        [[AFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
         
         // This blocks but is neccessary because we NEED this configuration on demand:
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"genre/movie/list?api_key=%@", TheMovieDBAPIKey] relativeToURL:[self baseURL]];
@@ -105,6 +113,8 @@
         } else {
             DDLogError(@"Error parsing JSON from URL %@: %@", [url absoluteString], [error localizedDescription]);
         }
+        
+        [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
     }
     return _genres;
 }
