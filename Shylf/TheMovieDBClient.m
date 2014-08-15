@@ -138,7 +138,6 @@
                              success:^(TMDBMovie *movie) {
                                  [fullResults addObject:movie];
                                  
-                                 // TODO: better way to do this?
                                  counter--;
                                  if (counter == 0) {
                                      success(fullResults);

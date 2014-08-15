@@ -23,7 +23,6 @@
 
 @property (strong, nonatomic) UIAlertView *deleteMovieAlertView;
 
-// TODO: I don't need these because the IBAction can have the sender to trigger the UIActionSheet
 @property (strong, nonatomic) UIBarButtonItem *addMovieBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *filterMovieGenresBarButtonItem;
 
@@ -134,7 +133,7 @@
     if (!_addMovieBarButtonItem) {
         _addMovieBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                target:self
-                                                                               action:@selector(addMovie)];
+                                                                               action:@selector(addMovie:)];
     }
     return _addMovieBarButtonItem;
 }
@@ -145,7 +144,7 @@
         _filterMovieGenresBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"filter"]
                                                                            style:UIBarButtonItemStylePlain
                                                                           target:self
-                                                                          action:@selector(filterMovies)];
+                                                                          action:@selector(filterMovies:)];
     }
     return _filterMovieGenresBarButtonItem;
 }
@@ -153,7 +152,6 @@
 - (NSDateFormatter *)dateFormatter
 {
     if (!_dateFormatter) {
-        // TODO: Should I be creating a local variable first?
         _dateFormatter = [[NSDateFormatter alloc] init];
         [_dateFormatter setDateStyle:NSDateFormatterLongStyle];
         [_dateFormatter setTimeStyle:NSDateFormatterNoStyle];
@@ -167,7 +165,6 @@
 {
     [super viewDidLoad];
     
-    // TODO: Better place to put this?
     [self.tableView registerNib:[MyMovieCell nib] forCellReuseIdentifier:[MyMovieCell identifier]];
     
     self.navigationItem.rightBarButtonItems = @[self.addMovieBarButtonItem, self.filterMovieGenresBarButtonItem];
@@ -175,12 +172,12 @@
 
 #pragma mark - IBActions
 
-- (IBAction)addMovie {
-    [self.addMovieActionSheet showFromBarButtonItem:self.addMovieBarButtonItem animated:YES];
+- (IBAction)addMovie:(UIBarButtonItem *)sender {
+    [self.addMovieActionSheet showFromBarButtonItem:sender animated:YES];
 }
 
-- (IBAction)filterMovies {
-    [self.filterMovieGenresActionSheet showFromBarButtonItem:self.filterMovieGenresBarButtonItem animated:YES];
+- (IBAction)filterMovies:(UIBarButtonItem *)sender {
+    [self.filterMovieGenresActionSheet showFromBarButtonItem:sender animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
@@ -274,18 +271,6 @@ static NSString *SearchMoviesSegueIdentifier = @"Search Movies";
                      fromSender:sender];
 }
 
-// TODO: iPad split view
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    id detailViewController = [self.splitViewController.viewControllers lastObject];
-//    if ([detailViewController isKindOfClass:[UINavigationController class]]) {
-//        detailViewController = [((UINavigationController *)detailViewController).viewControllers firstObject];
-//        [self prepareViewController:detailViewController
-//                           forSegue:nil
-//                      fromIndexPath:indexPath];
-//    }
-//}
-
 #pragma mark - Unwinding
 
 static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
@@ -344,17 +329,15 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
             [self.movieToDelete MR_deleteEntity];
             
             [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-                if (!error) {
-                    self.movieToDelete = nil;
-                } else {
-                    DDLogError(@"There was a problem saving after deleting a movie: %@", [error localizedDescription]);
+                if (error) {
+                    DDLogError(@"There was a problem saving the context after deleting movie: %@", [error localizedDescription]);
                 }
             }];
         } else if ([buttonTitle isEqualToString:@"Cancel"]) {
-            self.movieToDelete = nil;
             [self.tableView setEditing:NO animated:YES];
         }
         
+        self.movieToDelete = nil;
         self.deleteMovieAlertView = nil;
     }
 }

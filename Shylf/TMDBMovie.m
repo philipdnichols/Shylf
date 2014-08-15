@@ -45,7 +45,6 @@
 
 + (NSDateFormatter *)dateFormatter
 {
-    // TODO: Should I use dispatch once here?
     static NSDateFormatter *_dateFormater = nil;
     if (!_dateFormater) {
         _dateFormater = [[NSDateFormatter alloc] init];

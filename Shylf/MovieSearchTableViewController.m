@@ -13,6 +13,7 @@
 #import "TMDBMovieCell.h"
 #import "TMDBMovie+CoreData.h"
 #import "MovieSearchDetailViewController.h"
+#import "MyMovie.h"
 
 @interface MovieSearchTableViewController () <UISearchBarDelegate, UIAlertViewDelegate>
 
@@ -71,8 +72,6 @@
 {
     [super viewDidLoad];
     
-    // TODO: Better place to put this?
-    // TODO: Make use of the conformsToProtocol thing
     [self.tableView registerNib:[TMDBMovieCell nib] forCellReuseIdentifier:[TMDBMovieCell identifier]];
     
     [self updateUI];
@@ -188,11 +187,11 @@
                         [self.navigationController popToRootViewControllerAnimated:YES];
                     }
                 } else {
-                    // TODO:
+                    DDLogError(@"There was a problem saving the context after inserting movie: %@", [error localizedDescription]);
                 }
             }];
         } else {
-            // TODO:
+            DDLogError(@"Error mapping movie to managed object: %@", [error localizedDescription]);
         }
     } else if ([buttonTitle isEqualToString:@"Cancel"]) {
         [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
@@ -226,17 +225,5 @@ static NSString * const SearchMovieDetailsSegueIdentifier = @"Search Movie Detai
                        forSegue:segue.identifier
                      fromSender:sender];
 }
-
-// TODO: Split View Controller
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    id detailViewController = [self.splitViewController.viewControllers lastObject];
-//    if ([detailViewController isKindOfClass:[UINavigationController class]]) {
-//        detailViewController = [((UINavigationController *)detailViewController).viewControllers firstObject];
-//        [self prepareViewController:detailViewController
-//                           forSegue:nil
-//                      fromIndexPath:indexPath];
-//    }
-//}
 
 @end

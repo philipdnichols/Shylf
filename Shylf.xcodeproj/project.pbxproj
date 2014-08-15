@@ -92,6 +92,7 @@
 		B1760AF61996E27B00DD6D1E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD81996E27B00DD6D1E /* UIKit.framework */; };
 		B1760AFE1996E27B00DD6D1E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1760AFC1996E27B00DD6D1E /* InfoPlist.strings */; };
 		B1760B001996E27B00DD6D1E /* ShylfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1760AFF1996E27B00DD6D1E /* ShylfTests.m */; };
+		B181FC31199DA73100982AC3 /* CustomUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B181FC30199DA73100982AC3 /* CustomUITableViewCell.m */; };
 		B1FAB66A199AE31200CB4D4F /* TMDBConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FAB669199AE31200CB4D4F /* TMDBConfiguration.m */; };
 		B1FAB66D199AE33800CB4D4F /* TMDBImagesConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FAB66C199AE33800CB4D4F /* TMDBImagesConfiguration.m */; };
 		B1FAB675199B0DFE00CB4D4F /* TMDBMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1FAB674199B0DFE00CB4D4F /* TMDBMovieCell.xib */; };
@@ -151,7 +152,6 @@
 		B134CA44199C4708004C392E /* MyMovieCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyMovieCell.xib; sourceTree = "<group>"; };
 		B134CA46199C4733004C392E /* MyMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMovieCell.h; sourceTree = "<group>"; };
 		B134CA47199C4733004C392E /* MyMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMovieCell.m; sourceTree = "<group>"; };
-		B134CA4D199C480A004C392E /* CustomUITableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomUITableViewCell.h; sourceTree = "<group>"; };
 		B134CA50199C503C004C392E /* MovieSearchDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieSearchDetailViewController.h; sourceTree = "<group>"; };
 		B134CA51199C503C004C392E /* MovieSearchDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieSearchDetailViewController.m; sourceTree = "<group>"; };
 		B13DC6911996E4CB00510540 /* MoviesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesTableViewController.h; sourceTree = "<group>"; };
@@ -250,6 +250,8 @@
 		B1760AFB1996E27B00DD6D1E /* ShylfTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShylfTests-Info.plist"; sourceTree = "<group>"; };
 		B1760AFD1996E27B00DD6D1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B1760AFF1996E27B00DD6D1E /* ShylfTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShylfTests.m; sourceTree = "<group>"; };
+		B181FC2F199DA73100982AC3 /* CustomUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUITableViewCell.h; sourceTree = "<group>"; };
+		B181FC30199DA73100982AC3 /* CustomUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUITableViewCell.m; sourceTree = "<group>"; };
 		B1FAB668199AE31200CB4D4F /* TMDBConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBConfiguration.h; sourceTree = "<group>"; };
 		B1FAB669199AE31200CB4D4F /* TMDBConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBConfiguration.m; sourceTree = "<group>"; };
 		B1FAB66B199AE33800CB4D4F /* TMDBImagesConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBImagesConfiguration.h; sourceTree = "<group>"; };
@@ -411,14 +413,6 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		B134CA4C199C47D8004C392E /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				B134CA4D199C480A004C392E /* CustomUITableViewCell.h */,
-			);
-			name = Protocols;
-			sourceTree = "<group>";
-		};
 		B134CA4E199C5014004C392E /* Tables */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,7 +449,6 @@
 		B13DC6901996E36900510540 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B134CA4C199C47D8004C392E /* Protocols */,
 				B1FAB676199B0E3200CB4D4F /* TMDBMovieCell.h */,
 				B1FAB677199B0E3200CB4D4F /* TMDBMovieCell.m */,
 				B134CA46199C4733004C392E /* MyMovieCell.h */,
@@ -463,6 +456,8 @@
 				B1FAB674199B0DFE00CB4D4F /* TMDBMovieCell.xib */,
 				B134CA44199C4708004C392E /* MyMovieCell.xib */,
 				B1760AE61996E27B00DD6D1E /* Main.storyboard */,
+				B181FC2F199DA73100982AC3 /* CustomUITableViewCell.h */,
+				B181FC30199DA73100982AC3 /* CustomUITableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -831,6 +826,7 @@
 				B160337D199AB5B700BFEC3A /* NSManagedObjectContext+MagicalRecord.m in Sources */,
 				B134CA1C199C288D004C392E /* _MyBook.m in Sources */,
 				B1603382199AB5B700BFEC3A /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */,
+				B181FC31199DA73100982AC3 /* CustomUITableViewCell.m in Sources */,
 				B1FAB66A199AE31200CB4D4F /* TMDBConfiguration.m in Sources */,
 				B134CA21199C288D004C392E /* MyMovie.m in Sources */,
 				B13DC6AA199721F100510540 /* UPCDatabaseClient.m in Sources */,
