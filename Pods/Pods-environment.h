@@ -78,6 +78,12 @@
 #define COCOAPODS_VERSION_MINOR_CocoaLumberjack_Extensions 9
 #define COCOAPODS_VERSION_PATCH_CocoaLumberjack_Extensions 2
 
+// FXForms
+#define COCOAPODS_POD_AVAILABLE_FXForms
+#define COCOAPODS_VERSION_MAJOR_FXForms 1
+#define COCOAPODS_VERSION_MINOR_FXForms 1
+#define COCOAPODS_VERSION_PATCH_FXForms 6
+
 // MTBBarcodeScanner
 #define COCOAPODS_POD_AVAILABLE_MTBBarcodeScanner
 #define COCOAPODS_VERSION_MAJOR_MTBBarcodeScanner 0
