@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Phil Nichols. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "NSFetchedResultsTableViewController.h"
 
-@interface VideoGameTableViewController : UITableViewController
+@interface VideoGameTableViewController : NSFetchedResultsTableViewController
 
 @end

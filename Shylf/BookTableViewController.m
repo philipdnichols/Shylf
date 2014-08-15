@@ -7,93 +7,81 @@
 //
 
 #import "BookTableViewController.h"
+#import "MyBookCell.h"
+#import "MyBook.h"
 
 @interface BookTableViewController ()
+
+@property (strong, nonatomic) NSFetchRequest *request;
+@property (strong, nonatomic) NSString *groupKeyPath;
 
 @end
 
 @implementation BookTableViewController
 
+#pragma mark - Properties
+
+@synthesize request = _request;
+@synthesize groupKeyPath = _groupKeyPath;
+
+- (NSFetchRequest *)fetchedRequest
+{
+    return self.request;
+}
+
+- (NSString *)fetchedGroupKeyPath
+{
+    return self.groupKeyPath;
+}
+
+- (NSFetchRequest *)request
+{
+    if (!_request) {
+        _request = [MyBook MR_requestAllSortedBy:@"title"
+                                       ascending:YES];
+    }
+    return _request;
+}
+
+- (NSString *)groupKeyPath
+{
+    //    if (!_groupKeyPath) {
+    //
+    //    }
+    return _groupKeyPath;
+}
+
+- (void)setRequest:(NSFetchRequest *)request
+{
+    _request = request;
+    self.fetchedRequest = _request;
+}
+
+- (void)setGroupKeyPath:(NSString *)groupKeyPath
+{
+    _groupKeyPath = groupKeyPath;
+    self.fetchedGroupKeyPath = _groupKeyPath;
+}
+
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    [self.tableView registerNib:[MyBookCell nib] forCellReuseIdentifier:[MyBookCell identifier]];
 }
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return 0;
-}
-
-static NSString *BookCellIdentifier = @"Book Cell";
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:BookCellIdentifier
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[MyBookCell identifier]
                                                             forIndexPath:indexPath];
     
     // Configure the cell...
     
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

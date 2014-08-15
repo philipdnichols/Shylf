@@ -44,15 +44,6 @@
                                                                       groupedBy:self.fetchedGroupKeyPath
                                                                       inContext:[NSManagedObjectContext MR_defaultContext]];
         
-//        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchedRequest
-//                                                                        managedObjectContext:[NSManagedObjectContext MR_defaultContext]
-//                                                                          sectionNameKeyPath:self.fetchedGroupKeyPath
-//                                                                                   cacheName:nil];
-//        
-//        
-//        
-//        _fetchedResultsController.delegate = self;
-        
         [self reloadFetchedResultsController];
     }
     return _fetchedResultsController;

@@ -93,6 +93,12 @@
 		B1760AFE1996E27B00DD6D1E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1760AFC1996E27B00DD6D1E /* InfoPlist.strings */; };
 		B1760B001996E27B00DD6D1E /* ShylfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1760AFF1996E27B00DD6D1E /* ShylfTests.m */; };
 		B181FC31199DA73100982AC3 /* CustomUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B181FC30199DA73100982AC3 /* CustomUITableViewCell.m */; };
+		B181FC34199DAED200982AC3 /* MyBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B181FC33199DAED200982AC3 /* MyBookCell.m */; };
+		B181FC36199DAEFF00982AC3 /* MyBookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B181FC35199DAEFF00982AC3 /* MyBookCell.xib */; };
+		B181FC38199DAF6C00982AC3 /* MyTVShowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B181FC37199DAF6C00982AC3 /* MyTVShowCell.xib */; };
+		B181FC3B199DAF8900982AC3 /* MyTVShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B181FC3A199DAF8900982AC3 /* MyTVShowCell.m */; };
+		B181FC3E199DAFF400982AC3 /* MyVideoGameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B181FC3D199DAFF400982AC3 /* MyVideoGameCell.xib */; };
+		B181FC41199DB01A00982AC3 /* MyVideoGameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B181FC40199DB01A00982AC3 /* MyVideoGameCell.m */; };
 		B1FAB66A199AE31200CB4D4F /* TMDBConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FAB669199AE31200CB4D4F /* TMDBConfiguration.m */; };
 		B1FAB66D199AE33800CB4D4F /* TMDBImagesConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FAB66C199AE33800CB4D4F /* TMDBImagesConfiguration.m */; };
 		B1FAB675199B0DFE00CB4D4F /* TMDBMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1FAB674199B0DFE00CB4D4F /* TMDBMovieCell.xib */; };
@@ -252,6 +258,15 @@
 		B1760AFF1996E27B00DD6D1E /* ShylfTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShylfTests.m; sourceTree = "<group>"; };
 		B181FC2F199DA73100982AC3 /* CustomUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUITableViewCell.h; sourceTree = "<group>"; };
 		B181FC30199DA73100982AC3 /* CustomUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUITableViewCell.m; sourceTree = "<group>"; };
+		B181FC32199DAED200982AC3 /* MyBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBookCell.h; sourceTree = "<group>"; };
+		B181FC33199DAED200982AC3 /* MyBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBookCell.m; sourceTree = "<group>"; };
+		B181FC35199DAEFF00982AC3 /* MyBookCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyBookCell.xib; sourceTree = "<group>"; };
+		B181FC37199DAF6C00982AC3 /* MyTVShowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyTVShowCell.xib; sourceTree = "<group>"; };
+		B181FC39199DAF8900982AC3 /* MyTVShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTVShowCell.h; sourceTree = "<group>"; };
+		B181FC3A199DAF8900982AC3 /* MyTVShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTVShowCell.m; sourceTree = "<group>"; };
+		B181FC3D199DAFF400982AC3 /* MyVideoGameCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyVideoGameCell.xib; sourceTree = "<group>"; };
+		B181FC3F199DB01A00982AC3 /* MyVideoGameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyVideoGameCell.h; sourceTree = "<group>"; };
+		B181FC40199DB01A00982AC3 /* MyVideoGameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyVideoGameCell.m; sourceTree = "<group>"; };
 		B1FAB668199AE31200CB4D4F /* TMDBConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBConfiguration.h; sourceTree = "<group>"; };
 		B1FAB669199AE31200CB4D4F /* TMDBConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBConfiguration.m; sourceTree = "<group>"; };
 		B1FAB66B199AE33800CB4D4F /* TMDBImagesConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBImagesConfiguration.h; sourceTree = "<group>"; };
@@ -449,15 +464,23 @@
 		B13DC6901996E36900510540 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B181FC3C199DAFDF00982AC3 /* Abstract */,
 				B1FAB676199B0E3200CB4D4F /* TMDBMovieCell.h */,
 				B1FAB677199B0E3200CB4D4F /* TMDBMovieCell.m */,
 				B134CA46199C4733004C392E /* MyMovieCell.h */,
 				B134CA47199C4733004C392E /* MyMovieCell.m */,
+				B181FC32199DAED200982AC3 /* MyBookCell.h */,
+				B181FC33199DAED200982AC3 /* MyBookCell.m */,
+				B181FC39199DAF8900982AC3 /* MyTVShowCell.h */,
+				B181FC3A199DAF8900982AC3 /* MyTVShowCell.m */,
+				B181FC3F199DB01A00982AC3 /* MyVideoGameCell.h */,
+				B181FC40199DB01A00982AC3 /* MyVideoGameCell.m */,
+				B181FC3D199DAFF400982AC3 /* MyVideoGameCell.xib */,
+				B181FC37199DAF6C00982AC3 /* MyTVShowCell.xib */,
+				B181FC35199DAEFF00982AC3 /* MyBookCell.xib */,
 				B1FAB674199B0DFE00CB4D4F /* TMDBMovieCell.xib */,
 				B134CA44199C4708004C392E /* MyMovieCell.xib */,
 				B1760AE61996E27B00DD6D1E /* Main.storyboard */,
-				B181FC2F199DA73100982AC3 /* CustomUITableViewCell.h */,
-				B181FC30199DA73100982AC3 /* CustomUITableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -672,6 +695,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B181FC3C199DAFDF00982AC3 /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				B181FC2F199DA73100982AC3 /* CustomUITableViewCell.h */,
+				B181FC30199DA73100982AC3 /* CustomUITableViewCell.m */,
+			);
+			name = Abstract;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -751,10 +783,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B181FC36199DAEFF00982AC3 /* MyBookCell.xib in Resources */,
 				B1760AED1996E27B00DD6D1E /* Images.xcassets in Resources */,
 				B1760ADF1996E27B00DD6D1E /* InfoPlist.strings in Resources */,
+				B181FC3E199DAFF400982AC3 /* MyVideoGameCell.xib in Resources */,
 				B1FAB675199B0DFE00CB4D4F /* TMDBMovieCell.xib in Resources */,
 				B1760AE81996E27B00DD6D1E /* Main.storyboard in Resources */,
+				B181FC38199DAF6C00982AC3 /* MyTVShowCell.xib in Resources */,
 				B134CA45199C4708004C392E /* MyMovieCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -866,6 +901,7 @@
 				B1603373199AB5B700BFEC3A /* NSNumber+MagicalDataImport.m in Sources */,
 				B134CA1D199C288D004C392E /* _MyMovie.m in Sources */,
 				B13DC6A719971C4100510540 /* MovieSearchTableViewController.m in Sources */,
+				B181FC3B199DAF8900982AC3 /* MyTVShowCell.m in Sources */,
 				B1FAB678199B0E3200CB4D4F /* TMDBMovieCell.m in Sources */,
 				B13DC6A11997121000510540 /* TVShowTableViewController.m in Sources */,
 				B1603389199AB5B700BFEC3A /* MagicalRecord.m in Sources */,
@@ -876,6 +912,7 @@
 				B134CA1E199C288D004C392E /* _MyTVShow.m in Sources */,
 				B1261A861999AB37006B6B19 /* TMDBCountry.m in Sources */,
 				B13DC6931996E4CB00510540 /* MoviesTableViewController.m in Sources */,
+				B181FC34199DAED200982AC3 /* MyBookCell.m in Sources */,
 				B160337F199AB5B700BFEC3A /* NSManagedObjectContext+MagicalThreading.m in Sources */,
 				B13DC6B319972B1900510540 /* TMDBMovie.m in Sources */,
 				B1603376199AB5B700BFEC3A /* NSString+MagicalDataImport.m in Sources */,
@@ -883,6 +920,7 @@
 				B134CA31199C3E11004C392E /* _MyMovieGenre.m in Sources */,
 				B13DC69D1996F87D00510540 /* Shylf.xcdatamodeld in Sources */,
 				B1760AE11996E27B00DD6D1E /* main.m in Sources */,
+				B181FC41199DB01A00982AC3 /* MyVideoGameCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
