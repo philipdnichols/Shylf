@@ -16,6 +16,16 @@
                             withPredicate:[NSPredicate predicateWithFormat:@"ANY genres.name == %@", genre]];
 }
 
++ (NSArray *)fetchAllWithIdentifier:(NSUInteger)identifier
+{
+    return [MyMovie MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"identifier == %d", identifier]];
+}
+
++ (NSArray *)fetchAllWithTitle:(NSString *)title
+{
+    return [MyMovie MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"title == %@" , title]];
+}
+
 - (void)saveWithSuccess:(void(^)())success failure:(void(^)(NSError *error))failure
 {
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL succ, NSError *error) {

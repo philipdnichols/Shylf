@@ -12,6 +12,7 @@
 #import "TMDBMovieCell+Configure.h"
 #import "TMDBMovie+CoreData.h"
 #import "MovieSearchDetailViewController.h"
+#import "MyMovie.h"
 
 @interface MovieSearchTableViewController () <UISearchBarDelegate, UIAlertViewDelegate>
 
@@ -19,6 +20,9 @@
 
 @property (strong, nonatomic) ArrayDataSource *moviesArrayDataSource;
 @property (nonatomic, copy) TableViewCellConfigureBlock movieCellConfigureBlock;
+
+@property (strong, nonatomic) UIAlertView *movieAlreadyInCollectionAlertView;
+@property (strong, nonatomic) UIAlertView *addMovieAlertView;
 
 @end
 
@@ -53,6 +57,33 @@
     }
     
     [self searchMovies];
+}
+
+- (UIAlertView *)movieAlreadyInCollectionAlertView
+{
+    if (!_movieAlreadyInCollectionAlertView) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Notice"
+                                                        message:@"You already have this movie in your collection. Are you sure you want to add it again?"
+                                                       delegate:self
+                                              cancelButtonTitle:@"No"
+                                              otherButtonTitles:@"Yes", nil];
+        _movieAlreadyInCollectionAlertView = alertView;
+    }
+    return _movieAlreadyInCollectionAlertView;
+}
+
+- (UIAlertView *)addMovieAlertView
+{
+    if (!_addMovieAlertView) {
+        // TODO: String constants for the alert stuff, even the uiactionsheets
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Add Movie"
+                                                            message:nil
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Add", @"Add and Continue", nil];
+        _addMovieAlertView = alertView;
+    }
+    return _addMovieAlertView;
 }
 
 #pragma mark - Lifecycle
@@ -105,12 +136,15 @@
 {
     TMDBMovie *movie = [self.moviesArrayDataSource itemAtIndexPath:indexPath];
     
-    // TODO: String constants for the alert stuff, even the uiactionsheets
-    [[[UIAlertView alloc] initWithTitle:@"Add Movie"
-                                message:[NSString stringWithFormat:@"Add \"%@\" to Movie Collection?", movie.title]
-                               delegate:self
-                      cancelButtonTitle:@"Cancel"
-                      otherButtonTitles:@"Add", @"Add and Continue", nil] show];
+    self.addMovieAlertView.message = [NSString stringWithFormat:@"Add \"%@\" to Movie Collection?", movie.title];
+    
+    NSArray *existingMoviesByIdentifier = [MyMovie fetchAllWithIdentifier:movie.identifier];
+    NSArray *existingMoviesByTitle = [MyMovie fetchAllWithTitle:movie.title];
+    if ((!existingMoviesByIdentifier || ![existingMoviesByIdentifier count]) && (!existingMoviesByTitle || ![existingMoviesByTitle count])) {
+        [self.addMovieAlertView show];
+    } else {
+        [self.movieAlreadyInCollectionAlertView show];
+    }
 }
 
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
@@ -134,22 +168,30 @@
 {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     
-    if ([buttonTitle isEqualToString:@"Add"] || [buttonTitle isEqualToString:@"Add and Continue"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        TMDBMovie *movie = [self.moviesArrayDataSource itemAtIndexPath:indexPath];
-        
-        [SVProgressHUD showWithStatus:@"Adding to Collection..." maskType:SVProgressHUDMaskTypeGradient];
-        [movie saveWithSuccess:^{
-            [SVProgressHUD dismiss];
+    if (alertView == self.addMovieAlertView) {
+        if ([buttonTitle isEqualToString:@"Add"] || [buttonTitle isEqualToString:@"Add and Continue"]) {
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            TMDBMovie *movie = [self.moviesArrayDataSource itemAtIndexPath:indexPath];
             
-            if (![buttonTitle isEqualToString:@"Add and Continue"]) {
-                [self.navigationController popToRootViewControllerAnimated:YES];
-            }
-        } failure:^(NSError *error) {
-            DDLogError(@"There was an error saving the movie: %@", [error localizedDescription]);
-        }];
-    } else if ([buttonTitle isEqualToString:@"Cancel"]) {
-        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+            [SVProgressHUD showWithStatus:@"Adding to Collection..." maskType:SVProgressHUDMaskTypeGradient];
+            [movie saveWithSuccess:^{
+                [SVProgressHUD dismiss];
+                
+                if (![buttonTitle isEqualToString:@"Add and Continue"]) {
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                }
+            } failure:^(NSError *error) {
+                DDLogError(@"There was an error saving the movie: %@", [error localizedDescription]);
+            }];
+        } else if ([buttonTitle isEqualToString:@"Cancel"]) {
+            [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+        }
+    } else if (alertView == self.movieAlreadyInCollectionAlertView) {
+        if ([buttonTitle isEqualToString:@"Yes"]) {
+            [self.addMovieAlertView show];
+        } else if ([buttonTitle isEqualToString:@"No"]) {
+            [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+        }
     }
 }
 
