@@ -105,7 +105,7 @@
 {
     TMDBMovie *movie = [self.moviesArrayDataSource itemAtIndexPath:indexPath];
     
-    // TODO: String contants for the alert stuff, even the uiactionsheets
+    // TODO: String constants for the alert stuff, even the uiactionsheets
     [[[UIAlertView alloc] initWithTitle:@"Add Movie"
                                 message:[NSString stringWithFormat:@"Add \"%@\" to Movie Collection?", movie.title]
                                delegate:self
