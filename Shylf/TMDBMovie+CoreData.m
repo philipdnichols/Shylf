@@ -7,6 +7,9 @@
 //
 
 #import "TMDBMovie+CoreData.h"
+#import "TheMovieDBClient.h"
+#import "MyMovie.h"
+#import "UIImage+IO.h"
 
 @implementation TMDBMovie (CoreData)
 
@@ -29,7 +32,7 @@
              @"originalTitle" : [NSNull null],
              @"overview" : @"overview",
              @"popularity" : [NSNull null],
-             @"posterPath" : @"posterPath",
+             @"posterPath" : @"posterFileURL",
              @"productionCompanies" : [NSNull null],
              @"productionCountries" : [NSNull null],
              @"releaseDate" : @"releaseDate",
@@ -51,23 +54,75 @@
              };
 }
 
+//+ (NSValueTransformer *)entityAttributeTransformerForKey:(NSString *)key
+//{
+//    if ([key isEqualToString:@"posterPath"]) {
+//        [MTLValueTransformer reversibleTransformerWithForwardBlock:^NSString*(NSString *posterPath) {
+//            NSString *posterFileURL = nil;
+//            
+//            NSURL *posterThumbnailURL = [[TheMovieDBClient sharedClient] posterThumbnailURLForPosterPath:posterPath];
+//            NSURL *posterURL = [[TheMovieDBClient sharedClient] posterURLForPosterPath:posterPath];
+//            
+//            // Must block here
+//            
+//            return posterFileURL;
+//        } reverseBlock:^id(NSString *pathFileURL) {
+//            return @""; // Not supported
+//        }];
+//    }
+//    
+//    return nil;
+//}
+
 - (void)saveWithSuccess:(void(^)())success failure:(void(^)(NSError *error))failure
 {
     NSError *error = nil;
-    [MTLManagedObjectAdapter managedObjectFromModel:self
-                               insertingIntoContext:[NSManagedObjectContext MR_defaultContext]
-                                              error:&error];
+    MyMovie *myMovie = [MTLManagedObjectAdapter managedObjectFromModel:self
+                                                  insertingIntoContext:[NSManagedObjectContext MR_defaultContext]
+                                                                 error:&error];
     
     // TODO: I think this creates unique genre objects...maybe? This could be improved but isn't a huge deal.
     
     if (!error) {
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL succ, NSError *error) {
-            if (!error) {
-                success();
-            } else {
-                failure(error);
+        NSURL *posterThumbnailURL = [[TheMovieDBClient sharedClient] posterThumbnailURLForPosterPath:self.posterPath];
+        NSURL *posterURL = [[TheMovieDBClient sharedClient] posterURLForPosterPath:self.posterPath];
+        
+        // TODO: Use NSOperationQueue here
+        dispatch_queue_t posterQ = dispatch_queue_create("Poster Q", NULL);
+        dispatch_async(posterQ, ^{
+            UIImage *posterThumbnailImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:posterThumbnailURL]];
+            UIImage *posterImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:posterURL]];
+            
+            // TODO: String constants to use in the manual add process as well
+            NSURL *posterThumbnailImageFileURL = [posterThumbnailImage saveToDiskWithName:@"moviePosterThumbnail"];
+            NSURL *posterImageFileURL = [posterImage saveToDiskWithName:@"moviePoster"];
+            
+            if (posterThumbnailImageFileURL) {
+                myMovie.thumbnailFileURL = [posterThumbnailImageFileURL path];
             }
-        }];
+            if (posterImageFileURL) {
+                myMovie.posterFileURL = [posterImageFileURL path];
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL succ, NSError *error) {
+                    if (!error) {
+                        success();
+                    } else {
+                        failure(error);
+                    }
+                }];
+            });
+        });
+    } else {
+        failure(error);
+    }
+    
+    
+    
+    
+    if (!error) {
+        
     } else {
         failure(error);
     }

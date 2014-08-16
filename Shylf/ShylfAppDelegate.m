@@ -47,6 +47,7 @@
     UIColor *barFontColor = [UIColor flatWhiteColor];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent; // [ChameleonStatusBar statusBarStyleForColor:[UIColor flatSkyBlueColor]];
     
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
     [[UINavigationBar appearance] setBarTintColor:barColor];
     [[UINavigationBar appearance] setTintColor:barFontColor];
     [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName: barFontColor }];

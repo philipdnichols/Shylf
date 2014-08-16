@@ -110,6 +110,11 @@
             break;
             
         case NSFetchedResultsChangeDelete:
+            // hide cell, because animations are broken on ios7
+//            if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+//                [self.tableView cellForRowAtIndexPath:indexPath].alpha = 0.0;
+//            }
+            
             [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             

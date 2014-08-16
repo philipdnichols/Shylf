@@ -52,6 +52,12 @@
 		B13DC6AA199721F100510540 /* UPCDatabaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6A9199721F100510540 /* UPCDatabaseClient.m */; };
 		B13DC6AF1997289600510540 /* TheMovieDBClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6AE1997289600510540 /* TheMovieDBClient.m */; };
 		B13DC6B319972B1900510540 /* TMDBMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = B13DC6B219972B1900510540 /* TMDBMovie.m */; };
+		B151BF1A199E6F5100C5B09D /* AddMovieForm.m in Sources */ = {isa = PBXBuildFile; fileRef = B151BF19199E6F5100C5B09D /* AddMovieForm.m */; };
+		B151BF1D199E735C00C5B09D /* AddMovieFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B151BF1C199E735C00C5B09D /* AddMovieFormViewController.m */; };
+		B151BF21199EA48000C5B09D /* CustomImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B151BF20199EA48000C5B09D /* CustomImageCell.m */; };
+		B151BF23199EA49000C5B09D /* CustomImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B151BF22199EA49000C5B09D /* CustomImageCell.xib */; };
+		B151BF25199EB1D300C5B09D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B151BF24199EB1D300C5B09D /* Images.xcassets */; };
+		B151BF2C199EEDF700C5B09D /* UIImage+IO.m in Sources */ = {isa = PBXBuildFile; fileRef = B151BF2B199EEDF700C5B09D /* UIImage+IO.m */; };
 		B1603370199AB5B700BFEC3A /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = B1603336199AB5B700BFEC3A /* MagicalImportFunctions.m */; };
 		B1603371199AB5B700BFEC3A /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = B1603338199AB5B700BFEC3A /* NSAttributeDescription+MagicalDataImport.m */; };
 		B1603372199AB5B700BFEC3A /* NSEntityDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = B160333A199AB5B700BFEC3A /* NSEntityDescription+MagicalDataImport.m */; };
@@ -86,7 +92,6 @@
 		B1760AE11996E27B00DD6D1E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1760AE01996E27B00DD6D1E /* main.m */; };
 		B1760AE51996E27B00DD6D1E /* ShylfAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1760AE41996E27B00DD6D1E /* ShylfAppDelegate.m */; };
 		B1760AE81996E27B00DD6D1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1760AE61996E27B00DD6D1E /* Main.storyboard */; };
-		B1760AED1996E27B00DD6D1E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1760AEC1996E27B00DD6D1E /* Images.xcassets */; };
 		B1760AF41996E27B00DD6D1E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AF31996E27B00DD6D1E /* XCTest.framework */; };
 		B1760AF51996E27B00DD6D1E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD41996E27B00DD6D1E /* Foundation.framework */; };
 		B1760AF61996E27B00DD6D1E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1760AD81996E27B00DD6D1E /* UIKit.framework */; };
@@ -185,6 +190,16 @@
 		B13DC6B0199728A400510540 /* TheMovieDBAPIKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TheMovieDBAPIKey.h; sourceTree = "<group>"; };
 		B13DC6B119972B1900510540 /* TMDBMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDBMovie.h; sourceTree = "<group>"; };
 		B13DC6B219972B1900510540 /* TMDBMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDBMovie.m; sourceTree = "<group>"; };
+		B151BF18199E6F5100C5B09D /* AddMovieForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMovieForm.h; sourceTree = "<group>"; };
+		B151BF19199E6F5100C5B09D /* AddMovieForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMovieForm.m; sourceTree = "<group>"; };
+		B151BF1B199E735C00C5B09D /* AddMovieFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMovieFormViewController.h; sourceTree = "<group>"; };
+		B151BF1C199E735C00C5B09D /* AddMovieFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMovieFormViewController.m; sourceTree = "<group>"; };
+		B151BF1F199EA48000C5B09D /* CustomImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomImageCell.h; sourceTree = "<group>"; };
+		B151BF20199EA48000C5B09D /* CustomImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomImageCell.m; sourceTree = "<group>"; };
+		B151BF22199EA49000C5B09D /* CustomImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomImageCell.xib; sourceTree = "<group>"; };
+		B151BF24199EB1D300C5B09D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B151BF2A199EEDF700C5B09D /* UIImage+IO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+IO.h"; sourceTree = "<group>"; };
+		B151BF2B199EEDF700C5B09D /* UIImage+IO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+IO.m"; sourceTree = "<group>"; };
 		B1603335199AB5B700BFEC3A /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		B1603336199AB5B700BFEC3A /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
 		B1603337199AB5B700BFEC3A /* NSAttributeDescription+MagicalDataImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributeDescription+MagicalDataImport.h"; sourceTree = "<group>"; };
@@ -254,7 +269,6 @@
 		B1760AE31996E27B00DD6D1E /* ShylfAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShylfAppDelegate.h; sourceTree = "<group>"; };
 		B1760AE41996E27B00DD6D1E /* ShylfAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShylfAppDelegate.m; sourceTree = "<group>"; };
 		B1760AE71996E27B00DD6D1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B1760AEC1996E27B00DD6D1E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B1760AF21996E27B00DD6D1E /* ShylfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShylfTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1760AF31996E27B00DD6D1E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B1760AFB1996E27B00DD6D1E /* ShylfTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShylfTests-Info.plist"; sourceTree = "<group>"; };
@@ -503,6 +517,7 @@
 		B13DC6941996E6B900510540 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B151BF17199E6EE700C5B09D /* Forms */,
 				B181FC46199DB55200982AC3 /* Data Sources */,
 				B134CA29199C37AB004C392E /* Abstract */,
 				B134CA28199C378C004C392E /* Main Controllers */,
@@ -529,6 +544,37 @@
 				B1261A7D1999A8C6006B6B19 /* TMDB */,
 			);
 			name = API;
+			sourceTree = "<group>";
+		};
+		B151BF17199E6EE700C5B09D /* Forms */ = {
+			isa = PBXGroup;
+			children = (
+				B151BF1E199EA46700C5B09D /* Cells */,
+				B151BF18199E6F5100C5B09D /* AddMovieForm.h */,
+				B151BF19199E6F5100C5B09D /* AddMovieForm.m */,
+				B151BF1B199E735C00C5B09D /* AddMovieFormViewController.h */,
+				B151BF1C199E735C00C5B09D /* AddMovieFormViewController.m */,
+			);
+			name = Forms;
+			sourceTree = "<group>";
+		};
+		B151BF1E199EA46700C5B09D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B151BF1F199EA48000C5B09D /* CustomImageCell.h */,
+				B151BF20199EA48000C5B09D /* CustomImageCell.m */,
+				B151BF22199EA49000C5B09D /* CustomImageCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		B151BF26199EC0FC00C5B09D /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				B151BF2A199EEDF700C5B09D /* UIImage+IO.h */,
+				B151BF2B199EEDF700C5B09D /* UIImage+IO.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		B1603332199AB5B700BFEC3A /* MagicalRecord */ = {
@@ -671,12 +717,13 @@
 			children = (
 				B1760AE31996E27B00DD6D1E /* ShylfAppDelegate.h */,
 				B1760AE41996E27B00DD6D1E /* ShylfAppDelegate.m */,
+				B151BF26199EC0FC00C5B09D /* Categories */,
 				B13DC6AB1997229600510540 /* API */,
 				B13DC69E1996F88100510540 /* Core Data */,
 				B13DC6901996E36900510540 /* View */,
 				B13DC6941996E6B900510540 /* Controller */,
 				B1603332199AB5B700BFEC3A /* MagicalRecord */,
-				B1760AEC1996E27B00DD6D1E /* Images.xcassets */,
+				B151BF24199EB1D300C5B09D /* Images.xcassets */,
 				B1760ADB1996E27B00DD6D1E /* Supporting Files */,
 			);
 			path = Shylf;
@@ -819,9 +866,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B151BF25199EB1D300C5B09D /* Images.xcassets in Resources */,
 				B181FC36199DAEFF00982AC3 /* MyBookCell.xib in Resources */,
-				B1760AED1996E27B00DD6D1E /* Images.xcassets in Resources */,
 				B1760ADF1996E27B00DD6D1E /* InfoPlist.strings in Resources */,
+				B151BF23199EA49000C5B09D /* CustomImageCell.xib in Resources */,
 				B181FC3E199DAFF400982AC3 /* MyVideoGameCell.xib in Resources */,
 				B1FAB675199B0DFE00CB4D4F /* TMDBMovieCell.xib in Resources */,
 				B1760AE81996E27B00DD6D1E /* Main.storyboard in Resources */,
@@ -906,6 +954,7 @@
 				B134CA43199C41E3004C392E /* TMDBGenre+CoreData.m in Sources */,
 				B13DC6A41997176700510540 /* BarcodeScanViewController.m in Sources */,
 				B134CA48199C4733004C392E /* MyMovieCell.m in Sources */,
+				B151BF2C199EEDF700C5B09D /* UIImage+IO.m in Sources */,
 				B1261A7C1999A8AE006B6B19 /* TMDBGenre.m in Sources */,
 				B1603384199AB5B700BFEC3A /* MagicalRecord+ErrorHandling.m in Sources */,
 				B1261A831999AABD006B6B19 /* TMDBCompany.m in Sources */,
@@ -924,6 +973,7 @@
 				B1603375199AB5B700BFEC3A /* NSRelationshipDescription+MagicalDataImport.m in Sources */,
 				B1603374199AB5B700BFEC3A /* NSObject+MagicalDataImport.m in Sources */,
 				B134CA22199C288D004C392E /* MyTVShow.m in Sources */,
+				B151BF1A199E6F5100C5B09D /* AddMovieForm.m in Sources */,
 				B1603379199AB5B700BFEC3A /* NSManagedObject+MagicalFinders.m in Sources */,
 				B13DC6971996F74A00510540 /* VideoGameTableViewController.m in Sources */,
 				B1603385199AB5B700BFEC3A /* MagicalRecord+iCloud.m in Sources */,
@@ -933,6 +983,7 @@
 				B1603386199AB5B700BFEC3A /* MagicalRecord+Options.m in Sources */,
 				B1603387199AB5B700BFEC3A /* MagicalRecord+Setup.m in Sources */,
 				B1603378199AB5B700BFEC3A /* NSManagedObject+MagicalDataImport.m in Sources */,
+				B151BF1D199E735C00C5B09D /* AddMovieFormViewController.m in Sources */,
 				B181FC49199DB57100982AC3 /* ArrayDataSource.m in Sources */,
 				B181FC50199DBE4F00982AC3 /* NSFetchedResultsControllerDataSource.m in Sources */,
 				B134CA26199C3735004C392E /* NSFetchedResultsTableViewController.m in Sources */,
@@ -961,6 +1012,7 @@
 				B13DC69D1996F87D00510540 /* Shylf.xcdatamodeld in Sources */,
 				B1760AE11996E27B00DD6D1E /* main.m in Sources */,
 				B181FC41199DB01A00982AC3 /* MyVideoGameCell.m in Sources */,
+				B151BF21199EA48000C5B09D /* CustomImageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -44,8 +44,6 @@
     [super viewWillDisappear:animated];
 }
 
-static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
-
 - (void)startScanning
 {
     if ([MTBBarcodeScanner scanningIsAvailable]) {

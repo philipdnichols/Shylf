@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #include "MTBBarcodeScanner.h"
 
+// TODO: Make all the static NSStrings consts
+static NSString * const BarcodeScannedSegueIdentifier = @"Barcode Scanned";
+
 @interface BarcodeScanViewController : UIViewController
 
 // Out

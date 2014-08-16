@@ -6,11 +6,12 @@
 const struct MyMovieAttributes MyMovieAttributes = {
 	.identifier = @"identifier",
 	.overview = @"overview",
-	.posterPath = @"posterPath",
+	.posterFileURL = @"posterFileURL",
 	.rating = @"rating",
 	.releaseDate = @"releaseDate",
 	.runtime = @"runtime",
 	.tagline = @"tagline",
+	.thumbnailFileURL = @"thumbnailFileURL",
 	.title = @"title",
 };
 
@@ -102,7 +103,7 @@ const struct MyMovieFetchedProperties MyMovieFetchedProperties = {
 
 
 
-@dynamic posterPath;
+@dynamic posterFileURL;
 
 
 
@@ -169,6 +170,13 @@ const struct MyMovieFetchedProperties MyMovieFetchedProperties = {
 
 
 @dynamic tagline;
+
+
+
+
+
+
+@dynamic thumbnailFileURL;
 
 
 

@@ -17,6 +17,8 @@
 #import "TMDBGenre.h"
 #import "NSFetchedResultsControllerDataSource.h"
 #import "MyMovieCell+Configure.h"
+#import "AddMovieForm.h"
+#import "AddMovieFormViewController.h"
 
 @interface MoviesTableViewController () <UIActionSheetDelegate, UIAlertViewDelegate>
 
@@ -232,8 +234,9 @@
 
 #pragma mark - Navigation
 
-static NSString *ScanMovieBarcodeSegueIdentifier = @"Scan Movie Barcode";
-static NSString *SearchMoviesSegueIdentifier = @"Search Movies";
+static NSString * const ScanMovieBarcodeSegueIdentifier = @"Scan Movie Barcode";
+static NSString * const SearchMoviesSegueIdentifier = @"Search Movies";
+static NSString * const AddMovieSegueIdentifier = @"Add Movie";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -251,9 +254,14 @@ static NSString *SearchMoviesSegueIdentifier = @"Search Movies";
     
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         UINavigationController *uiNavigationController = (UINavigationController *)viewController;
-        if ([[uiNavigationController.viewControllers firstObject] isKindOfClass:[BarcodeScanViewController class]]) {
+        UIViewController *firstVC = [uiNavigationController.viewControllers firstObject];
+        if ([firstVC isKindOfClass:[BarcodeScanViewController class]]) {
             if (![segueIdentifier length] || [segueIdentifier isEqualToString:ScanMovieBarcodeSegueIdentifier]) {
                 // No setup to do right now, maybe later.
+            }
+        } else if ([firstVC isKindOfClass:[AddMovieFormViewController class]]) {
+            if (![segueIdentifier length] || [segueIdentifier isEqualToString:AddMovieSegueIdentifier]) {
+                // TODO: Setup
             }
         }
     } else if ([viewController isKindOfClass:[MovieSearchTableViewController class]]) {
@@ -270,8 +278,6 @@ static NSString *SearchMoviesSegueIdentifier = @"Search Movies";
 
 #pragma mark - Unwinding
 
-static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
-
 - (IBAction)scannedCode:(UIStoryboardSegue *)segue
 {
     if ([segue.identifier isEqualToString:BarcodeScannedSegueIdentifier]) {
@@ -279,7 +285,7 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
             BarcodeScanViewController *barcodeScanViewController = (BarcodeScanViewController *)segue.sourceViewController;
             AVMetadataMachineReadableCodeObject *code = barcodeScanViewController.code;
             
-            [SVProgressHUD showWithStatus:@"Processing" maskType:SVProgressHUDMaskTypeBlack];
+            [SVProgressHUD showWithStatus:@"Processing" maskType:SVProgressHUDMaskTypeGradient];
             [[UPCDatabaseClient sharedClient]
                  itemForUPC:code.stringValue
                     success:^(UPCDBItem *item) {
@@ -288,8 +294,25 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
                         [self performSegueWithIdentifier:SearchMoviesSegueIdentifier sender:query];
                     }
                     failure:^(NSError *error) {
-                        DDLogError(@"Error retrieving UPC description for UPC %@: %@", code.stringValue, error.localizedDescription);
+                        DDLogError(@"There was an error retrieving the UPC description for UPC %@: %@", code.stringValue, [error localizedDescription]);
                     }];
+        }
+    }
+}
+
+- (IBAction)addedMovie:(UIStoryboardSegue *)segue
+{
+    if ([segue.identifier isEqualToString:MovieAddedSegueIdentifier]) {
+        if ([segue.sourceViewController isKindOfClass:[AddMovieFormViewController class]]) {
+            AddMovieFormViewController *addMovieFormViewController = (AddMovieFormViewController *)segue.sourceViewController;
+            
+            MyMovie *addedMovie = addMovieFormViewController.addedMovie;
+            [addedMovie saveWithSuccess:^{
+                // TODO: Use MBProgress hud to flash up a checkmark?, Possible with SVProgressHUD?
+                [SVProgressHUD dismiss];
+            } failure:^(NSError *error) {
+                DDLogError(@"There was an error adding a new movie: %@", [error localizedDescription]);
+            }];
         }
     }
 }
@@ -306,7 +329,7 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
         } else if ([buttonTitle isEqualToString:@"Scan Barcode"]) {
             [self performSegueWithIdentifier:ScanMovieBarcodeSegueIdentifier sender:self];
         } else if ([buttonTitle isEqualToString:@"Add"]) {
-            // TODO: Add Movie Form
+            [self performSegueWithIdentifier:AddMovieSegueIdentifier sender:self];
         }
     } else if (actionSheet == self.filterMovieGenresActionSheet) {
         // TODO: Better interface
@@ -325,8 +348,9 @@ static NSString *BarcodeScannedSegueIdentifier = @"Barcode Scanned";
     
     if (alertView == self.deleteMovieAlertView) {
         if ([buttonTitle isEqualToString:@"Yes"]) {
+            [SVProgressHUD showWithStatus:@"Deleting from Collection..." maskType:SVProgressHUDMaskTypeGradient];
             [self.movieToDelete deleteWithSuccess:^{
-                // All good!
+                [SVProgressHUD dismiss];
             } failure:^(NSError *error) {
                 DDLogError(@"There was an error deleting the movie: %@", [error localizedDescription]);
             }];

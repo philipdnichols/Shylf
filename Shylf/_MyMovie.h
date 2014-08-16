@@ -7,11 +7,12 @@
 extern const struct MyMovieAttributes {
 	__unsafe_unretained NSString *identifier;
 	__unsafe_unretained NSString *overview;
-	__unsafe_unretained NSString *posterPath;
+	__unsafe_unretained NSString *posterFileURL;
 	__unsafe_unretained NSString *rating;
 	__unsafe_unretained NSString *releaseDate;
 	__unsafe_unretained NSString *runtime;
 	__unsafe_unretained NSString *tagline;
+	__unsafe_unretained NSString *thumbnailFileURL;
 	__unsafe_unretained NSString *title;
 } MyMovieAttributes;
 
@@ -23,6 +24,7 @@ extern const struct MyMovieFetchedProperties {
 } MyMovieFetchedProperties;
 
 @class MyMovieGenre;
+
 
 
 
@@ -70,11 +72,11 @@ extern const struct MyMovieFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* posterPath;
+@property (nonatomic, strong) NSString* posterFileURL;
 
 
 
-//- (BOOL)validatePosterPath:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validatePosterFileURL:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -128,6 +130,16 @@ extern const struct MyMovieFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* thumbnailFileURL;
+
+
+
+//- (BOOL)validateThumbnailFileURL:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* title;
 
 
@@ -175,8 +187,8 @@ extern const struct MyMovieFetchedProperties {
 
 
 
-- (NSString*)primitivePosterPath;
-- (void)setPrimitivePosterPath:(NSString*)value;
+- (NSString*)primitivePosterFileURL;
+- (void)setPrimitivePosterFileURL:(NSString*)value;
 
 
 
@@ -207,6 +219,12 @@ extern const struct MyMovieFetchedProperties {
 
 - (NSString*)primitiveTagline;
 - (void)setPrimitiveTagline:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveThumbnailFileURL;
+- (void)setPrimitiveThumbnailFileURL:(NSString*)value;
 
 
 

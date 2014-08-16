@@ -17,22 +17,7 @@
 {
     self.titleLabel.text = movie.title;
     self.taglineLabel.text = movie.tagline;
-    
-    // TODO: this should be saved into memory and retrieved that way
-    NSURL *posterThumbnailURL = [[TheMovieDBClient sharedClient] posterThumbnailURLForPosterPath:movie.posterPath];
-    if (posterThumbnailURL) {
-        [self.posterImageView setImageWithURLRequest:[NSURLRequest requestWithURL:posterThumbnailURL]
-            placeholderImage:[UIImage imageNamed:@"movies"]
-                     success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                         self.posterImageView.image = image;
-                         [self setNeedsLayout];
-                     }
-                     failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                         DDLogError(@"Error downloading image from %@: %@", [[request URL] absoluteString], [error localizedDescription]);
-                     }];
-    } else {
-        self.posterImageView.image = nil;
-    }
+    self.posterImageView.image = [UIImage imageWithContentsOfFile:movie.thumbnailFileURL];
 }
 
 @end

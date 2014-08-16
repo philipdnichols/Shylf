@@ -19,6 +19,7 @@
     #import <Mantle/Mantle.h>
     #import <ChameleonFramework/Chameleon.h>
     #import <SVProgressHUD/SVProgressHUD.h>
+    #import <FXForms/FXForms.h>
 
     #define MR_LOGGING_ENABLED 1
     #import "MagicalRecord/CoreData+MagicalRecord.h"

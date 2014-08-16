@@ -66,6 +66,13 @@
     [self updateUI];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [SVProgressHUD dismiss];
+}
+
 - (void)updateUI
 {
     self.searchBar.text = self.query;
@@ -78,9 +85,11 @@
 
 - (void)searchMovies
 {
+    [SVProgressHUD showWithStatus:@"Searching..."];
     [[TheMovieDBClient sharedClient] searchMoviesFromQuery:self.query
            fullResults:YES
                success:^(NSArray *results) {
+                   [SVProgressHUD dismiss];
                    self.moviesArrayDataSource = [[ArrayDataSource alloc] initWithItems:results
                                                                         cellIdentifier:[TMDBMovieCell identifier]
                                                                     configureCellBlock:self.movieCellConfigureBlock];
@@ -129,7 +138,10 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         TMDBMovie *movie = [self.moviesArrayDataSource itemAtIndexPath:indexPath];
         
+        [SVProgressHUD showWithStatus:@"Adding to Collection..." maskType:SVProgressHUDMaskTypeGradient];
         [movie saveWithSuccess:^{
+            [SVProgressHUD dismiss];
+            
             if (![buttonTitle isEqualToString:@"Add and Continue"]) {
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }

@@ -70,7 +70,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0zL-YW-8jw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="894" y="529"/>
+            <point key="canvasLocation" x="894" y="1223"/>
         </scene>
         <!--Movies Table View Controller - Movies-->
         <scene sceneID="dK1-s9-gvS">
@@ -95,6 +95,7 @@
                     <connections>
                         <segue destination="wge-MT-IAU" kind="push" identifier="Search Movies" id="rAk-Bt-FK0"/>
                         <segue destination="kMP-iV-tMO" kind="modal" identifier="Scan Movie Barcode" id="O8Y-0d-DcW"/>
+                        <segue destination="dB2-5p-sSb" kind="modal" identifier="Add Movie" id="NBH-1w-T2f"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1y5-FV-PfS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -175,7 +176,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="StE-Bq-Eql" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="894" y="1190"/>
+            <point key="canvasLocation" x="894" y="1884"/>
         </scene>
         <!--Book Table View Controller - Books-->
         <scene sceneID="PUF-O1-ilh">
@@ -222,7 +223,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2wC-sS-byH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="894" y="1872"/>
+            <point key="canvasLocation" x="894" y="2566"/>
         </scene>
         <!--Navigation Controller - Movies-->
         <scene sceneID="KIe-gI-XtF">
@@ -262,7 +263,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7HO-uN-xP9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="446" y="1190"/>
+            <point key="canvasLocation" x="446" y="1884"/>
         </scene>
         <!--Navigation Controller - Books-->
         <scene sceneID="chd-68-e9F">
@@ -282,7 +283,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XNL-gg-XPz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="446" y="1872"/>
+            <point key="canvasLocation" x="446" y="2566"/>
         </scene>
         <!--Navigation Controller - TV Shows-->
         <scene sceneID="1F8-Zz-QgD">
@@ -302,7 +303,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJH-QA-Rbd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="446" y="529"/>
+            <point key="canvasLocation" x="446" y="1223"/>
         </scene>
         <!--Movie Search Table View Controller - Movie Search-->
         <scene sceneID="fRR-0n-Vhj">
@@ -337,7 +338,38 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBT-1y-keL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1402" y="-136"/>
+            <point key="canvasLocation" x="1402" y="542"/>
+        </scene>
+        <!--Add Movie Form View Controller - Add Movie-->
+        <scene sceneID="15I-tx-J4m">
+            <objects>
+                <tableViewController id="8Jm-AA-lH9" customClass="AddMovieFormViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3Hr-jA-R8B">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="8Jm-AA-lH9" id="KXB-ho-obl"/>
+                            <outlet property="delegate" destination="8Jm-AA-lH9" id="ANu-o8-b2p"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Movie" id="zHY-kw-vUz">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="MUh-7T-vOk">
+                            <connections>
+                                <action selector="cancel" destination="8Jm-AA-lH9" id="xNe-YK-qtl"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="WPs-Zj-94W">
+                            <connections>
+                                <segue destination="Abw-NU-yRZ" kind="unwind" identifier="Movie Added" unwindAction="addedMovie:" id="B7j-CQ-euk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yXR-hb-Skw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Abw-NU-yRZ" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1861" y="-136"/>
         </scene>
         <!--Movie Search Detail View Controller-->
         <scene sceneID="qEa-rs-sz5">
@@ -375,7 +407,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Hm-6X-as9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1861" y="-136"/>
+            <point key="canvasLocation" x="1861" y="542"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aJ6-v5-YFW">
@@ -394,6 +426,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EdX-nf-DpZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1402" y="-815"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Dgm-W6-Wbf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dB2-5p-sSb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="VnC-SE-8Va">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8Jm-AA-lH9" kind="relationship" relationship="rootViewController" id="SNq-f9-2NW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bgw-Rb-EOd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1402" y="-136"/>
         </scene>
     </scenes>
     <resources>
