@@ -143,6 +143,7 @@
     if ((!existingMoviesByIdentifier || ![existingMoviesByIdentifier count]) && (!existingMoviesByTitle || ![existingMoviesByTitle count])) {
         [self.addMovieAlertView show];
     } else {
+        // TODO: This interface and functionality could probably be improved (maybe a marker on the UI somewhere showing that the movie is in the collection?
         [self.movieAlreadyInCollectionAlertView show];
     }
 }
