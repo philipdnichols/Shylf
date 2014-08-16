@@ -13,9 +13,9 @@
 @property (nonatomic, copy) UIImage *image;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *tagline;
-@property (nonatomic, assign) NSUInteger rating;
+@property (nonatomic, copy) NSNumber *rating;
 @property (nonatomic, copy) NSDate *releaseDate;
-@property (nonatomic, assign) NSUInteger runtime;
+@property (nonatomic, copy) NSNumber *runtime;
 @property (nonatomic, copy) NSString *overview;
 
 @end

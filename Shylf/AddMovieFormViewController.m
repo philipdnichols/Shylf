@@ -60,6 +60,11 @@
         
         AddMovieForm *addMovieForm = (AddMovieForm *)self.formController.form;
         movie.title = addMovieForm.title;
+        movie.tagline = addMovieForm.tagline;
+        movie.rating = addMovieForm.rating;
+        movie.releaseDate = addMovieForm.releaseDate;
+        movie.runtime = addMovieForm.runtime;
+        movie.overview = addMovieForm.overview;
         
         NSURL *posterFileURL = [addMovieForm.image saveToDiskWithName:@"moviePoster"];
         if (posterFileURL) {

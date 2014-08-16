@@ -28,7 +28,33 @@
 - (NSDictionary *)titleField
 {
     return @{
-             FXFormFieldHeader : @""
+             FXFormFieldHeader : @"",
+             @"textField.autocapitalizationType": @(UITextAutocapitalizationTypeWords)
+             };
+}
+
+- (NSDictionary *)ratingField
+{
+    return @{
+             FXFormFieldPlaceholder : @"Out of 10",
+             @"textField.keyboardType" : @(UIKeyboardTypeDecimalPad)
+             };
+}
+
+- (NSDictionary *)runtimeField
+{
+    return @{
+             FXFormFieldPlaceholder : @"(Minutes)",
+             @"textField.keyboardType" : @(UIKeyboardTypeNumberPad)
+             };
+}
+
+- (NSDictionary *)overviewField
+{
+    return @{
+             FXFormFieldHeader : @"",
+             FXFormFieldType : FXFormFieldTypeLongText,
+             FXFormFieldPlaceholder : @"Overview..."
              };
 }
 
